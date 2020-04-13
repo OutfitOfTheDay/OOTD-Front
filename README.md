@@ -1,2 +1,2 @@
 # OOTD-Front
-OOTD 서비스의 FrontEnd입니다!
+OOTD 서비스의 FrontEnd
