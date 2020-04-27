@@ -7,7 +7,7 @@ export const GlobalStyle: GlobalStyleComponent<
   {},
   DefaultTheme
 > = createGlobalStyle`
-@import url(“https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@1.0/nanumbarungothicsubset.css”);
+@import url("https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@1.0/nanumbarungothicsubset.css");
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -29,7 +29,7 @@ export const GlobalStyle: GlobalStyleComponent<
     width:100%;
     height: 100%;
     font-size: 0;
-    font-family: ‘NanumBarunGothic’;
+    font-family: 'NanumBarunGothic';
     min-width: 1360px;
     overflow: auto;
   }
@@ -45,7 +45,7 @@ export const GlobalStyle: GlobalStyleComponent<
   }
   blockquote:before, blockquote:after,
   q:before, q:after {
-    content: ‘’;
+    content: '';
     content: none;
   }
   a {
