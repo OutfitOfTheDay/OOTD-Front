@@ -12,8 +12,7 @@ module.exports = {
     port: 9000,
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
@@ -25,14 +24,12 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: {
-              minimize: true,
-            },
+        use: [{
+          loader: "html-loader",
+          options: {
+            minimize: true,
           },
-        ],
+        }, ],
       },
       {
         test: /\.(ts|tsx)$/,
@@ -43,6 +40,14 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        test: /\.svg$/,
+        loader: 'file-loader',
+        options: {
+          publicPath: './dist/',
+          name: '[name].[ext]?[hash]',
+        }
+      }
     ],
   },
   plugins: [
