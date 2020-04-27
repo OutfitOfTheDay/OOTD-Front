@@ -8,6 +8,7 @@ module.exports = {
     path: `${__dirname}/dist`,
     filename: "bundle.js",
   },
+  devtool: "inline-source-map",
   devServer: {
     port: 9000,
   },
@@ -32,23 +33,35 @@ module.exports = {
         }, ],
       },
       {
-        test: /\.(ts|tsx)$/,
-        use: ["source-map-loader"],
-        enforce: "pre",
-      },
-      {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+          },
+        ],
       },
       {
-        test: /\.svg$/,
-        loader: 'file-loader',
-        options: {
-          publicPath: './dist/',
-          name: '[name].[ext]?[hash]',
-        }
-      }
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [{
+          loader: "file-loader",
+        }, ],
+      },
+      {
+        test: /\.(png|jpe?g|svg|gif|ttf|woff|woff2|eot|TTF)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            name: "[name].[ext]?[hash]",
+            publicPath: "./dist/",
+            limit: 10000, // 10kb
+          },
+        },
+      },
     ],
+  },
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
   },
   plugins: [
     new HtmlWebpackPlugin({
