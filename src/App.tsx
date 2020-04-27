@@ -1,12 +1,13 @@
 import React from "react";
-import "./index.css";
-import { GlobalStyle } from "./GlobalStyle.ts";
+import { GlobalStyle } from "./GlobalStyle";
+import SomeComponent from "../src/components/SomeComponent";
 
 const App = () => {
   return (
-    <GlobalStyle>
-      <div>안녕 여긴 ootd 살려줘</div>
-    </GlobalStyle>
+    <>
+      <GlobalStyle />
+      <SomeComponent />
+    </>
   );
 };
 
