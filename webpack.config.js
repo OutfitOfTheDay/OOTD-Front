@@ -57,16 +57,6 @@ module.exports = {
             limit: 10000, // 10kb
           },
         },
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        enforce: 'pre',
-        use: [{
-          options: {
-            eslintPath: require.resolve('eslint')
-          },
-          loader: require.resolve('eslint-loader')
-        }]
       }
     ],
   },
