@@ -28,7 +28,7 @@ export const GlobalStyle: GlobalStyleComponent<
   html, body, #root{
     width:100%;
     height: 100%;
-    font-size: 0;
+    font-size: 16px;
     font-family: 'NanumBarunGothic';
     min-width: 1360px;
     overflow: auto;
