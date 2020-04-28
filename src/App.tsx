@@ -1,13 +1,13 @@
 import React from "react";
 import { GlobalStyle } from "./GlobalStyle";
 import { BrowserRouter } from "react-router-dom";
-import SomeComponent from "../src/components/SomeComponent";
+import Router from "./Router";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <div>#OOTD</div>
+      <Router />
     </BrowserRouter>
   );
 };
