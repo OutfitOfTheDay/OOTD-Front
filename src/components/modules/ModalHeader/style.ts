@@ -6,16 +6,18 @@ export const ModalHeaderWrapper = styled.div`
   width: inherit;
   height: 3.125rem;
   align-items: center;
-  justify-content: center;
+`;
+
+export const ModalName = styled.p`
+  color: ${MainColor};
+  font-size: 1.125rem;
+  margin-left: 10.94rem;
+  font-weight: 800;
 `;
 
 export const closeButton = styled.img`
   width: 1.25em;
   height: 1.25em;
   background-color: #a8a8a8;
-`;
-
-export const ModalName = styled.p`
-  color: ${MainColor};
-  font-size: 1.125rem;
+  margin-left: 8.813rem; 
 `;
