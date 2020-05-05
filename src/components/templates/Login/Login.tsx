@@ -4,7 +4,7 @@ import AuthFacebook from '../../../assets/AuthFacebook.jpg';
 import AuthGoogle from '../../../assets/AuthGoogle.jpg';
 import closeButton from '../../atoms/closeButton/closeButton';
 import AuthButton from '../../atoms/AuthButton/AuthButton';
-import ModalHeader from '../ModalHeader/ModalHeader';
+import ModalHeader from '../../modules/ModalHeader/ModalHeader';
 import ModalOverlay from '../../atoms/ModalOverlay/ModalOverlay';
 
 const Login: React.FC = () => {

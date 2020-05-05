@@ -13,7 +13,7 @@ export const LoginModalWrapper = styled.div`
   border: 1px solid ${SubColor};
   flex-direction: column;
   align-items: center;
-  z-index: 1000;
+  z-index: 1000; 
 `;
 
 export const LoginButtonsWrapper = styled.div`
