@@ -9,7 +9,15 @@
     "sourceMap": true,
     "target": "es6",
     "esModuleInterop": true,
-    "lib": ["ES2015", "ES2017", "DOM"]
+    "lib": ["ES2015", "ES2017", "DOM"],
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"],
+      "atoms/*": ["src/components/atoms/*"],
+      "modules/*": ["src/components/modules/*"],
+      "templates/*": ["src/components/templates/*"],
+      "assets/*": ["src/assets/*"]
+    }
   },
-  "include": ["./src/**/**/*"]
+  "include": ["./src/**/**/*", "./src/@types/**/*.d.ts"]
 }
