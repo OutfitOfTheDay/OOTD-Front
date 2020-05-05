@@ -2,12 +2,13 @@ import {
   createGlobalStyle,
   GlobalStyleComponent,
   DefaultTheme,
-} from "styled-components";
+} from 'styled-components';
 export const GlobalStyle: GlobalStyleComponent<
   {},
   DefaultTheme
 > = createGlobalStyle`
-@import url("https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@1.0/nanumbarungothicsubset.css");
+@import url("https://www.fontzip.com/storage/2018/12/11/play-pretend/webfonts/Play Pretend.css");
+@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -29,7 +30,7 @@ export const GlobalStyle: GlobalStyleComponent<
     width:100%;
     height: 100%;
     font-size: 16px;
-    font-family: 'NanumBarunGothic';
+    font-family: 'Nanum Gothic';
     min-width: 1360px;
     overflow: auto;
   }
@@ -65,7 +66,9 @@ export const GlobalStyle: GlobalStyleComponent<
   textarea:focus,
   button:focus {
     outline: none;
-  }`;
+  }
+  `;
 
-export const MainColor = "#55109b";
-export const SubColor = "#e0ee06";
+export const MainColor = '#55109b';
+export const SubColor = '#e0ee06';
+export const DeactColor = '#707070';
