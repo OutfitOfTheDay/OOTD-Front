@@ -5,10 +5,20 @@ import ModalButtonWrapper from '../../modules/ModalButtonWrapper/ModalButtonWrap
 
 interface Props {
   contents: ReactNode;
+  modalWidth: string;
+  modalHeight: string;
 }
 
-const ModalContentWrapper: React.FC<Props> = ({ contents }) => {
-  return <S.ModalWrapper>{contents}</S.ModalWrapper>;
+const ModalContentWrapper: React.FC<Props> = ({
+  contents,
+  modalWidth,
+  modalHeight,
+}) => {
+  return (
+    <S.ModalWrapper modalWidth={modalWidth} modalHeight={modalHeight}>
+      {contents}
+    </S.ModalWrapper>
+  );
 };
 
 export default ModalContentWrapper;
