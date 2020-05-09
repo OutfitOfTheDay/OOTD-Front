@@ -3,10 +3,10 @@ import * as S from './style';
 import AuthFacebook from '../../../assets/AuthFacebook.jpg';
 import AuthGoogle from '../../../assets/AuthGoogle.jpg';
 import closeButton from '../../atoms/closeButton/closeButton';
-import AuthButton from '../../atoms/AuthButton/AuthButton';
+import AuthButton from '../../atoms/modals/AuthButton/AuthButton';
 import ModalHeader from '../../modules/ModalHeader/ModalHeader';
-import ModalOverlay from '../../atoms/ModalOverlay/ModalOverlay';
-import ModalContentWrapper from '../../atoms/ModalContentWrapper/ModalContentWrapper';
+import ModalOverlay from '../../atoms/modals/ModalOverlay/ModalOverlay';
+import ModalContentWrapper from '../../atoms/modals/ModalContentWrapper/ModalContentWrapper';
 
 const Login: React.FC = () => {
   const modalContnet = (

@@ -1,8 +1,8 @@
 import React from 'react';
-import ModalContentWrapper from '../../atoms/ModalContentWrapper/ModalContentWrapper';
+import ModalContentWrapper from '../../atoms/modals/ModalContentWrapper/ModalContentWrapper';
 import ModalButtonWrapper from '../../modules/ModalButtonWrapper/ModalButtonWrapper';
 import ModalHeader from '../../modules/ModalHeader/ModalHeader';
-import ModalOverlay from '../../atoms/ModalOverlay/ModalOverlay';
+import ModalOverlay from '../../atoms/modals/ModalOverlay/ModalOverlay';
 const DeletePost: React.FC = () => {
   let modalContnet = (
     <>

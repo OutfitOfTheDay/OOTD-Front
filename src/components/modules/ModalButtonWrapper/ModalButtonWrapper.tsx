@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import ModalButton from '../../atoms/ModalButton/ModalButton';
+import ModalButton from '../../atoms/modals/ModalButton/ModalButton';
 
 interface Props {
   buttonName: string;

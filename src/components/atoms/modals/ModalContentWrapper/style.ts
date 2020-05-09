@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SubColor } from '../../../GlobalStyle';
+import { SubColor } from '../../../../GlobalStyle';
 
 export const ModalWrapper = styled.div<{
   isLogin: boolean;
