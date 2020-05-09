@@ -1,8 +1,8 @@
 import React from 'react';
-import ModalContentWrapper from '../../atoms/modals/ModalContentWrapper/ModalContentWrapper';
-import ModalButtonWrapper from '../../modules/ModalButtonWrapper/ModalButtonWrapper';
-import ModalHeader from '../../modules/ModalHeader/ModalHeader';
-import ModalOverlay from '../../atoms/modals/ModalOverlay/ModalOverlay';
+import ModalContentWrapper from '../../atoms/modals/ModalContentWrapper';
+import ModalButtonWrapper from '../../modules/ModalButtonWrapper';
+import ModalHeader from '../../modules/ModalHeader';
+import ModalOverlay from '../../atoms/modals/ModalOverlay';
 const DeleteAccount: React.FC = () => {
   let modalContnet = (
     <>
