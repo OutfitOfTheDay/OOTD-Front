@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { SubColor } from '../../../GlobalStyle';
 
 export const ModalWrapper = styled.div<{
+  isLogin: boolean;
   modalWidth: string;
   modalHeight: string;
 }>`
@@ -17,6 +18,7 @@ export const ModalWrapper = styled.div<{
   color: #707070;
   border: 1px solid ${SubColor};
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: ${(props) => (props.isLogin ? 'normal' : 'space-between')};
+  align-items: ${(props) => (props.isLogin ? 'center' : 'normal')};
   z-index: 1000;
 `;

@@ -4,21 +4,32 @@ import ModalHeader from '../../modules/ModalHeader/ModalHeader';
 import ModalButtonWrapper from '../../modules/ModalButtonWrapper/ModalButtonWrapper';
 
 interface Props {
+  isLogin?: boolean;
   contents: ReactNode;
   modalWidth: string;
   modalHeight: string;
 }
-
+const defaultProps: Props = {
+  isLogin: false,
+  contents: {},
+  modalWidth: '20rem',
+  modalHeight: '17rem',
+};
 const ModalContentWrapper: React.FC<Props> = ({
+  isLogin,
   contents,
   modalWidth,
   modalHeight,
 }) => {
   return (
-    <S.ModalWrapper modalWidth={modalWidth} modalHeight={modalHeight}>
+    <S.ModalWrapper
+      isLogin={isLogin}
+      modalWidth={modalWidth}
+      modalHeight={modalHeight}
+    >
       {contents}
     </S.ModalWrapper>
   );
 };
-
+ModalContentWrapper.defaultProps = defaultProps;
 export default ModalContentWrapper;
