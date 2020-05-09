@@ -3,11 +3,12 @@ import ModalContentWrapper from '../../atoms/ModalContentWrapper/ModalContentWra
 import ModalButtonWrapper from '../../modules/ModalButtonWrapper/ModalButtonWrapper';
 import ModalHeader from '../../modules/ModalHeader/ModalHeader';
 import ModalOverlay from '../../atoms/ModalOverlay/ModalOverlay';
-const DeleteAccount = () => {
+const DeleteAccount: React.FC = () => {
   let modalContnet = (
     <>
       <ModalHeader ModalName="정말 회원을 탈퇴하시겠어요?" />
-      {'asfdasfsf'}
+      <p>회원님의 정보와 스타일이 모두 삭제됩니다.</p>
+      <p>삭제된 정보와 스타일은 복구할 수 없습니다.</p>
       <ModalButtonWrapper buttonName="탈퇴" />
     </>
   );
