@@ -3,6 +3,7 @@ import ModalContentWrapper from '../../atoms/modals/ModalContentWrapper';
 import ModalButtonWrapper from '../../modules/ModalButtonWrapper';
 import ModalHeader from '../../modules/ModalHeader';
 import ModalOverlay from '../../atoms/modals/ModalOverlay';
+
 const DeleteAccount: React.FC = () => {
   let modalContnet = (
     <>
