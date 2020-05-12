@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "jsx": "react",
     "module": "CommonJS",
     "noImplicitAny": true,
@@ -19,5 +20,6 @@
       "assets/*": ["src/assets/*"]
     }
   },
-  "include": ["./src/**/**/*", "./src/@types/**/*.d.ts"]
+  "include": ["./src/**/**/*", "./src/@types/**/*.d.ts"],
+  "exclude": ["node_modules", "build"]
 }
