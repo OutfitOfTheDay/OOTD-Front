@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { MainColor } from '../../../../GlobalStyle';
 
 export const TD = styled.td`
-  padding: 0 8px;
+  padding: 0 0.5rem;
   vertical-align: top;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: bold;
   color: ${MainColor};
   text-align: center;
@@ -22,6 +22,6 @@ export const TD = styled.td`
 `;
 
 export const weatherIcon = styled.img`
-  width: 40px;
+  width: 2.5rem;
   display: inline-block;
 `;

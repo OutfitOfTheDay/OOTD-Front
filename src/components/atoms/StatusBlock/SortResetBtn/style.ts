@@ -8,14 +8,14 @@ export const resetItemsWrapper = styled.span`
 `;
 
 export const resetIcon = styled.img`
-  width: 15px;
-  height: 15px;
-  margin-right: 4px;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  margin-right: 0.25rem;
 `;
 
 export const resetText = styled.p`
   display: inline;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   color: ${MainColor};
 `;
