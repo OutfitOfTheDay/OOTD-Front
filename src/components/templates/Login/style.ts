@@ -7,3 +7,8 @@ export const LoginButtonsWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
+
+export const AuthButton = styled.img`
+  width: 21.25rem;
+  height: 4.375rem;
+`;
