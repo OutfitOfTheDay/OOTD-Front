@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import * as S from './style';
-import ModalHeader from '../../../modules/ModalHeader';
+import ModalHeader from '../ModalHeader';
 import ModalButtonWrapper from '../../../modules/ModalButtonWrapper';
 
 interface Props {

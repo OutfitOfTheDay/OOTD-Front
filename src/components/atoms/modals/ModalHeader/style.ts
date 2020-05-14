@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainColor } from '../../../GlobalStyle';
+import { MainColor } from '../../../../GlobalStyle';
 
 export const ModalHeaderWrapper = styled.div<{ isLogin: boolean }>`
   display: flex;
