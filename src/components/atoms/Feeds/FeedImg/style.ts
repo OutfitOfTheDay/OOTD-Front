@@ -11,6 +11,7 @@ export const FeedImageWrapper = styled.div`
 `;
 
 export const FeedImage = styled.img`
-  max-width: 100%;
-  height: auto;
+  object-fit: contain;
+  max-width: inherit;
+  height: inherit;
 `;
