@@ -11,6 +11,10 @@ export const FeedWrapper = styled.div`
 `;
 
 export const Dummy = styled.div`
-  background-color: #fff;
+  display: flex;
+  flex-direction: column;
   height: 12.5rem;
+  width: 41.25rem;
+  padding: 0 1.25rem;
+  background-color: #fff;
 `;
