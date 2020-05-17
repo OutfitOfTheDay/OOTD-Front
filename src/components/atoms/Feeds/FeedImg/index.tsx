@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './style';
+import WriterInfo from '../WriterInfo';
 
 interface Props {
   ImgUrl: string;
@@ -12,6 +13,7 @@ const FeedImg: React.FC<Props> = ({ ImgUrl }) => {
   return (
     <S.FeedImageWrapper>
       <S.FeedImage src={ImgUrl} />
+      <WriterInfo />
     </S.FeedImageWrapper>
   );
 };
