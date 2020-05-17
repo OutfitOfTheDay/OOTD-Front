@@ -5,9 +5,8 @@ export const PostButtonWrapper = styled.div`
   flex-direction: row;
 `;
 
-export const PostButton = styled.button`
+export const PostButton = styled.img`
   width: 1.563rem;
   height: 2.125rem;
   margin-right: 1.25rem;
-  background-color: purple;
 `;
