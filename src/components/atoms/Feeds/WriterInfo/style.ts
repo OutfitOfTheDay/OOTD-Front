@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { MainColor } from '../../../../GlobalStyle';
 
 export const PostInfoWrapper = styled.div`
+  position: absolute;
   display: flex;
+  bottom: 0;
   width: 42.25rem;
   height: 3rem;
   padding: 0 0.75rem;
@@ -12,6 +14,11 @@ export const PostInfoWrapper = styled.div`
   font-weight: bold;
   justify-content: space-between;
   align-items: center;
+  opacity: 0;
+  transition-duration: 0.4s;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const InfoUnitWrapper = styled.div`
