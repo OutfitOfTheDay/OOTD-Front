@@ -5,9 +5,11 @@ export const FeedWrapper = styled.div`
   width: 43.75rem;
   height: auto;
   border: 1px solid #55109b;
+  background-color: #fff;
   box-shadow: 0px 5px 10px #d3d3d3;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 5rem;
 `;
 
 export const Dummy = styled.div`
