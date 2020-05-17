@@ -67,6 +67,9 @@ module.exports = {
       modules: path.resolve(__dirname, 'src/components/modules'),
       templates: path.resolve(__dirname, 'src/components/templates'),
       assets: path.resolve(__dirname, 'src/assets'),
+      data: path.resolve(__dirname, 'src/data'),
+      hooks: path.resolve(__dirname, 'src/hooks'),
+      util: path.resolve(__dirname, 'src/util'),
     },
   },
   plugins: [
