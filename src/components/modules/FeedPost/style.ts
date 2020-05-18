@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FeedWrapper = styled.div`
+export const PostWrapper = styled.div`
   display: flex;
   width: 43.75rem;
   height: auto;
@@ -12,7 +12,7 @@ export const FeedWrapper = styled.div`
   margin-bottom: 5rem;
 `;
 
-export const Dummy = styled.div`
+export const PostContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 12.5rem;
