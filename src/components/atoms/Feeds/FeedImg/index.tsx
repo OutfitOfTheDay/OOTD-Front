@@ -4,23 +4,17 @@ import WriterInfo from '../WriterInfo';
 import FeedImgMoveBtn from '../FeedImgMoveBtn';
 import leftMoveButton from '../../../../assets/Feed_icon/left_move_button.png';
 import rightMoveButton from '../../../../assets/Feed_icon/right_move_button.png';
+import usePagination from '../../../../hooks/usePagination';
 
-interface Props {
-  ImgUrl: string;
-}
-
-const defaultProps: Props = {
-  ImgUrl: 'https://blog.jinbo.net/attach/615/200937431.jpg',
-};
-const FeedImg: React.FC<Props> = ({ ImgUrl }) => {
+const FeedImg: React.FC = () => {
+  const { photoUrl } = usePagination();
   return (
     <S.FeedImageWrapper>
-      <S.FeedImage src={ImgUrl} />
+      <S.FeedImage src={photoUrl} />
       <FeedImgMoveBtn ButtonImg={leftMoveButton} />
       <FeedImgMoveBtn isRight ButtonImg={rightMoveButton} />
       <WriterInfo />
     </S.FeedImageWrapper>
   );
 };
-FeedImg.defaultProps = defaultProps;
 export default FeedImg;
