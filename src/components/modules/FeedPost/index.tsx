@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './style';
 import {
   ImgNumberWrapper,
@@ -7,20 +7,38 @@ import {
   PostContent,
   PostLikeButton,
 } from '../../atoms/Feeds/index';
+import useGetPost from '../../../hooks/useGetPost';
 
-interface Props {}
+interface Props {
+  post: {
+    _id: string;
+    userId: string;
+    profile: string;
+    content: string;
+    likeN: number;
+    cmtN: number;
+    pictures: string[];
+    date: string;
+    weather: {
+      status: number;
+      temp: number;
+    };
+  };
+}
 
-const FeedPost: React.FC<Props> = ({}) => {
+const FeedPost: React.FC<Props> = ({ post }) => {
+  const getPost = useGetPost();
+  getPost(post);
   return (
-    <S.FeedWrapper>
-      <FeedImg ImgUrl="https://i.pinimg.com/564x/50/a2/ea/50a2eae753e75ef5679f6530129a34d2.jpg" />
+    <S.PostWrapper>
+      <FeedImg />
       <ImgNumberWrapper />
-      <S.Dummy>
+      <S.PostContentWrapper>
         <PostLikeButton />
         <TagCommentCount />
         <PostContent />
-      </S.Dummy>
-    </S.FeedWrapper>
+      </S.PostContentWrapper>
+    </S.PostWrapper>
   );
 };
 
