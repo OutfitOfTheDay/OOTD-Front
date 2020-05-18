@@ -1,26 +1,19 @@
 import React from 'react';
 import * as S from './style';
 import { ImgNumber } from '../index';
+import usePagination from '../../../../hooks/usePagination';
 
-interface Props {
-  numberOfPhoto?: number;
-}
-
-const defaultProps: Props = {
-  numberOfPhoto: 5,
-};
-const ImgNumberWrapper: React.FC<Props> = ({ numberOfPhoto }) => {
+const ImgNumberWrapper: React.FC = ({}) => {
+  const { numberOfPhoto } = usePagination();
   return (
     <>
       <S.ImgNumberWrapper>
-        {[...Array(numberOfPhoto).keys()].map((photo) => (
-          <ImgNumber key={photo} />
+        {[...Array(numberOfPhoto).keys()].map((photoNum) => (
+          <ImgNumber key={photoNum} />
         ))}
       </S.ImgNumberWrapper>
     </>
   );
 };
-
-ImgNumberWrapper.defaultProps = defaultProps;
 
 export default ImgNumberWrapper;
