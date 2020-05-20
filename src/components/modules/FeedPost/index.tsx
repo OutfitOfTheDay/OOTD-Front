@@ -7,7 +7,6 @@ import {
   PostContent,
   PostLikeButton,
 } from '../../atoms/Feeds/index';
-import useGetPost from '../../../hooks/useGetPost';
 
 interface Props {
   post: {
@@ -27,8 +26,6 @@ interface Props {
 }
 
 const FeedPost: React.FC<Props> = ({ post }) => {
-  const getPost = useGetPost();
-  getPost(post);
   const writerInfoData = {
     profile: post.profile,
     userName: post.userId,

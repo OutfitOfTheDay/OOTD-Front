@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from './style';
 import { ImgNumber } from '../index';
-import usePagination from '../../../../hooks/usePagination';
 
 interface Props {
   getPhotoIndex: (index: number) => void;

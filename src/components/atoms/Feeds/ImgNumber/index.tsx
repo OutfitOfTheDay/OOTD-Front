@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './style';
-import usePagination from '../../../../hooks/usePagination';
 
 interface Props {
   photoIndex: number;
@@ -15,7 +14,6 @@ const ImgNumber: React.FC<Props> = ({
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const setSelectedIndex = (): void => {
-    console.log(`${photoIndex}  + ${selectedPhotoIndex}`);
     if (photoIndex === selectedPhotoIndex) {
       setIsSelected(true);
     } else setIsSelected(false);
