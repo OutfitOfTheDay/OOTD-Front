@@ -1,15 +1,16 @@
 import React from 'react';
 import * as S from './style';
 
-interface Props {}
+interface Props {
+  commentCount: number;
+  likeCount: number;
+}
 
-const TagCommentCount: React.FC<Props> = () => {
-  const cmtN: number = 2002;
-  const likeN: number = 1002;
+const TagCommentCount: React.FC<Props> = ({ commentCount, likeCount }) => {
   return (
     <S.CountWrapper>
-      <S.CountInfo>태그 수 {likeN}</S.CountInfo>
-      <S.CountInfo>댓글 수 {cmtN}</S.CountInfo>
+      <S.CountInfo>태그 수 {likeCount}</S.CountInfo>
+      <S.CountInfo>댓글 수 {commentCount}</S.CountInfo>
     </S.CountWrapper>
   );
 };

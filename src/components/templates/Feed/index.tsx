@@ -1,14 +1,17 @@
 import React from 'react';
 import * as S from './style';
 import FeedPost from '../../modules/FeedPost';
+import useFeed from '../../../hooks/useFeed';
 
-const index = () => {
+const Feed: React.FC = () => {
+  const feeds = useFeed();
   return (
     <S.FeedContainer>
-      <FeedPost />
-      <FeedPost />
+      {feeds.map((feedPost, index) => (
+        <FeedPost post={feedPost} key={index} />
+      ))}
     </S.FeedContainer>
   );
 };
 
-export default index;
+export default Feed;
