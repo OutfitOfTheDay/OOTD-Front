@@ -13,7 +13,7 @@ export const PostContent = styled.p`
   width: 34rem;
   height: 5.125rem;
   overflow: hidden;
-  line-height: 17.5px;
+  line-height: 1.063rem;
   white-space: pre-line;
   font-size: 0.875rem;
   color: ${DeactColor};
