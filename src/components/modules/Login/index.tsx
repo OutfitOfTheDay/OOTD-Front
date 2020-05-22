@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import { modalIcon } from '../../../assets/index';
+import { modal } from '../../../assets/index';
 import {
   ModalOverlay,
   ModalContentWrapper,
@@ -8,12 +8,12 @@ import {
 } from '../../atoms/modals/index';
 
 const Login: React.FC = () => {
-  const modalContnet = (
+  const modalContent = (
     <>
       <ModalHeader ModalName="로그인" isLogin={true} />
       <S.LoginButtonsWrapper>
-        <S.AuthButton src={modalIcon.AuthFacebook} alt="페이스북 아이콘" />
-        <S.AuthButton src={modalIcon.AuthGoogle} alt="구글 아이콘" />
+        <S.AuthButton src={modal.auth_facebook} alt="페이스북 아이콘" />
+        <S.AuthButton src={modal.auth_google} alt="구글 아이콘" />
       </S.LoginButtonsWrapper>
     </>
   );
@@ -24,10 +24,9 @@ const Login: React.FC = () => {
         isLogin={true}
         modalHeight="17.5rem"
         modalWidth="25rem"
-        contents={modalContnet}
+        contents={modalContent}
       />
     </>
   );
 };
-
 export default Login;
