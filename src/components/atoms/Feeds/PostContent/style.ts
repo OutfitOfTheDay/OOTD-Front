@@ -6,7 +6,6 @@ export const PostContentWrapper = styled.div`
   height: 5.125rem;
   width: inherit;
   flex-direction: row;
-  align-items: flex-end;
   justify-content: space-between;
 `;
 
@@ -26,4 +25,5 @@ export const ShowDetailPostBtn = styled.button`
   font-size: 0.875rem;
   color: ${MainColor};
   font-weight: bold;
+  align-self: flex-end;
 `;
