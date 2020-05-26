@@ -15,8 +15,8 @@ export const PostWrapper = styled.div`
 export const PostContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 12.5rem;
   width: 41.25rem;
   padding: 0 1.25rem;
+  padding-bottom: 1.5rem;
   background-color: #fff;
 `;
