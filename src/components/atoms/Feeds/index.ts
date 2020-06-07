@@ -7,6 +7,7 @@ import PostContent from './PostContent/index';
 import PostLikeButton from './PostLikeButton/index';
 import FeedImgMoveBtn from './FeedImgMoveBtn/index';
 import CommentItem from './CommentItem/index';
+import WritingComment from './WritingComment';
 
 export {
   ImgNumber,
@@ -18,4 +19,5 @@ export {
   PostLikeButton,
   FeedImgMoveBtn,
   CommentItem,
+  WritingComment,
 };
