@@ -36,4 +36,5 @@ export const Comment = styled.p`
   font-size: 0.75rem;
   margin-top: 0.25rem;
   color: #707070;
+  line-height: 1.25;
 `;
