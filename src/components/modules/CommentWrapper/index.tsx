@@ -33,6 +33,7 @@ const CommentWrapper: React.FC = () => {
           />
         );
       })}
+      <S.MoreCommentButton>댓글 더 보기</S.MoreCommentButton>
     </S.CommentWrapper>
   );
 };
