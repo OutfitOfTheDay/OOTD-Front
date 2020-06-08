@@ -37,4 +37,5 @@ export const Comment = styled.p`
   margin-top: 0.25rem;
   color: #707070;
   line-height: 1.25;
+  white-space: pre-line;
 `;
