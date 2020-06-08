@@ -3,7 +3,7 @@ import * as S from './style';
 
 interface Props {
   imgURL: string;
-  size: number;
+  size: string;
 }
 
 const UserProfileImg: React.FC<Props> = ({ imgURL, size }) => {
