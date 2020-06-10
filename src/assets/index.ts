@@ -5,6 +5,10 @@ import comment from './Feed_icon/comment.png';
 import tag from './Feed_icon/tag.png';
 import left_move_button from './Feed_icon/left_move_button.png';
 import right_move_button from './Feed_icon/right_move_button.png';
+import default_profile from './header/default_profile.png';
+import close from './modal_icon/close.png';
+import auth_facebook from './modal_icon/auth_facebook.png';
+import auth_google from './modal_icon/auth_google.png';
 
 export const weather = {
   disabled,
@@ -18,4 +22,13 @@ export const feed = {
   tag,
   left_move_button,
   right_move_button,
+};
+export const header = {
+  defualt_profile: default_profile,
+};
+
+export const modal = {
+  close,
+  auth_facebook,
+  auth_google,
 };
