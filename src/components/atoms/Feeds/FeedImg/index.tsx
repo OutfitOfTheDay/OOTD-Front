@@ -3,8 +3,6 @@ import * as S from './style';
 import WriterInfo from '../WriterInfo';
 import FeedImgMoveBtn from '../FeedImgMoveBtn';
 import ImgNumberWrapper from '../ImgNumberWrapper/index';
-import leftMoveButton from '../../../../assets/Feed_icon/left_move_button.png';
-import rightMoveButton from '../../../../assets/Feed_icon/right_move_button.png';
 import useDetailPost from '../../../../hooks/useDetailPost';
 import { feed } from '../../../../assets/index';
 
@@ -33,12 +31,7 @@ const FeedImg: React.FC<Props> = ({
   getPrevIndex,
   isDetail,
 }) => {
-  const {
-    DetailNumberOfPhoto,
-    DetailPhotoIndex,
-    onGetNumberOfPhoto,
-    onGetDetailPhotoIndex,
-  } = useDetailPost();
+  const { DetailNumberOfPhoto, onGetDetailPhotoIndex } = useDetailPost();
   const URL = postPhotos[photoIndex];
   return (
     <S.FeedImageWrapper>
