@@ -10,10 +10,8 @@ export const CommentWritingWrapper = styled.div`
 
 export const WritingCommentInput = styled.input`
   width: 28.31rem;
-  height: inherit;
   font-size: 0.75rem;
   border: none;
-  margin-left: 0.75rem;
 `;
 
 export const PostingCommentButton = styled.button`

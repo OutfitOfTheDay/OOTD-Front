@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import * as S from './style';
 import WriterInfo from '../WriterInfo';
 import FeedImgMoveBtn from '../FeedImgMoveBtn';
+import ImgNumberWrapper from '../ImgNumberWrapper/index';
 import leftMoveButton from '../../../../assets/Feed_icon/left_move_button.png';
 import rightMoveButton from '../../../../assets/Feed_icon/right_move_button.png';
+import useDetailPost from '../../../../hooks/useDetailPost';
 import { feed } from '../../../../assets/index';
 
 interface Props {
@@ -20,6 +22,7 @@ interface Props {
   };
   getNextIndex: () => void;
   getPrevIndex: () => void;
+  isDetail?: boolean;
 }
 
 const FeedImg: React.FC<Props> = ({
@@ -28,7 +31,14 @@ const FeedImg: React.FC<Props> = ({
   photoIndex,
   getNextIndex,
   getPrevIndex,
+  isDetail,
 }) => {
+  const {
+    DetailNumberOfPhoto,
+    DetailPhotoIndex,
+    onGetNumberOfPhoto,
+    onGetDetailPhotoIndex,
+  } = useDetailPost();
   const URL = postPhotos[photoIndex];
   return (
     <S.FeedImageWrapper>
@@ -42,7 +52,15 @@ const FeedImg: React.FC<Props> = ({
         ButtonImg={feed.right_move_button}
         moveIndex={getNextIndex}
       />
-      <WriterInfo writerInfoData={writerInfoData} />
+      {isDetail ? (
+        <ImgNumberWrapper
+          numberOfPhoto={DetailNumberOfPhoto}
+          getPhotoIndex={onGetDetailPhotoIndex}
+          selectedPhotoIndex={photoIndex}
+        />
+      ) : (
+        <WriterInfo writerInfoData={writerInfoData} />
+      )}
     </S.FeedImageWrapper>
   );
 };

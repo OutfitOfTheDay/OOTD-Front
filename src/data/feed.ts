@@ -1,12 +1,18 @@
 const GET_FEED = 'GET_FEED' as const;
+const GET_POSTID = 'GET_POSTID' as const;
 
 export const getFeed = () => ({
   type: GET_FEED,
 });
 
-type FeedAction = ReturnType<typeof getFeed>;
+export const getPostId = (postId: number) => ({
+  type: GET_POSTID,
+  payload: postId,
+});
 
-export type FeedState = {
+type FeedAction = ReturnType<typeof getFeed> | ReturnType<typeof getPostId>;
+
+export interface FeedState {
   feedList: {
     _id: string;
     userId: string;
@@ -21,7 +27,8 @@ export type FeedState = {
       temp: number;
     };
   }[];
-};
+  postId: number;
+}
 
 const initialState: FeedState = {
   feedList: [
@@ -89,6 +96,7 @@ const initialState: FeedState = {
       },
     },
   ],
+  postId: 1,
 };
 
 export default function feed(
@@ -98,6 +106,8 @@ export default function feed(
   switch (action.type) {
     case GET_FEED:
       return { ...state };
+    case GET_POSTID:
+      return { ...state, postId: action.payload };
     default:
       return state;
   }

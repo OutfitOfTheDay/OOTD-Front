@@ -14,7 +14,7 @@ export const PostInfoWrapper = styled.div`
   font-weight: bold;
   justify-content: space-between;
   align-items: center;
-  opacity: 0;
+  opacity: 0; 
   transition-duration: 0.4s;
   &:hover {
     opacity: 1;

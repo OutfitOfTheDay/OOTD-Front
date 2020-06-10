@@ -27,6 +27,4 @@ const ImgNumber: React.FC<Props> = ({
   );
 };
 
-// ImgNumber.defaultProps = defaultProps;
-
 export default ImgNumber;

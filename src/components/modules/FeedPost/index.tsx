@@ -23,9 +23,10 @@ interface Props {
       temp: number;
     };
   };
+  postId: number;
 }
 
-const FeedPost: React.FC<Props> = ({ post }) => {
+const FeedPost: React.FC<Props> = ({ post, postId }) => {
   const writerInfoData = {
     profile: post.profile,
     userName: post.userId,
@@ -62,9 +63,9 @@ const FeedPost: React.FC<Props> = ({ post }) => {
         selectedPhotoIndex={photoIndex}
       />
       <S.PostContentWrapper>
-        <PostLikeButton />
+        <PostLikeButton width="1.563rem" height="2.125rem" />
         <TagCommentCount commentCount={post.cmtN} likeCount={post.likeN} />
-        <PostContent content={post.content} />
+        <PostContent content={post.content} postId={postId} />
       </S.PostContentWrapper>
     </S.PostWrapper>
   );

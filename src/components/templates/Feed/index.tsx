@@ -8,7 +8,7 @@ const Feed: React.FC = () => {
   return (
     <S.FeedContainer>
       {feeds.map((feedPost, index) => (
-        <FeedPost post={feedPost} key={index} />
+        <FeedPost post={feedPost} key={index} postId={index} />
       ))}
     </S.FeedContainer>
   );
