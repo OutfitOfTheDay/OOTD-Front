@@ -24,11 +24,13 @@ const DetailPostWriterProfile: React.FC<Props> = ({
         <UserProfileImg imgURL={profilePhoto} size="1.875rem" />
         <S.WriterName>{name}</S.WriterName>
       </S.WriterInfoWrapper>
-      <S.WritingDate>{writeDate}</S.WritingDate>
-      <S.WritingWeatherWrapper>
-        <S.WritingWeatherStatus />
-        <S.WritingTemp>{weather.temp}°C</S.WritingTemp>
-      </S.WritingWeatherWrapper>
+      <S.WritingDataeWeatherWrapper>
+        <S.WritingDate>{writeDate}</S.WritingDate>
+        <S.WritingWeatherWrapper>
+          <S.WritingWeatherStatus />
+          <S.WritingTemp>{weather.temp}°C</S.WritingTemp>
+        </S.WritingWeatherWrapper>
+      </S.WritingDataeWeatherWrapper>
     </S.WriterProfileWrapper>
   );
 };

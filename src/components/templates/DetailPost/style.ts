@@ -39,6 +39,7 @@ export const DetailWriting = styled.p`
   margin: 0.5rem 0;
   font-size: 0.875rem;
   color: ${DeactColor};
+  line-height: 1.25;
 `;
 
 export const DetailPostInfoWrapper = styled.div`

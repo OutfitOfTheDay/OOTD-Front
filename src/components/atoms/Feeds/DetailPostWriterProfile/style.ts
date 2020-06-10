@@ -21,10 +21,16 @@ export const WriterName = styled.p`
   font-weight: bold;
 `;
 
+export const WritingDataeWeatherWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const WritingDate = styled.p`
   color: ${DeactColor};
   font-size: 0.875rem;
   font-weight: bold;
+  margin-bottom: 0.2rem;
 `;
 
 export const WritingTemp = styled.p`
