@@ -67,6 +67,31 @@ export const GlobalStyle: GlobalStyleComponent<
   button:focus {
     outline: none;
   }
+  
+@media screen and (max-width: 1680px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1620px) {
+  html {
+    font-size: 13.5px;
+  }
+}
+
+@media screen and (max-width: 1560px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  html {
+    font-size: 11.383px;
+  }
+}
+
   `;
 
 export const MainColor = '#55109b';
