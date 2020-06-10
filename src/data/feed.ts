@@ -1,8 +1,9 @@
 const GET_FEED = 'GET_FEED' as const;
 const GET_POSTID = 'GET_POSTID' as const;
 
-export const getFeed = () => ({
+export const getFeed = (feedData: any) => ({
   type: GET_FEED,
+  payload: feedData,
 });
 
 export const getPostId = (postId: number) => ({
@@ -105,7 +106,7 @@ export default function feed(
 ): FeedState {
   switch (action.type) {
     case GET_FEED:
-      return { ...state };
+      return { ...state, feedList: action.payload };
     case GET_POSTID:
       return { ...state, postId: action.payload };
     default:
