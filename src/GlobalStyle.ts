@@ -29,6 +29,7 @@ export const GlobalStyle: GlobalStyleComponent<
   html, body, #root{
     width:100%;
     height: 100%;
+    background-color: #e3e6f0;
     font-size: 16px;
     font-family: 'Nanum Gothic';
     min-width: 1360px;
