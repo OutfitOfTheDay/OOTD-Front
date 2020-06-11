@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reduxSaga from 'redux-saga';
-import { all } from 'redux-saga/effects';
-import feed, { FeedState } from './feed';
+import { all, call } from 'redux-saga/effects';
+import feed, { FeedState } from './feed/feed';
 import detailPost, { DetailPostState } from './detailPost';
+import { feedSaga } from './feed/feedSaga';
 
 export interface StoreState {
   feed: FeedState;
@@ -17,7 +18,7 @@ const rootReducer = combineReducers({
 
 const sagaMiddleWare = reduxSaga();
 function* rootSaga() {
-  yield all([]);
+  yield all([call(feedSaga)]);
 }
 
 const store = createStore(

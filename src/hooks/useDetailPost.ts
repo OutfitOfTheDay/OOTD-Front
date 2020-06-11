@@ -6,7 +6,7 @@ import {
   decreaseIndex,
   getNumberOfPhoto,
 } from 'src/data/detailPost';
-import { getPostId } from 'src/data/feed';
+import { getPostId } from 'src/data/feed/feed';
 
 export default function useDetailPost() {
   const DetailPostId = useSelector(

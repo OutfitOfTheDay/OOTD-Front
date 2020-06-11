@@ -16,13 +16,13 @@ const DetailPost: React.FC<Props> = () => {
   const { onGetPostId, feedList, postId } = usePost();
   const postData = feedList[postId];
   const writerInfoData = {
-    profile: postData.profile,
-    userName: postData.userId,
-    weather: postData.weather,
-    date: postData.date,
+    profile: postData.user.profile,
+    userName: postData.user.userName,
+    weather: postData.post.weather,
+    date: postData.post.date,
   };
   const [photoIndex, setPhotoIndex] = useState<number>(0);
-  const numberOfPhoto = postData.pictures.length;
+  const numberOfPhoto = postData.post.pictures.length;
   const getPhotoIndex = (index: number): void => {
     setPhotoIndex(index);
   };
@@ -45,7 +45,7 @@ const DetailPost: React.FC<Props> = () => {
       <S.DetailPostWrapper>
         <FeedImg
           isDetail={true}
-          postPhotos={postData.pictures}
+          postPhotos={postData.post.pictures}
           writerInfoData={writerInfoData}
           photoIndex={photoIndex}
           getNextIndex={getNextIndex}
@@ -54,12 +54,12 @@ const DetailPost: React.FC<Props> = () => {
         <S.DetailPostContentWrapper>
           <S.ScrollArea>
             <DetailPostWriterProfile
-              profilePhoto={postData.profile}
-              name={postData.userId}
-              writeDate={postData.date}
-              weather={postData.weather}
+              profilePhoto={postData.user.profile}
+              name={postData.post.userId}
+              writeDate={postData.post.date}
+              weather={postData.post.weather}
             />
-            <S.DetailWriting>{postData.content}</S.DetailWriting>
+            <S.DetailWriting>{postData.post.content}</S.DetailWriting>
             <CommentWrapper />
           </S.ScrollArea>
           <div>
