@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import * as S from './style';
+import useComment from '../../../../hooks/useComment';
 
 const WritingComment: React.FC = () => {
   return (

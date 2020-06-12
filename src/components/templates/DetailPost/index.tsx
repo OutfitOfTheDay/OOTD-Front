@@ -7,6 +7,7 @@ import {
   PostLikeButton,
   DetailPostWriterProfile,
 } from '../../atoms/Feeds';
+import useComment from 'src/hooks/useComment';
 import usePost from '../../../hooks/usePost';
 import CommentWrapper from '../../modules/CommentWrapper/index';
 
@@ -14,6 +15,8 @@ interface Props {}
 
 const DetailPost: React.FC<Props> = () => {
   const { onGetPostId, feedList, postId } = usePost();
+  const { onGetComment } = useComment();
+
   const postData = feedList[postId];
   const writerInfoData = {
     profile: postData.profile,
@@ -37,6 +40,7 @@ const DetailPost: React.FC<Props> = () => {
     } else setPhotoIndex(numberOfPhoto - 1);
   };
   useEffect(() => {
+    onGetComment(postId);
     console.log(postId);
   }, []);
 
