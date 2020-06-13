@@ -14,3 +14,18 @@ export const getFeedData = async (
   });
   return response.data;
 };
+
+export const getCommentData = async (
+  commentParams: number,
+): Promise<apiTypes.CommentDataType> => {
+  const response = await axios.get(`${baseURL}/post/${commentParams}`);
+  return response.data;
+};
+
+export const writingComment = async () => {
+  const response = await axios.post(`${baseURL}/comment`, {
+    comment: '',
+    postId: '',
+  });
+  return response.status;
+};

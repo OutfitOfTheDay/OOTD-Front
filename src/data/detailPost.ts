@@ -71,3 +71,4 @@ export default function detailPost(
     default:
       return { ...state };
   }
+}
