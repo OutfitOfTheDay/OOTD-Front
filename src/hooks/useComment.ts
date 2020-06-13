@@ -8,13 +8,17 @@ export default function useComment() {
   const commentList = useSelector(
     (state: StoreState) => state.comment.commentList,
   );
+  const writingComment = useSelector(
+    (state: StoreState) => state.comment.writingComment,
+  );
   const dispatch = useDispatch();
   const onGetComment = useCallback(
     (postId: number) => dispatch(getComment(postId)),
     [dispatch],
   );
   const onAddComment = useCallback(
-    () => 
-  )
-  return { commentList, onGetComment };
+    (comment: string, postId: number) => dispatch(addComment(comment, postId)),
+    [dispatch],
+  );
+  return { commentList, writingComment, onGetComment, onAddComment };
 }

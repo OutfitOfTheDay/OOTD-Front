@@ -10,12 +10,13 @@ import {
 import useComment from 'src/hooks/useComment';
 import usePost from '../../../hooks/usePost';
 import CommentWrapper from '../../modules/CommentWrapper/index';
+import comment from 'src/data/comment/comment';
 
 interface Props {}
 
 const DetailPost: React.FC<Props> = () => {
   const { onGetPostId, feedList, postId } = usePost();
-  const { onGetComment } = useComment();
+  const { onGetComment, writingComment } = useComment();
 
   const postData = feedList[postId];
   const writerInfoData = {
@@ -42,7 +43,7 @@ const DetailPost: React.FC<Props> = () => {
   useEffect(() => {
     onGetComment(postId);
     console.log(postId);
-  }, []);
+  }, [writingComment]);
 
   return (
     <S.DetailPostContainer>

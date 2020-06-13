@@ -97,7 +97,7 @@ const initialState: FeedState = {
       },
     },
   ],
-  postId: 1,
+  postId: 0,
 };
 
 export default function feed(

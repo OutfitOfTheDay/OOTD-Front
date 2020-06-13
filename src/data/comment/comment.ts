@@ -12,9 +12,9 @@ export const getComment = (postId: number) => ({
   payload: postId,
 });
 
-export const addComment = (comment: string) => ({
+export const addComment = (comment: string, postId: number) => ({
   type: ADD_COMMENT,
-  payload: comment,
+  payload: { comment, postId },
 });
 
 export interface GetCommentAsyncActionType {
@@ -31,11 +31,12 @@ export type CommentAction =
   | ReturnType<typeof getComment>
   | ReturnType<typeof addComment>
   | GetCommentAsyncActionType
-  | AddCommentAsyncActionType;  
+  | AddCommentAsyncActionType;
 
 export interface CommentState {
   commentList: apiTypes.CommentDataType[];
   writingComment: string;
+  stateCode: number;
 }
 
 export const initialState: CommentState = {
@@ -54,6 +55,7 @@ export const initialState: CommentState = {
     },
   ],
   writingComment: '',
+  stateCode: 200,
 };
 
 export default function comment(
@@ -68,7 +70,11 @@ export default function comment(
     case GET_COMMENT_FAILURE:
       return { ...state };
     case ADD_COMMENT:
-      return { ...state, writingComment: action.payload };
+      return { ...state, writingComment: action.payload.comment };
+    case ADD_COMMENT_SUCCESS:
+      return { ...state, stateCode: action.payload };
+    case ADD_COMMENT_FAILURE:
+      return { ...state };
     default:
       return { ...state };
   }
