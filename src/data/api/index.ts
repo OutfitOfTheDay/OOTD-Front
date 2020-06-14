@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as apiTypes from './apiTypes';
-const baseURL: string = 'http://10.156.145.162:1212';
+const baseURL: string = 'http://192.168.43.226:1212';
 
 export const getFeedData = async (
   feedParams: apiTypes.FeedRequestParams,
@@ -16,16 +16,25 @@ export const getFeedData = async (
 };
 
 export const getCommentData = async (
-  commentParams: number,
+  commentParams: string,
 ): Promise<apiTypes.CommentDataType> => {
   const response = await axios.get(`${baseURL}/post/${commentParams}`);
+  // console.log(response.data);
   return response.data;
 };
 
-export const writingComment = async () => {
-  const response = await axios.post(`${baseURL}/comment`, {
-    comment: '',
-    postId: '',
-  });
+export const writingComment = async (
+  text: string,
+  postId: string,
+): Promise<number> => {
+  const response = await axios.post(
+    `${baseURL}/comment`,
+    { postId, text },
+    {
+      headers: {
+        userId: '5edc9b14e7179a6b6367fee9',
+      },
+    },
+  );
   return response.status;
 };
