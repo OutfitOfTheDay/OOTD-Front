@@ -4,9 +4,13 @@ import * as S from './style';
 import useComment from '../../../../hooks/useComment';
 import usePost from 'src/hooks/usePost';
 
-const WritingComment: React.FC = () => {
+interface Props {
+  postId: string;
+}
+
+const WritingComment: React.FC<Props> = ({ postId }) => {
   const [comment, setComment] = useState('');
-  const { postId } = usePost();
+  const { postIndex } = usePost();
   const { onAddComment } = useComment();
 
   const addComment = () => {
