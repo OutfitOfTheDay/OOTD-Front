@@ -7,24 +7,39 @@ export const ADD_COMMENT = 'ADD_COMMENT' as const;
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS' as const;
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE' as const;
 
-export const getComment = (postId: number) => ({
+export const getComment = (postId: string): GetComment => ({
   type: GET_COMMENT,
-  payload: postId,
+  payload: { postId },
 });
 
-export const addComment = (comment: string, postId: number) => ({
+export const addComment = (text: string, postId: string): AddComment => ({
   type: ADD_COMMENT,
-  payload: { comment, postId },
+  payload: { text, postId },
 });
+
+export interface GetComment {
+  type: typeof GET_COMMENT;
+  payload: {
+    postId: string;
+  };
+}
+
+export interface AddComment {
+  type: typeof ADD_COMMENT;
+  payload: {
+    text: string;
+    postId: string;
+  };
+}
 
 export interface GetCommentAsyncActionType {
   type: typeof GET_COMMENT_SUCCESS | typeof GET_COMMENT_FAILURE;
-  payload: any;
+  payload: apiTypes.CommentDataType[];
 }
 
 export interface AddCommentAsyncActionType {
   type: typeof ADD_COMMENT_SUCCESS | typeof ADD_COMMENT_FAILURE;
-  payload: any;
+  payload: number;
 }
 
 export type CommentAction =
@@ -42,20 +57,22 @@ export interface CommentState {
 export const initialState: CommentState = {
   commentList: [
     {
-      userId: 'a',
-      date: '2020.6.12',
-      _id: '0',
-      postId: '0',
-      text: '오류가 발생한 것 같아요',
+      comment: {
+        userId: 'asdf',
+        date: 'yyyy.mm.dd',
+        _id: 'adsf',
+        postId: 'aasdf',
+        text: '가나다라',
+      },
       user: {
-        userName: '#OOTD',
-        profile:
-          'https://i.pinimg.com/originals/0a/90/c3/0a90c3c2fddb55d4110adbe3f5b02d92.png',
+        _id: '',
+        userName: '가나다',
+        profile: '',
       },
     },
   ],
   writingComment: '',
-  stateCode: 200,
+  stateCode: 0,
 };
 
 export default function comment(
@@ -70,7 +87,7 @@ export default function comment(
     case GET_COMMENT_FAILURE:
       return { ...state };
     case ADD_COMMENT:
-      return { ...state, writingComment: action.payload.comment };
+      return { ...state, writingComment: action.payload.text };
     case ADD_COMMENT_SUCCESS:
       return { ...state, stateCode: action.payload };
     case ADD_COMMENT_FAILURE:

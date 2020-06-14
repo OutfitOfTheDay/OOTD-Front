@@ -18,14 +18,21 @@ export interface FeedListType {
     };
     userId: string;
   };
+  user: {
+    userName: string;
+    profile: string;
+  };
 }
 export interface CommentDataType {
-  userId: string;
-  date: string;
-  _id: string;
-  postId: string;
-  text: string;
+  comment: {
+    userId: string;
+    date: string;
+    _id: string;
+    postId: string;
+    text: string;
+  };
   user: {
+    _id: string;
     userName: string;
     profile: string;
   };

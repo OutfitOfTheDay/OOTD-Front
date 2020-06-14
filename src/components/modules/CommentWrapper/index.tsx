@@ -14,11 +14,11 @@ const CommentWrapper: React.FC = () => {
           {commentList.map((commentDataItem, index) => {
             return (
               <CommentItem
-                key={commentDataItem._id}
+                key={commentDataItem.comment._id}
                 userProfileImg={commentDataItem.user.profile}
                 userName={commentDataItem.user.userName}
-                commentDate={commentDataItem.date}
-                comment={commentDataItem.text}
+                commentDate={commentDataItem.comment.date}
+                comment={commentDataItem.comment.text}
               />
             );
           })}
