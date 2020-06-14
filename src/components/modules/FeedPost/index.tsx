@@ -53,8 +53,11 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
       />
       <S.PostContentWrapper>
         <PostLikeButton width="1.563rem" height="2.125rem" />
-        <TagCommentCount commentCount={post.post.cmtN} likeCount={post.likeN} />
-        <PostContent content={post.post.content} postId={postId} />
+        <TagCommentCount
+          commentCount={post.post.cmtN}
+          likeCount={post.post.likeN}
+        />
+        <PostContent content={post.post.content} postIndex={postId} />
       </S.PostContentWrapper>
     </S.PostWrapper>
   );
