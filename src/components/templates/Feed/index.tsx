@@ -26,7 +26,7 @@ const Feed: React.FC = () => {
           <FeedSortStatusBlock />
           <WeatherStatusBlock />
         </S.FeedStatusBlockWrapper>
-        {feedList.length != 0 ? (
+        {feedList.length !== 0 ? (
           <>
             {feedList.map((feedPost, index) => (
               <FeedPost post={feedPost} key={index} postId={index} />
