@@ -14,11 +14,9 @@ import CommentWrapper from '../../modules/CommentWrapper/index';
 interface Props {}
 
 const DetailPost: React.FC<Props> = () => {
-  const { onGetPostIndex, feedList, postIndex } = usePost();
+  const { feedList, postIndex } = usePost();
   const {
     onGetComment,
-    writingComment,
-    commentList,
     reRenderCount,
   } = useComment();
   const postData = feedList[postIndex];
