@@ -8,6 +8,11 @@ export default function useComment() {
   const commentList = useSelector(
     (state: StoreState) => state.comment.commentList,
   );
+
+  const reRenderCount = useSelector(
+    (state: StoreState) => state.comment.reRenderCount,
+  );
+
   const writingComment = useSelector(
     (state: StoreState) => state.comment.writingComment,
   );
@@ -20,5 +25,11 @@ export default function useComment() {
     (comment: string, postId: string) => dispatch(addComment(comment, postId)),
     [dispatch],
   );
-  return { commentList, writingComment, onGetComment, onAddComment };
+  return {
+    commentList,
+    writingComment,
+    onGetComment,
+    onAddComment,
+    reRenderCount,
+  };
 }

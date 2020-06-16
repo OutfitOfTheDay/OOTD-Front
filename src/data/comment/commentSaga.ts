@@ -28,7 +28,7 @@ function* addComment(action: comment.AddComment) {
     yield put({
       type: comment.ADD_COMMENT_SUCCESS,
       payload: addCommentStatus,
-    });
+    }); 
   } catch (error) {
     yield put({
       type: comment.ADD_COMMENT_FAILURE,

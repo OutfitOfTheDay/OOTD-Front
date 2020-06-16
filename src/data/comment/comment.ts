@@ -52,6 +52,7 @@ export interface CommentState {
   commentList: apiTypes.CommentDataType[];
   writingComment: string;
   stateCode: number;
+  reRenderCount: number;
 }
 
 export const initialState: CommentState = {
@@ -73,6 +74,7 @@ export const initialState: CommentState = {
   ],
   writingComment: '',
   stateCode: 0,
+  reRenderCount: 0,
 };
 
 export default function comment(
@@ -89,7 +91,7 @@ export default function comment(
     case ADD_COMMENT:
       return { ...state, writingComment: action.payload.text };
     case ADD_COMMENT_SUCCESS:
-      return { ...state, stateCode: action.payload };
+      return { ...state, reRenderCount: state.reRenderCount + 1 };
     case ADD_COMMENT_FAILURE:
       return { ...state };
     default:
