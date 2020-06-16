@@ -13,26 +13,20 @@ const WritingComment: React.FC<Props> = ({ postId }) => {
   const { onAddComment } = useComment();
 
   const addComment = () => {
-    onAddComment(comment, postId);
+    if (comment.length > 0) {
+      onAddComment(comment, postId);
+    }
     setComment('');
   };
 
   const addCommentKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       addComment();
-      console.log(comment);
     }
   };
   const onChangeComment = (e: ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
   };
-
-  // const isWritingCommentExist = () => {
-  //   if (comment.length > 0) {
-  //     console.log('asdf');
-  //     return true;
-  //   } else return false;
-  // };
 
   return (
     <S.CommentWritingWrapper>
