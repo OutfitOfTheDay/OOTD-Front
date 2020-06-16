@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainColor, DeactColor } from '../../../../GlobalStyle';
+import { MainColor, DeactTextColor } from '../../../../GlobalStyle';
 
 export const WriterProfileWrapper = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ export const WritingDataeWeatherWrapper = styled.div`
 `;
 
 export const WritingDate = styled.p`
-  color: ${DeactColor};
+  color: ${DeactTextColor};
   font-size: 0.875rem;
   font-weight: bold;
   margin-bottom: 0.2rem;

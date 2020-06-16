@@ -9,7 +9,7 @@ import {
 } from 'atoms/StatusBlock';
 
 const FeedSortStatusBlock: React.FC = () => (
-  <BlockWrapper height={220}>
+  <BlockWrapper height={220}> 
     <TitleWrapper>
       <BlockTitle margin={5}>FEED</BlockTitle>
       <SortResetBtn />
@@ -17,6 +17,7 @@ const FeedSortStatusBlock: React.FC = () => (
     <FeedSortList />
     <BlockTitle margin={5}>SORT</BlockTitle>
     <FeedSortList />
+    
   </BlockWrapper>
 );
 
