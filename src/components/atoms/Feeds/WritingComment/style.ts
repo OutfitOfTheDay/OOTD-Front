@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MainColor } from 'src/GlobalStyle';
 
 export const CommentWritingWrapper = styled.div`
   display: flex;
@@ -14,9 +15,10 @@ export const WritingCommentInput = styled.input`
   border: none;
 `;
 
-export const PostingCommentButton = styled.button`
+export const PostingCommentButton = styled.button<{ comment: string }>`
   width: 2.938rem;
   height: inherit;
   font-size: 0.75rem;
-  color: rgba(85, 16, 155, 0.2);
+  color: ${(props) =>
+    props.comment.length > 0 ? MainColor : `rgba(85, 16, 155, 0.2)`};
 `;
