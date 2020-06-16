@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as apiTypes from './apiTypes';
-const baseURL: string = 'http://192.168.43.226:1212';
+const baseURL: string = 'http://10.156.145.162:1212';
 
 export const getFeedData = async (
   feedParams: apiTypes.FeedRequestParams,
@@ -19,7 +19,6 @@ export const getCommentData = async (
   commentParams: string,
 ): Promise<apiTypes.CommentDataType> => {
   const response = await axios.get(`${baseURL}/post/${commentParams}`);
-  // console.log(response.data);
   return response.data;
 };
 
