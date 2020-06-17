@@ -17,16 +17,12 @@ const Feed: React.FC = () => {
     selectedSortItem: string,
   ): number => {
     if (selectedFeedItem === 'OOTD' && selectedSortItem === 'POPULAR') {
-      console.log(1);
       return 1;
     } else if (selectedFeedItem === 'OOTD' && selectedSortItem === 'NEW') {
-      console.log(2);
       return 2;
     } else if (selectedFeedItem === 'STYLE' && selectedSortItem === 'POPULAR') {
-      console.log(3);
       return 3;
     } else if (selectedFeedItem === 'STYLE' && selectedSortItem === 'NEW') {
-      console.log(4);
       return 4;
     }
   };
