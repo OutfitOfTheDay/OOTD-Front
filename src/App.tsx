@@ -8,6 +8,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <GlobalStyle />
+      <LogIn />
       <Router />
     </BrowserRouter>
   );
