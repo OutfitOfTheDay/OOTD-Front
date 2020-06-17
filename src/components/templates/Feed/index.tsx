@@ -13,8 +13,8 @@ const Feed: React.FC = () => {
   const { feedList, onGetFeed } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
   const getSortN = (
-    selectedFeedItem: string,
-    selectedSortItem: string,
+    selectedFeedItem: 'OOTD' | 'STYLE',
+    selectedSortItem: 'POPULAR' | 'NEW',
   ): number => {
     if (selectedFeedItem === 'OOTD' && selectedSortItem === 'POPULAR') {
       return 1;
