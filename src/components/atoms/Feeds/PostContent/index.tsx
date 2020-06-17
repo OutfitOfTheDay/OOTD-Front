@@ -5,15 +5,15 @@ import usePost from '../../../../hooks/usePost';
 
 interface Props {
   content: string;
-  postId: number;
+  postIndex: number;
 }
 
-const PostContent: React.FC<Props> = ({ content, postId }) => {
-  const { onGetPostId } = usePost();
+const PostContent: React.FC<Props> = ({ content, postIndex }) => {
+  const { onGetPostIndex } = usePost();
   return (
     <S.PostContentWrapper>
       <S.PostContent>{content}</S.PostContent>
-      <S.ShowDetailPostBtn onClick={() => onGetPostId(postId)}>
+      <S.ShowDetailPostBtn onClick={() => onGetPostIndex(postIndex)}>
         <Link to="/detailPost">게시글 전체보기</Link>
       </S.ShowDetailPostBtn>
     </S.PostContentWrapper>

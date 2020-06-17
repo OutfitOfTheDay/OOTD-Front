@@ -2,8 +2,13 @@ import styled from 'styled-components';
 
 export const FeedContainer = styled.div`
   display: flex;
-  height: 100;
   align-items: center;
   flex-direction: column;
-  background-color: #e3e6f0;
+`;
+
+export const FeedStatusBlockWrapper = styled.div`
+  position: fixed;
+  right: 15.56rem;
+  top: 7.5rem;
+  background-color: #ffff;
 `;
