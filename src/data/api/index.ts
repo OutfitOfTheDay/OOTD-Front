@@ -37,3 +37,12 @@ export const writingComment = async (
   );
   return response.status;
 };
+
+export const getMypageFeed = async (): Promise<apiTypes.FeedListType> => {
+  const response = await axios.get(`${baseURL}/mypage/myfeed`, {
+    headers: {
+      userId: '5edc9b14e7179a6b6367fee9',
+    },
+  });
+  return response.data;
+};
