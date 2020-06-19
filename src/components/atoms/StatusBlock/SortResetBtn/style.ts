@@ -5,6 +5,7 @@ import { MainColor } from 'src/GlobalStyle';
 export const resetItemsWrapper = styled.span`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const resetIcon = styled.img`

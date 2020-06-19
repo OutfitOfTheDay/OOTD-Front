@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainColor, DeactColor } from '../../../../GlobalStyle';
+import { MainColor, DeactTextColor } from '../../../../GlobalStyle';
 
 export const PostContentWrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const PostContent = styled.p`
   line-height: 1.063rem;
   white-space: pre-line;
   font-size: 0.875rem;
-  color: ${DeactColor};
+  color: ${DeactTextColor};
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 `;

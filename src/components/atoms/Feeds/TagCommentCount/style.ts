@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DeactColor } from '../../../../GlobalStyle';
+import { DeactTextColor } from '../../../../GlobalStyle';
 
 export const CountWrapper = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const CountWrapper = styled.div`
 export const CountInfo = styled.p<{ fontSize: string }>`
   margin-right: 8px;
   padding: 0;
-  color: ${DeactColor};
+  color: ${DeactTextColor};
   font-weight: bold;
-  font-size: ${(props) => props.fontSize};
+  font-size: ${props => props.fontSize};
 `;
