@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainColor, DeactColor } from '../../../GlobalStyle';
+import { MainColor, DeactTextColor } from '../../../GlobalStyle';
 
 export const DetailPostContainer = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const DetailWriting = styled.p`
   width: 29.75rem;
   margin: 0.5rem 0;
   font-size: 0.875rem;
-  color: ${DeactColor};
+  color: ${DeactTextColor};
   line-height: 1.25;
 `;
 
