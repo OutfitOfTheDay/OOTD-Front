@@ -10,7 +10,7 @@ import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import * as apiTypes from '../../../data/api/apiTypes';
 
 const Feed: React.FC = () => {
-  const { feedList, onGetFeed } = useFeed();
+  const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
@@ -35,6 +35,9 @@ const Feed: React.FC = () => {
   useEffect(() => {
     onGetFeed(getFeedParams);
   }, [selectedFeedItem, selectedSortItem]);
+  useEffect(() => {
+    onSetIsMypage(false);
+  }, []);
   return (
     <>
       <S.FeedContainer>

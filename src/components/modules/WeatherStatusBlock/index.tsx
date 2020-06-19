@@ -9,7 +9,7 @@ import {
 } from 'atoms/StatusBlock';
 
 const WeatherStatusBlock: React.FC = () => (
-  <BlockWrapper height={160}>
+  <BlockWrapper>
     <TitleWrapper>
       <BlockTitle margin={22}>WEATHER</BlockTitle>
       <TemperatureStatus />
