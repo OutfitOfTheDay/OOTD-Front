@@ -8,14 +8,25 @@ import {
   WeatherStatus,
 } from 'atoms/StatusBlock';
 
-const WeatherStatusBlock: React.FC = () => (
-  <BlockWrapper height={160}>
-    <TitleWrapper>
-      <BlockTitle margin={22}>WEATHER</BlockTitle>
-      <TemperatureStatus />
-    </TitleWrapper>
-    <WeatherStatus />
-  </BlockWrapper>
-);
+import useWeatherStatus from '../../../hooks/useWeatherStatus';
+import geoLocation from '../../../utils/geoLocation';
+
+const WeatherStatusBlock: React.FC = () => {
+  const { weather, onSetWeatherStatus } = useWeatherStatus();
+
+  React.useEffect(() => {
+    geoLocation(onSetWeatherStatus);
+  }, []);
+
+  return (
+    <BlockWrapper className="weather">
+      <TitleWrapper>
+        <BlockTitle margin={22}>WEATHER</BlockTitle>
+        <TemperatureStatus temp={weather.temp} />
+      </TitleWrapper>
+      <WeatherStatus weatherStatus={weather.status} />
+    </BlockWrapper>
+  );
+};
 
 export default WeatherStatusBlock;
