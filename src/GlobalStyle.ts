@@ -68,7 +68,7 @@ export const GlobalStyle: GlobalStyleComponent<
   button:focus {
     outline: none;
   }
-  
+
 @media screen and (max-width: 1680px) {
   html {
     font-size: 14px;

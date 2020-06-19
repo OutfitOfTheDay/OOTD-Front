@@ -30,6 +30,10 @@ export const BlockWrapper = styled.div`
     height: 18rem;
     padding: 1.25rem 1rem;
   }
+
+  &.mypageFeed {
+    height: 7.5rem;
+  }
 `;
 
 export const BlockTitle = styled.h2<{ margin: number }>`
