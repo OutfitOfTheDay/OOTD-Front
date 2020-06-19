@@ -20,3 +20,11 @@ export const PostContentWrapper = styled.div`
   padding-bottom: 1.5rem;
   background-color: #fff;
 `;
+
+export const IsMypageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  justify-content: space-between;
+  align-items: center;
+`;

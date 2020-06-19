@@ -9,6 +9,7 @@ import FeedImgMoveBtn from './FeedImgMoveBtn/index';
 import CommentItem from './CommentItem/index';
 import WritingComment from './WritingComment';
 import DetailPostWriterProfile from './DetailPostWriterProfile';
+import PostModifyButton from './PostModifyButton';
 
 export {
   ImgNumber,
@@ -22,4 +23,5 @@ export {
   CommentItem,
   WritingComment,
   DetailPostWriterProfile,
+  PostModifyButton,
 };
