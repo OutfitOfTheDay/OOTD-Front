@@ -33,6 +33,7 @@ export const GlobalStyle: GlobalStyleComponent<
     font-family: 'Nanum Gothic';
     min-width: 1360px;
     overflow: auto;
+    background-color: #e3e6f0;
   }
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
@@ -67,7 +68,7 @@ export const GlobalStyle: GlobalStyleComponent<
   button:focus {
     outline: none;
   }
-  
+
 @media screen and (max-width: 1680px) {
   html {
     font-size: 14px;
@@ -96,4 +97,5 @@ export const GlobalStyle: GlobalStyleComponent<
 
 export const MainColor = '#55109b';
 export const SubColor = '#e0ee06';
-export const DeactColor = '#707070';
+export const DeactTextColor = '#707070';
+export const InputBorderColor = '#a8a8a8';
