@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { DeactTextColor } from '../../../../GlobalStyle';
 
+
 export const CountWrapper = styled.div`
   display: flex;
   flex-direction: row;
