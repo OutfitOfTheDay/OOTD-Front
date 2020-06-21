@@ -6,7 +6,7 @@ import {
   TagCommentCount,
   PostLikeButton,
   DetailPostWriterProfile,
-} from '../../atoms/Feeds';
+} from 'atoms/Feeds';
 import useComment from 'src/hooks/useComment';
 import usePost from '../../../hooks/usePost';
 import CommentWrapper from '../../modules/CommentWrapper/index';
@@ -15,10 +15,7 @@ interface Props {}
 
 const DetailPost: React.FC<Props> = () => {
   const { feedList, postIndex } = usePost();
-  const {
-    onGetComment,
-    reRenderCount,
-  } = useComment();
+  const { onGetComment, reRenderCount } = useComment();
   const postData = feedList[postIndex];
   const postId = postData.post._id;
   const writerInfoData = {

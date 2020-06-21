@@ -53,7 +53,7 @@ export type InitialState = {
 const initialState: InitialState = {
   weather: {
     status: 1,
-    temp: 0,
+    temp: 29.7,
   },
   weatherStatus: 0,
 };
