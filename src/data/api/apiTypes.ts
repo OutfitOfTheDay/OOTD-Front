@@ -42,3 +42,14 @@ export interface WritingCommentType {
   comment: string;
   postId: string;
 }
+export interface WeatherStatusApiType {
+  weather: {
+    status: number;
+    temp: number;
+  };
+}
+
+export interface GetProfileApiType {
+  userName: string;
+  profile: File;
+}

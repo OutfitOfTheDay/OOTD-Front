@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { MainColor } from '../../../../GlobalStyle';
+import { DeactTextColor, MainColor } from 'src/GlobalStyle';
 
 export const TD = styled.td`
   padding: 0 0.5rem;
@@ -8,9 +8,8 @@ export const TD = styled.td`
   box-sizing: border-box;
   font-size: 0.875rem;
   font-weight: bold;
-  color: ${MainColor};
+  color: ${DeactTextColor};
   text-align: center;
-  cursor: pointer;
 
   :first-child {
     padding-left: 0px;
@@ -18,6 +17,10 @@ export const TD = styled.td`
 
   :last-child {
     padding-right: 0px;
+  }
+
+  &.selected {
+    color: ${MainColor};
   }
 `;
 

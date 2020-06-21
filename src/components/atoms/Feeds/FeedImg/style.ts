@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DeactTextColor } from '../../../../GlobalStyle';
+
 export const FeedImageWrapper = styled.div`
   position: relative;
   background-color: #505144;

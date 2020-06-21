@@ -17,11 +17,16 @@ const FeedSortStatusBlock: React.FC = () => {
     onChangeSortItem,
   } = useFeedSort();
 
+  const resetSortation = (): void => {
+    onChangeFeedItem('OOTD');
+    onChangeSortItem('POPULAR');
+  };
+
   return (
     <BlockWrapper className="sort">
       <TitleWrapper>
         <BlockTitle margin={5}>FEED</BlockTitle>
-        <SortResetBtn />
+        <SortResetBtn resetSortation={resetSortation} />
       </TitleWrapper>
       <FeedSortList
         firstItem="OOTD"

@@ -13,5 +13,5 @@ export const CountInfo = styled.p<{ fontSize: string }>`
   padding: 0;
   color: ${DeactTextColor};
   font-weight: bold;
-  font-size: ${(props) => props.fontSize};
+  font-size: ${props => props.fontSize};
 `;
