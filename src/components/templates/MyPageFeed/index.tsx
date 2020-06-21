@@ -7,6 +7,9 @@ import useFeedSort from '../../../hooks/useFeedSort';
 import Header from 'modules/Header';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import * as apiTypes from '../../../data/api/apiTypes';
+import ProfileBlock from 'src/components/modules/ProfileBlock';
+import MypageCategoryBlock from 'src/components/modules/MypageCategoryBlock';
+import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 
 const Feed: React.FC = () => {
   const { feedList, onGetMypageFeed, onSetIsMypage } = useFeed();
@@ -20,7 +23,10 @@ const Feed: React.FC = () => {
       <S.FeedContainer>
         <Header />
         <S.MypageBlockWrapper>
+          <ProfileBlock />
           <WeatherStatusBlock />
+          <MypageCategoryBlock />
+          <MoveToUploadBlock />
         </S.MypageBlockWrapper>
         {feedList.length !== 0 ? (
           <>
