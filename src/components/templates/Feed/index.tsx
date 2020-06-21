@@ -10,9 +10,10 @@ import Header from 'modules/Header';
 import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import UserProfileImg from 'atoms/UserProfileImg';
+import { Link } from 'react-router-dom';
 
 const Feed: React.FC = () => {
-  const { feedList, onGetFeed } = useFeed();
+  const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
   const { weather } = useWeatherStatus();
   const getSortN = (
@@ -38,15 +39,20 @@ const Feed: React.FC = () => {
   useEffect(() => {
     onGetFeed(getFeedParams);
   }, [selectedFeedItem, selectedSortItem]);
+  useEffect(() => {
+    onSetIsMypage(false);
+  }, []);
   return (
     <>
       <S.FeedContainer>
         <Header />
         <S.FeedStatusBlockWrapper>
-          <S.UserProfileBlock>
-            <UserProfileImg imgURL="" size=" 3.75rem" />
-            <S.UserName>김땡땡 </S.UserName>
-          </S.UserProfileBlock>
+          <Link to="/mypage">
+            <S.UserProfileBlock>
+              <UserProfileImg imgURL="" size=" 3.75rem" />
+              <S.UserName>김땡땡 </S.UserName>
+            </S.UserProfileBlock>
+          </Link>
           <WeatherStatusBlock />
           <FeedSortStatusBlock />
         </S.FeedStatusBlockWrapper>

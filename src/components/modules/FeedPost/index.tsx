@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 import * as S from './style';
 import * as apiTypes from '../../../data/api/apiTypes';
+import useFeed from 'src/hooks/useFeed';
 import {
   ImgNumberWrapper,
   FeedImg,
   TagCommentCount,
   PostContent,
   PostLikeButton,
+  PostModifyButton,
 } from '../../atoms/Feeds/index';
 
 interface Props {
@@ -22,6 +24,7 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
     weather: post.post.weather,
     date: post.post.date,
   };
+  const { isMypage } = useFeed();
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const numberOfPhoto = post.post.pictures.length;
   const getPhotoIndex = (index: number): void => {
@@ -52,7 +55,10 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
         selectedPhotoIndex={photoIndex}
       />
       <S.PostContentWrapper>
-        <PostLikeButton width="1.563rem" height="2.125rem" />
+        <S.IsMypageWrapper>
+          <PostLikeButton width="1.563rem" height="2.125rem" />
+          <PostModifyButton fontSize={1} />
+        </S.IsMypageWrapper>
         <TagCommentCount
           commentCount={post.post.cmtN}
           likeCount={post.post.likeN}

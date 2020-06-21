@@ -49,7 +49,7 @@ export const writingComment = async (
     text,
   });
   return response.status;
-}
+};
 
 export const uploadPost = async (payload: {
   post: {
@@ -62,7 +62,7 @@ export const uploadPost = async (payload: {
   };
 }) => {
   const postData: FormData = new FormData();
-  payload.post.imgList.forEach(img => postData.append('pictures', img));
+  payload.post.imgList.forEach((img) => postData.append('pictures', img));
   postData.append('content', payload.post.description);
   postData.append('status', payload.post.weather.status.toString());
   postData.append('temp', payload.post.weather.temp.toString());
@@ -91,5 +91,23 @@ export const editProfile = async (payload: {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 
+  return response.data;
+};
+
+export const getMypageFeed = async (): Promise<apiTypes.FeedListType> => {
+  const response = await instanceAxios.get(`/mypage/myfeed`, {
+    headers: {
+      userId: '5edc9b14e7179a6b6367fee9',
+    },
+  });
+  return response.data;
+};
+
+export const getMypageTagFeed = async (): Promise<apiTypes.FeedListType> => {
+  const response = await instanceAxios.get(`/mypage/tagfeed`, {
+    headers: {
+      userId: '5edc9b14e7179a6b6367fee9',
+    },
+  });
   return response.data;
 };
