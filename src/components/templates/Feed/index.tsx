@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 
 import * as S from './style';
+import * as apiTypes from 'src/data/api/apiTypes';
 import FeedPost from '../../modules/FeedPost';
 import useFeed from '../../../hooks/useFeed';
 import useFeedSort from '../../../hooks/useFeedSort';
+import useWeatherStatus from 'src/hooks/useWeatherStatus';
 import Header from 'modules/Header';
 import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
-import * as apiTypes from '../../../data/api/apiTypes';
 
 const Feed: React.FC = () => {
   const { feedList, onGetFeed } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
+  const { weather } = useWeatherStatus();
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
     selectedSortItem: 'POPULAR' | 'NEW',
@@ -29,8 +31,8 @@ const Feed: React.FC = () => {
 
   const getFeedParams: apiTypes.FeedRequestParams = {
     sortN: getSortN(selectedFeedItem, selectedSortItem),
-    status: 2,
-    temp: 29.7,
+    status: weather.status,
+    temp: weather.temp,
   };
   useEffect(() => {
     onGetFeed(getFeedParams);
