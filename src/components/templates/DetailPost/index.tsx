@@ -6,6 +6,7 @@ import {
   TagCommentCount,
   PostLikeButton,
   DetailPostWriterProfile,
+  PostModifyButton,
 } from 'atoms/Feeds';
 import useComment from 'src/hooks/useComment';
 import usePost from 'src/hooks/usePost';
@@ -86,5 +87,5 @@ const DetailPost: React.FC<Props> = () => {
     </S.DetailPostContainer>
   );
 };
-  
+
 export default DetailPost;
