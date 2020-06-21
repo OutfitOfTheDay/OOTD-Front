@@ -1,14 +1,16 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from '../data';
+import { rootState } from '../data';
 import {
   changeWeatherStatus,
   getWeatherStatus,
 } from '../data/modules/WeatherStatus';
 
 export default function useWeatherStatus() {
-  const weather = useSelector((state: RootState) => state.weather.weather);
+  const weather = useSelector(
+    (state: rootState) => state.weatherStatusReducer.weather,
+  );
 
   const dispatch = useDispatch();
 

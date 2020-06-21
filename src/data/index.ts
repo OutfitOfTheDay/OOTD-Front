@@ -39,10 +39,10 @@ function* rootSaga() {
     // call(postUpload),
     call(feedSaga),
     call(commentSaga),
-    call(weatherStatus), 
-    call(mypage)
+    call(weatherStatus),
+    call(mypage),
   ]);
-
+}
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleWare)),
