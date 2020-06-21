@@ -1,11 +1,7 @@
 import React from 'react';
 import * as S from './style';
-import { modal } from '../../../assets/index';
-import {
-  ModalOverlay,
-  ModalContentWrapper,
-  ModalHeader,
-} from '../../atoms/modals/index';
+import { modal } from '../../../../assets/index';
+import { ModalOverlay, ModalContentWrapper, ModalHeader } from 'atoms/modals';
 
 const Login: React.FC = () => {
   const modalContent = (
