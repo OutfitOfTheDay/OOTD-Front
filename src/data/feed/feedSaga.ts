@@ -1,6 +1,6 @@
 import { all, fork, takeLatest, call, put } from 'redux-saga/effects';
 
-import { getFeedData, getMypageFeed } from '../api/index';
+import { getFeedData, getMypageFeed, getMypageTagFeed } from '../api/index';
 import * as feed from './feed';
 
 function* getMainFeed(action: feed.FeedAction) {
@@ -23,6 +23,20 @@ function* getMypageFeeds() {
     const feedData = yield call(getMypageFeed);
     yield put({
       type: feed.GET_MYPAGE_FEED_SUCCESS,
+      payload: feedData,
+    });
+  } catch (error) {
+    yield put({
+      type: feed.GET_FEED_FAILURE,
+      payload: error,
+    });
+  }
+}
+function* getMypageTagFeeds() {
+  try {
+    const feedData = yield call(getMypageTagFeed);
+    yield put({
+      type: feed.GET_MYPAGE_TAG_FEED_SUCCESS,
       payload: feedData,
     });
   } catch (error) {

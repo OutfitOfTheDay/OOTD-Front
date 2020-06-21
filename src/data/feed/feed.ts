@@ -6,6 +6,9 @@ export const GET_FEED_FAILURE = 'GET_FEED_FAILURE';
 export const GET_MYPAGE_FEED = 'GET_MYPAGE_FEED' as const;
 export const GET_MYPAGE_FEED_SUCCESS = 'GET_MYPAGE_FEED_SUCCESS';
 export const GET_MYPAGE_FEED_FAILURE = 'GET_MYPAGE_FEED_FAILURE';
+export const GET_MYPAGE_TAG_FEED = 'GET_MYPAGE_TAG_FEED' as const;
+export const GET_MYPAGE_TAG_FEED_SUCCESS = 'GET_MYPAGE_TAG_FEED_SUCCESS';
+export const GET_MYPAGE_TAG_FEED_FAILURE = 'GET_MYPAGE_TAG_FEED_FAILURE';
 export const GET_POST_INDEX = 'GET_POST_INDEX' as const;
 export const SET_IS_MYPAGE = 'SET_IS_MYPAGE' as const;
 
@@ -17,6 +20,11 @@ export const getFeed = (feedRequestParams: apiTypes.FeedRequestParams) => ({
 export const getMypageFeed = () => ({
   type: GET_MYPAGE_FEED,
 });
+
+export const getMypageTagFeed = () => ({
+  type: GET_MYPAGE_TAG_FEED,
+});
+
 export const getPostIndex = (postIndex: number) => ({
   type: GET_POST_INDEX,
   payload: postIndex,
@@ -36,6 +44,12 @@ export interface MypageFeedAsyncActionType {
   type: typeof GET_MYPAGE_FEED_SUCCESS | typeof GET_MYPAGE_FEED_FAILURE;
   payload: apiTypes.FeedListType[];
 }
+
+export interface MypageTagFeedAsyncActionType {
+  type: typeof GET_MYPAGE_TAG_FEED_SUCCESS | typeof GET_MYPAGE_TAG_FEED_FAILURE;
+  payload: apiTypes.FeedListType[];
+}
+
 export type FeedAction =
   | ReturnType<typeof getFeed>
   | ReturnType<typeof getPostIndex>
@@ -43,8 +57,10 @@ export type FeedAction =
 
 export type MypageAction =
   | ReturnType<typeof getMypageFeed>
+  | ReturnType<typeof getMypageTagFeed>
   | ReturnType<typeof setIsMypage>
-  | MypageFeedAsyncActionType;
+  | MypageFeedAsyncActionType
+  | MypageTagFeedAsyncActionType;
 
 export interface FeedState {
   feed: apiTypes.FeedListType[];
@@ -104,6 +120,10 @@ export default function feed(
     case GET_MYPAGE_FEED:
       return { ...state };
     case GET_MYPAGE_FEED_SUCCESS:
+      return { ...state, feed: action.payload };
+    case GET_MYPAGE_TAG_FEED:
+      return { ...state };
+    case GET_MYPAGE_TAG_FEED_SUCCESS:
       return { ...state, feed: action.payload };
     case SET_IS_MYPAGE:
       return { ...state, isMypage: action.payload };
