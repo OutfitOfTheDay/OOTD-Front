@@ -9,6 +9,7 @@ import useWeatherStatus from 'src/hooks/useWeatherStatus';
 import Header from 'modules/Header';
 import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
+import UserProfileImg from 'atoms/UserProfileImg';
 
 const Feed: React.FC = () => {
   const { feedList, onGetFeed } = useFeed();
@@ -42,6 +43,10 @@ const Feed: React.FC = () => {
       <S.FeedContainer>
         <Header />
         <S.FeedStatusBlockWrapper>
+          <S.UserProfileBlock>
+            <UserProfileImg imgURL="" size=" 3.75rem" />
+            <S.UserName>김땡땡 </S.UserName>
+          </S.UserProfileBlock>
           <WeatherStatusBlock />
           <FeedSortStatusBlock />
         </S.FeedStatusBlockWrapper>
