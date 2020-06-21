@@ -7,6 +7,7 @@ import feed, { FeedState } from './feed/feed';
 import detailPost, { DetailPostState } from './detailPost';
 import comment, { CommentState } from './comment/comment';
 import feedSortReducer from './modules/FeedSort';
+import weather from './modules/WeatherStatus';
 import { commentSaga } from './comment/commentSaga';
 import { feedSaga } from './feed/feedSaga';
 
@@ -21,11 +22,12 @@ const rootReducer = combineReducers({
   detailPost,
   comment,
   feedSortReducer,
+  weather,
 });
 const sagaMiddleWare = createSagaMiddleware();
 function* rootSaga() {
   yield all([
-    // call(weatherStatus),
+    // call(weatherStatus), 
     // call(postUpload),
     call(feedSaga),
     call(commentSaga),
