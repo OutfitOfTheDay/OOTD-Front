@@ -7,8 +7,11 @@ export const FeedContainer = styled.div`
 `;
 
 export const MypageBlockWrapper = styled.div`
+  display: flex;
   position: fixed;
   right: 15.56rem;
   top: 7.5rem;
-  background-color: #ffff;
+  height: 45rem;
+  flex-direction: column;
+  justify-content: space-between;
 `;
