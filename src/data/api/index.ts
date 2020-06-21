@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as apiTypes from './apiTypes';
-const baseURL: string = 'http://10.156.145.162:1212';
+
+import { GetProfileApiType } from './apiTypes';
 
 const instanceAxios = axios.create({
   baseURL: 'http://10.156.145.162:1212',
@@ -23,7 +24,7 @@ export const getWeatherStatusApi = async (payload: {
 export const getFeedData = async (
   feedParams: apiTypes.FeedRequestParams,
 ): Promise<apiTypes.FeedListType> => {
-  const response = await instanceAxios.get(`${baseURL}/feed?`, {
+  const response = await instanceAxios.get(`/feed?`, {
     params: {
       sortN: feedParams.sortN,
       status: feedParams.status,
@@ -35,7 +36,7 @@ export const getFeedData = async (
 export const getCommentData = async (
   commentParams: string,
 ): Promise<apiTypes.CommentDataType> => {
-  const response = await instanceAxios.get(`${baseURL}/post/${commentParams}`);
+  const response = await instanceAxios.get(`/post/${commentParams}`);
   return response.data;
 };
 
@@ -43,9 +44,52 @@ export const writingComment = async (
   text: string,
   postId: string,
 ): Promise<number> => {
-  const response = await instanceAxios.post(`${baseURL}/comment`, {
+  const response = await instanceAxios.post(`/comment`, {
     postId,
     text,
   });
   return response.status;
+}
+
+export const uploadPost = async (payload: {
+  post: {
+    imgList: File[];
+    description: string;
+    weather: {
+      status: number;
+      temp: number;
+    };
+  };
+}) => {
+  const postData: FormData = new FormData();
+  payload.post.imgList.forEach(img => postData.append('pictures', img));
+  postData.append('content', payload.post.description);
+  postData.append('status', payload.post.weather.status.toString());
+  postData.append('temp', payload.post.weather.temp.toString());
+
+  const response = await instanceAxios.post('/post', postData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response.data;
+};
+
+export const getProfile = async (): Promise<GetProfileApiType> => {
+  const response = await instanceAxios.get('/mypage');
+
+  return response.data;
+};
+
+export const editProfile = async (payload: {
+  userName: string;
+  profile: File;
+}) => {
+  const postData = new FormData();
+  postData.append('userName', payload.userName);
+  postData.append('profile', payload.profile);
+
+  const response = await instanceAxios.patch('/mypage', postData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+
+  return response.data;
 };

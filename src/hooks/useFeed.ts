@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { StoreState } from '../data/index';
 import { getFeed } from '../data/feed/feed';
 import * as apiTypes from '../data/api/apiTypes';

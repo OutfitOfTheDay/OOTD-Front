@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const FeedImageWrapper = styled.div`
   position: relative;
   background-color: #505144;

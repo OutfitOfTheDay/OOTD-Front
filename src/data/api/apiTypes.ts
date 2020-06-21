@@ -49,3 +49,7 @@ export interface WeatherStatusApiType {
   };
 }
 
+export interface GetProfileApiType {
+  userName: string;
+  profile: File;
+}
