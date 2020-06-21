@@ -6,6 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import feed, { FeedState } from './feed/feed';
 import detailPost, { DetailPostState } from './detailPost';
 import comment, { CommentState } from './comment/comment';
+import modal, { ModalState } from './modal/modal';
 import feedSortReducer from './modules/FeedSort';
 // import postUploadReducer from './modules/PostUpload';
 import mypageReducer from './modules/Mypage';
@@ -22,12 +23,14 @@ export interface StoreState {
   feed: FeedState;
   detailPost: DetailPostState;
   comment: CommentState;
+  modal: ModalState;
 }
 
 const rootReducer = combineReducers({
   detailPost,
   feed,
   comment,
+  modal,
   feedSortReducer,
   mypageReducer,
   // postUploadReducer,
