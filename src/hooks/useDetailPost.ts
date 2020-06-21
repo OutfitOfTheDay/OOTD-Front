@@ -6,7 +6,7 @@ import {
   decreaseIndex,
   getNumberOfPhoto,
 } from 'src/data/detailPost';
-import { getPostId } from 'src/data/feed';
+import { getPostIndex } from 'src/data/feed/feed';
 
 export default function useDetailPost() {
   const DetailPostId = useSelector(
@@ -21,12 +21,12 @@ export default function useDetailPost() {
   );
   const dispatch = useDispatch();
 
-  const onGetPostId = useCallback((postId) => dispatch(getPostId(postId)), [
+  const onGetPostId = useCallback((postId) => dispatch(getPostIndex(postId)), [
     dispatch,
   ]);
 
   const onGetDetailPhotoIndex = useCallback(
-    (photoIndex) => dispatch(getPostId(photoIndex)),
+    (photoIndex) => dispatch(getPostIndex(photoIndex)),
     [dispatch],
   );
 

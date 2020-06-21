@@ -12,7 +12,7 @@ interface ChangeSortItem {
   type: typeof CHANGE_SORT_ITEM;
   payload: {
     sort: 'POPULAR' | 'NEW';
-  };
+  };  
 }
 
 type FeedSortActionTypes = ChangeFeedItem | ChangeSortItem;

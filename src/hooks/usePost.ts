@@ -1,20 +1,20 @@
 import { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { rootState } from '../data/index';
-import { getPostId } from '../data/feed';
+import { StoreState } from '../data/index';
+import { getPostIndex } from '../data/feed/feed';
 
 export default function usePost() {
-  const feedList = useSelector((state: rootState) => state.feed.feedList);
-  const postId = useSelector((state: rootState) => state.feed.postId);
+  const feedList = useSelector((state: StoreState) => state.feed.feed);
+  const postIndex = useSelector((state: StoreState) => state.feed.postIndex);
   const dispatch = useDispatch();
-  // const [postData, setPostData] = useState(feedList[postId]);
-  const onGetPostId = useCallback(postId => dispatch(getPostId(postId)), [
-    dispatch,
-  ]);
+  const onGetPostIndex = useCallback(
+    (postIndex) => dispatch(getPostIndex(postIndex)),
+    [dispatch],
+  );
 
   return {
-    onGetPostId,
+    onGetPostIndex,
     feedList,
-    postId,
+    postIndex,
   };
 }

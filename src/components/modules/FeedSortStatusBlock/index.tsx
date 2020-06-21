@@ -7,7 +7,7 @@ import {
   SortResetBtn,
   TitleWrapper,
 } from 'atoms/StatusBlock';
-import { useFeedSort } from '../../../hooks/index';
+import useFeedSort from '../../../hooks/useFeedSort';
 
 const FeedSortStatusBlock: React.FC = () => {
   const {

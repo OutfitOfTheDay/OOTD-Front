@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+
 import * as S from './style';
+import * as apiTypes from '../../../data/api/apiTypes';
 import {
   ImgNumberWrapper,
   FeedImg,
@@ -9,32 +11,19 @@ import {
 } from '../../atoms/Feeds/index';
 
 interface Props {
-  post: {
-    _id: string;
-    userId: string;
-    profile: string;
-    content: string;
-    likeN: number;
-    cmtN: number;
-    pictures: string[];
-    date: string;
-    weather: {
-      status: number;
-      temp: number;
-    };
-  };
+  post: apiTypes.FeedListType;
   postId: number;
 }
 
 const FeedPost: React.FC<Props> = ({ post, postId }) => {
   const writerInfoData = {
-    profile: post.profile,
-    userName: post.userId,
-    weather: post.weather,
-    date: post.date,
+    profile: post.user.profile,
+    userName: post.user.userName,
+    weather: post.post.weather,
+    date: post.post.date,
   };
   const [photoIndex, setPhotoIndex] = useState<number>(0);
-  const numberOfPhoto = post.pictures.length;
+  const numberOfPhoto = post.post.pictures.length;
   const getPhotoIndex = (index: number): void => {
     setPhotoIndex(index);
   };
@@ -51,7 +40,7 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
   return (
     <S.PostWrapper>
       <FeedImg
-        postPhotos={post.pictures}
+        postPhotos={post.post.pictures}
         writerInfoData={writerInfoData}
         photoIndex={photoIndex}
         getNextIndex={getNextIndex}
@@ -64,8 +53,11 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
       />
       <S.PostContentWrapper>
         <PostLikeButton width="1.563rem" height="2.125rem" />
-        <TagCommentCount commentCount={post.cmtN} likeCount={post.likeN} />
-        <PostContent content={post.content} postId={postId} />
+        <TagCommentCount
+          commentCount={post.post.cmtN}
+          likeCount={post.post.likeN}
+        />
+        <PostContent content={post.post.content} postIndex={postId} />
       </S.PostContentWrapper>
     </S.PostWrapper>
   );

@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.div`
   background: ${MainColor};
   box-shadow: 0 0.625rem 0.625rem 0 rgba(0, 0, 0, 0.15);
   position: relative;
+  margin-bottom: 2.563rem;
 `;
 
 export const Logo = styled.h1`

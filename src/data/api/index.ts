@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as apiTypes from './apiTypes';
 
 import { GetProfileApiType } from './apiTypes';
 
@@ -19,6 +20,36 @@ export const getWeatherStatusApi = async (payload: {
   });
   return response.data;
 };
+
+export const getFeedData = async (
+  feedParams: apiTypes.FeedRequestParams,
+): Promise<apiTypes.FeedListType> => {
+  const response = await instanceAxios.get(`/feed?`, {
+    params: {
+      sortN: feedParams.sortN,
+      status: feedParams.status,
+      temp: feedParams.temp,
+    },
+  });
+  return response.data;
+};
+export const getCommentData = async (
+  commentParams: string,
+): Promise<apiTypes.CommentDataType> => {
+  const response = await instanceAxios.get(`/post/${commentParams}`);
+  return response.data;
+};
+
+export const writingComment = async (
+  text: string,
+  postId: string,
+): Promise<number> => {
+  const response = await instanceAxios.post(`/comment`, {
+    postId,
+    text,
+  });
+  return response.status;
+}
 
 export const uploadPost = async (payload: {
   post: {

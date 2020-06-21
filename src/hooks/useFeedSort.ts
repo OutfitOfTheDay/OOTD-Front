@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { rootState } from '../data/index';
 import {
   changeFeedItem,
-  changeMypageFeedItem,
+  // changeMypageFeedItem,
   changeSortItem,
 } from '../data/modules/FeedSort';
 
