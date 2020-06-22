@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as S from './style';
 import * as apiTypes from 'src/data/api/apiTypes';
@@ -10,12 +11,12 @@ import Header from 'modules/Header';
 import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import UserProfileImg from 'atoms/UserProfileImg';
-import { Link } from 'react-router-dom';
+import geoLocation from '../../../utils/geoLocation';
 
 const Feed: React.FC = () => {
   const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
-  const { weather } = useWeatherStatus();
+  const { weather, onSetWeatherStatus, weatherStatus } = useWeatherStatus();
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
     selectedSortItem: 'POPULAR' | 'NEW',
@@ -37,11 +38,15 @@ const Feed: React.FC = () => {
     temp: weather.temp,
   };
   useEffect(() => {
-    onGetFeed(getFeedParams);
-  }, [selectedFeedItem, selectedSortItem]);
-  useEffect(() => {
+    geoLocation(onSetWeatherStatus);
     onSetIsMypage(false);
   }, []);
+  useEffect(() => {
+    if (weatherStatus === 200) {
+      onGetFeed(getFeedParams);
+    }
+  }, [selectedFeedItem, selectedSortItem, weatherStatus]);
+
   return (
     <>
       <S.FeedContainer>

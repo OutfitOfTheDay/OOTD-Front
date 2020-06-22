@@ -12,6 +12,9 @@ export default function useWeatherStatus() {
     (state: rootState) => state.weatherStatusReducer.weather,
   );
 
+  const weatherStatus = useSelector(
+    (state: rootState) => state.weatherStatusReducer.weatherStatus,
+  );
   const dispatch = useDispatch();
 
   const onChangeWeatherStatus = useCallback(
@@ -29,5 +32,6 @@ export default function useWeatherStatus() {
     onChangeWeatherStatus,
     onSetWeatherStatus,
     weather,
+    weatherStatus,
   };
 }

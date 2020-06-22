@@ -12,11 +12,7 @@ import useWeatherStatus from '../../../hooks/useWeatherStatus';
 import geoLocation from '../../../utils/geoLocation';
 
 const WeatherStatusBlock: React.FC = () => {
-  const { weather, onSetWeatherStatus } = useWeatherStatus();
-
-  React.useEffect(() => {
-    geoLocation(onSetWeatherStatus);
-  }, []);
+  const { weather } = useWeatherStatus();
 
   return (
     <BlockWrapper className="weather">
