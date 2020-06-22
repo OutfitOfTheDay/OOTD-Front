@@ -18,9 +18,11 @@ const ProfileImg: React.FC<IProps> = ({
   <S.img
     src={imgSrc}
     // alt="Profile Image"
+    alt="Profile Image"
     className={className}
     size={size}
     isShadow={isShadow}
+    onClick={handleClickEvent}
   />
 );
 
