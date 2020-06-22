@@ -8,7 +8,7 @@ import {
   DetailPostWriterProfile,
   PostModifyButton,
 } from 'atoms/Feeds';
-import useComment from 'src/hooks/useComment';
+import useComment from '../../../hooks/useComment';
 import usePost from 'src/hooks/usePost';
 import CommentWrapper from '../../modules/CommentWrapper/index';
 
