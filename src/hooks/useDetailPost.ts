@@ -21,17 +21,17 @@ export default function useDetailPost() {
   );
   const dispatch = useDispatch();
 
-  const onGetPostId = useCallback((postId) => dispatch(getPostIndex(postId)), [
+  const onGetPostId = useCallback(postId => dispatch(getPostIndex(postId)), [
     dispatch,
   ]);
 
   const onGetDetailPhotoIndex = useCallback(
-    (photoIndex) => dispatch(getPostIndex(photoIndex)),
+    photoIndex => dispatch(getPostIndex(photoIndex)),
     [dispatch],
   );
 
   const onGetNumberOfPhoto = useCallback(
-    (numberOfPhoto) => dispatch(getNumberOfPhoto(numberOfPhoto)),
+    numberOfPhoto => dispatch(getNumberOfPhoto(numberOfPhoto)),
     [],
   );
 

@@ -11,4 +11,5 @@ export const LoginButtonsWrapper = styled.div`
 export const AuthButton = styled.img`
   width: 21.25rem;
   height: 4.375rem;
+  cursor: pointer;
 `;
