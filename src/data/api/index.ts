@@ -4,7 +4,7 @@ import * as apiTypes from './apiTypes';
 import { GetProfileApiType } from './apiTypes';
 
 const instanceAxios = axios.create({
-  baseURL: 'http://10.156.145.162:1212',
+  baseURL: 'http://192.168.43.226:1212',
   headers: { userId: '5edc9b14e7179a6b6367fee9' },
 });
 
@@ -31,6 +31,7 @@ export const getFeedData = async (
       temp: feedParams.temp,
     },
   });
+  console.log(response.data);
   return response.data;
 };
 export const getCommentData = async (
@@ -75,7 +76,6 @@ export const uploadPost = async (payload: {
 
 export const getProfile = async (): Promise<GetProfileApiType> => {
   const response = await instanceAxios.get('/mypage');
-
   return response.data;
 };
 
@@ -95,11 +95,8 @@ export const editProfile = async (payload: {
 };
 
 export const getMypageFeed = async (): Promise<apiTypes.FeedListType> => {
-  const response = await instanceAxios.get(`/mypage/myfeed`, {
-    headers: {
-      userId: '5edc9b14e7179a6b6367fee9',
-    },
-  });
+  const response = await instanceAxios.get(`/mypage/myfeed`);
+  console.log(response.data);
   return response.data;
 };
 

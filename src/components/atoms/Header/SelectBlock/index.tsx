@@ -8,8 +8,8 @@ interface IProps {
   handleClosing: () => void;
 }
 
-const SelectBlock: React.FC<IProps> = ({ isClicked, handleClosing }) => {
-  const { onHandleLoginModal, isLogin } = useGlobal();
+const SelectBlock: React.FC<IProps> = ({ isClicked }) => {
+  const { isLogin } = useGlobal();
 
   return (
     <S.BlockContainer isClicked={isClicked} isLogin={isLogin}>
@@ -19,14 +19,7 @@ const SelectBlock: React.FC<IProps> = ({ isClicked, handleClosing }) => {
           <S.ListItem>LOG OUT</S.ListItem>
         </>
       ) : (
-        <S.ListItem
-          onClick={() => {
-            onHandleLoginModal(true);
-            handleClosing();
-          }}
-        >
-          Login
-        </S.ListItem>
+        <S.ListItem>Login</S.ListItem>
       )}
     </S.BlockContainer>
   );
