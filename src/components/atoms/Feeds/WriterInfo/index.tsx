@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import { weather } from '../../../../assets/index';
+import setWeatherIcon from 'src/utils/setWeatherIcon';
 
 interface Props {
   writerInfoData: {
@@ -22,7 +22,7 @@ const WriterInfo: React.FC<Props> = ({ writerInfoData }) => {
         <span>{writerInfoData.userName}</span>
       </S.InfoUnitWrapper>
       <S.InfoUnitWrapper>
-        <S.TempIcon src={weather.enabled.clear} />
+        <S.TempIcon src={setWeatherIcon(writerInfoData.weather.status)} />
         <span>{writerInfoData.weather.temp}°C</span>
       </S.InfoUnitWrapper>
       <span>{writerInfoData.date}</span>
