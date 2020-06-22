@@ -8,7 +8,7 @@ import {
   TagCommentCount,
   PostContent,
   PostLikeButton,
-} from '../../atoms/Feeds/index';
+} from '../../atoms/Feeds';
 
 interface Props {
   post: apiTypes.FeedListType;
