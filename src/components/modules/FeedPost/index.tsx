@@ -56,7 +56,12 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
       />
       <S.PostContentWrapper>
         <S.IsMypageWrapper>
-          <PostLikeButton width="1.563rem" height="2.125rem" />
+          <PostLikeButton
+            width="1.563rem"
+            height="2.125rem"
+            likedId={post.user.likedId}
+            postId={post.post._id}
+          />
           <PostModifyButton fontSize={1} />
         </S.IsMypageWrapper>
         <TagCommentCount
