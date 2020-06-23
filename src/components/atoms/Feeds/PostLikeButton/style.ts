@@ -9,4 +9,5 @@ export const PostButton = styled.img<{ width: string; height: string }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin-right: 1.25rem;
+  cursor: pointer;
 `;
