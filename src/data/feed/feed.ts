@@ -90,7 +90,8 @@ const initialState: FeedState = {
       user: {
         userName: 'OOTD',
         profile:
-          ' https://cdn.allets.com/500/2018/08/27/500_322525_1535357464.jpeg',
+          'https://cdn.allets.com/500/2018/08/27/500_322525_1535357464.jpeg',
+        likedId: [''],
       },
     },
   ],

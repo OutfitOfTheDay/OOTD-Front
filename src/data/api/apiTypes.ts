@@ -21,6 +21,7 @@ export interface FeedListType {
   user: {
     userName: string;
     profile: string;
+    likedId: string[];
   };
 }
 export interface CommentDataType {
