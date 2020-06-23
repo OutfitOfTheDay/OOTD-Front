@@ -50,6 +50,6 @@ export const AddImageBtn = styled.div`
 
   > img {
     width: 1.625rem;
-    height: 2.625rem;
+    height: 1.625rem;
   }
 `;
