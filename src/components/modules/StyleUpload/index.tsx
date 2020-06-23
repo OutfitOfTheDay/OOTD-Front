@@ -30,6 +30,10 @@ const StyleUpload: React.FC = () => {
     weather,
   } = useWeatherStatus();
 
+  React.useEffect(() => {
+    gps(onSetWeatherStatus);
+  }, []);
+
   return (
     <StyleUploadWrapper>
       <SubTitle>IMAGE</SubTitle>
