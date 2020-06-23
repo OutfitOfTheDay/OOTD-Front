@@ -4,7 +4,7 @@ import * as apiTypes from './apiTypes';
 import { GetProfileApiType } from './apiTypes';
 
 const instanceAxios = axios.create({
-  baseURL: 'http://192.168.43.226:1212',
+  baseURL: 'http://10.156.145.162:1212',
   headers: { userId: '5edc9b14e7179a6b6367fee9' },
 });
 
@@ -107,4 +107,9 @@ export const getMypageTagFeed = async (): Promise<apiTypes.FeedListType> => {
     },
   });
   return response.data;
+};
+
+export const likePost = async (postId: string): Promise<number> => {
+  const response = await instanceAxios.get(`/like/${postId}`);
+  return response.status;
 };
