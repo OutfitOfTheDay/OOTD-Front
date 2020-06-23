@@ -80,6 +80,7 @@ export interface FeedState {
   postIndex: number;
   feedRequestParams: apiTypes.FeedRequestParams;
   isMypage: boolean;
+  reRenderCount: number;
 }
 
 const initialState: FeedState = {
@@ -114,6 +115,7 @@ const initialState: FeedState = {
     temp: 0,
   },
   isMypage: true,
+  reRenderCount: 0,
 };
 
 export default function feed(
@@ -137,6 +139,10 @@ export default function feed(
       return { ...state, feed: action.payload };
     case SET_IS_MYPAGE:
       return { ...state, isMypage: action.payload };
+    case DELETE_POST:
+      return { ...state };
+    case DELETE_POST_SUCCESS:
+      return { ...state, reRenderCount: state.reRenderCount + 1 };
     default:
       return state;
   }

@@ -6,12 +6,16 @@ import {
   getMypageFeed,
   setIsMypage,
   getMypageTagFeed,
+  deletePost,
 } from '../data/feed/feed';
 import * as apiTypes from '../data/api/apiTypes';
 
 export default function useFeed() {
   const feedList = useSelector((state: StoreState) => state.feed.feed);
   const isMypage = useSelector((state: StoreState) => state.feed.isMypage);
+  const reRenderCount = useSelector(
+    (state: StoreState) => state.feed.reRenderCount,
+  );
   const dispatch = useDispatch();
   const onGetFeed = useCallback(
     (feedRequestParams: apiTypes.FeedRequestParams) =>
@@ -30,6 +34,11 @@ export default function useFeed() {
     (isMypage: boolean) => dispatch(setIsMypage(isMypage)),
     [dispatch],
   );
+
+  const onDeletePost = useCallback(
+    (postId: string) => dispatch(deletePost(postId)),
+    [dispatch],
+  );
   return {
     isMypage,
     feedList,
@@ -37,5 +46,7 @@ export default function useFeed() {
     onGetMypageFeed,
     onGetMypageTagFeed,
     onSetIsMypage,
+    onDeletePost,
+    reRenderCount,
   };
 }
