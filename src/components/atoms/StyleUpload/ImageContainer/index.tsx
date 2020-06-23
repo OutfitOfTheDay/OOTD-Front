@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import * as S from './style';
 
-// import { upload } from 'assets/index';
+import { upload } from 'assets/index';
 import readFile from '../../../../utils/readFile';
 
 interface IProps {
@@ -33,7 +33,7 @@ const ImageContainer: React.FC<IProps> = ({
           <S.Image src={URL.createObjectURL(img)} alt={`img${index + 1}`} />
           <img
             className="delbtn"
-            // src={upload.delete_img}
+            src={upload.delete_img}
             alt="delete button"
             onClick={() => handleDeleteImg(index)}
           />
@@ -42,7 +42,7 @@ const ImageContainer: React.FC<IProps> = ({
       {imgList.length < 5 && (
         <label htmlFor="input-img">
           <S.AddImageBtn>
-            {/* <img src={upload.add_img} alt="Image Add button" /> */}
+            <img src={upload.add_img} alt="Image Add button" />
           </S.AddImageBtn>
         </label>
       )}

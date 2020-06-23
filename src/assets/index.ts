@@ -9,6 +9,8 @@ import default_profile from './header/default_profile.png';
 import close from './modal_icon/close.png';
 import auth_facebook from './modal_icon/auth_facebook.png';
 import auth_google from './modal_icon/auth_google.png';
+import add_img from './upload/add_img.png';
+import delete_img from './upload/delete_img.png';
 
 export const weather = {
   disabled,
@@ -31,4 +33,9 @@ export const modal = {
   close,
   auth_facebook,
   auth_google,
+};
+
+export const upload = {
+  add_img,
+  delete_img,
 };
