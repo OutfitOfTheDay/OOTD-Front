@@ -7,6 +7,7 @@ import feed, { FeedState } from './feed/feed';
 import detailPost, { DetailPostState } from './detailPost';
 import comment, { CommentState } from './comment/comment';
 import likePostReducer, { LikePostState } from './likePost/likePost';
+import modal, { ModalState } from './modal/modal';
 import feedSortReducer from './modules/FeedSort';
 // import postUploadReducer from './modules/PostUpload';
 import mypageReducer from './modules/Mypage';
@@ -27,6 +28,7 @@ export interface StoreState {
   detailPost: DetailPostState;
   comment: CommentState;
   likePost: LikePostState;
+  modal: ModalState;
   global: GlobalState;
   weather: WeatherState;
 }
@@ -36,6 +38,7 @@ const rootReducer = combineReducers({
   feed,
   comment,
   likePostReducer,
+  modal,
   feedSortReducer,
   globalReducer,
   mypageReducer,
