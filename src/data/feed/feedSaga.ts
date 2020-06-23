@@ -1,6 +1,11 @@
 import { all, fork, takeLatest, call, put } from 'redux-saga/effects';
 
-import { getFeedData, getMypageFeed, getMypageTagFeed } from '../api/index';
+import {
+  getFeedData,
+  getMypageFeed,
+  getMypageTagFeed,
+  deletePost,
+} from '../api/index';
 import * as feed from './feed';
 
 function* getMainFeed(action: feed.FeedAction) {
@@ -42,6 +47,21 @@ function* getMypageTagFeeds() {
   } catch (error) {
     yield put({
       type: feed.GET_FEED_FAILURE,
+      payload: error,
+    });
+  }
+}
+
+function* deletePostSaga(action: feed.FeedAction) {
+  try {
+    const deletePostStatus = yield call(deletePost, action.payload);
+    yield put({
+      type: feed.DELETE_POST_SUCCESS,
+      payload: deletePostStatus,
+    });
+  } catch (error) {
+    yield put({
+      type: feed.DELETE_POST_FAILURE,
       payload: error,
     });
   }

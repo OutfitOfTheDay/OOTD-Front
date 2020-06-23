@@ -108,3 +108,8 @@ export const getMypageTagFeed = async (): Promise<apiTypes.FeedListType> => {
   });
   return response.data;
 };
+
+export const deletePost = async (postId: string): Promise<number> => {
+  const response = await instanceAxios.delete(`/post/${postId}`);
+  return response.status;
+};
