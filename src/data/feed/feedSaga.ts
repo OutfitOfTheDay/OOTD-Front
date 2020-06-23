@@ -52,7 +52,7 @@ function* getMypageTagFeeds() {
   }
 }
 
-function* deletePostSaga(action: feed.FeedAction) {
+function* deleteFeedPost(action: feed.FeedAction) {
   try {
     const deletePostStatus = yield call(deletePost, action.payload);
     yield put({
@@ -66,7 +66,9 @@ function* deletePostSaga(action: feed.FeedAction) {
     });
   }
 }
+
 export function* feedSaga() {
   yield takeLatest(feed.GET_FEED, getMainFeed);
   yield takeLatest(feed.GET_MYPAGE_FEED, getMypageFeeds);
+  yield takeLatest(feed.DELETE_POST, deleteFeedPost);
 }
