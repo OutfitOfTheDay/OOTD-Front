@@ -9,6 +9,9 @@ export const GET_MYPAGE_FEED_FAILURE = 'GET_MYPAGE_FEED_FAILURE';
 export const GET_MYPAGE_TAG_FEED = 'GET_MYPAGE_TAG_FEED' as const;
 export const GET_MYPAGE_TAG_FEED_SUCCESS = 'GET_MYPAGE_TAG_FEED_SUCCESS';
 export const GET_MYPAGE_TAG_FEED_FAILURE = 'GET_MYPAGE_TAG_FEED_FAILURE';
+export const DELETE_POST = 'DELETE_POST' as const;
+export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS' as const;
+export const DELETE_POST_FAILURE = 'DELETE_POST_FAILURE' as const;
 export const GET_POST_INDEX = 'GET_POST_INDEX' as const;
 export const SET_IS_MYPAGE = 'SET_IS_MYPAGE' as const;
 
@@ -19,6 +22,10 @@ export const getFeed = (feedRequestParams: apiTypes.FeedRequestParams) => ({
 
 export const getMypageFeed = () => ({
   type: GET_MYPAGE_FEED,
+});
+export const deletePost = (postId: string) => ({
+  type: DELETE_POST,
+  payload: postId,
 });
 
 export const getMypageTagFeed = () => ({
@@ -50,11 +57,17 @@ export interface MypageTagFeedAsyncActionType {
   payload: apiTypes.FeedListType[];
 }
 
+export interface DeletePostAsyncActionType {
+  type: typeof DELETE_POST_SUCCESS | typeof DELETE_POST_FAILURE;
+  payload: any;
+}
+
 export type FeedAction =
   | ReturnType<typeof getFeed>
   | ReturnType<typeof getPostIndex>
-  | FeedAsyncActionType;
-
+  | FeedAsyncActionType
+  | ReturnType<typeof deletePost>
+  | DeletePostAsyncActionType;
 export type MypageAction =
   | ReturnType<typeof getMypageFeed>
   | ReturnType<typeof getMypageTagFeed>
@@ -67,6 +80,7 @@ export interface FeedState {
   postIndex: number;
   feedRequestParams: apiTypes.FeedRequestParams;
   isMypage: boolean;
+  reRenderCount: number;
 }
 
 const initialState: FeedState = {
@@ -102,6 +116,7 @@ const initialState: FeedState = {
     temp: 0,
   },
   isMypage: true,
+  reRenderCount: 0,
 };
 
 export default function feed(
@@ -125,6 +140,10 @@ export default function feed(
       return { ...state, feed: action.payload };
     case SET_IS_MYPAGE:
       return { ...state, isMypage: action.payload };
+    case DELETE_POST:
+      return { ...state };
+    case DELETE_POST_SUCCESS:
+      return { ...state, reRenderCount: state.reRenderCount + 1 };
     default:
       return state;
   }

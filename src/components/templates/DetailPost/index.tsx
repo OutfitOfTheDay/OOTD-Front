@@ -48,7 +48,7 @@ const DetailPost: React.FC<Props> = () => {
     <S.DetailPostContainer>
       <S.DetailPostWrapper>
         <S.PostModifyButtonWrapper>
-          <PostModifyButton fontSize={0.875} />
+          <PostModifyButton fontSize={0.875} postId={postData.post._id} />
         </S.PostModifyButtonWrapper>
         <S.DetailPost>
           <FeedImg

@@ -62,7 +62,7 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
             likedId={post.user.likedId}
             postId={post.post._id}
           />
-          <PostModifyButton fontSize={1} />
+          <PostModifyButton fontSize={1} postId={post.post._id} />
         </S.IsMypageWrapper>
         <TagCommentCount
           commentCount={post.post.cmtN}

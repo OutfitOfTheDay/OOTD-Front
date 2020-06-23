@@ -12,18 +12,22 @@ import MypageCategoryBlock from 'src/components/modules/MypageCategoryBlock';
 import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 
 const Feed: React.FC = () => {
-  const { feedList, onGetMypageFeed, onSetIsMypage } = useFeed();
+  const { feedList, onGetMypageFeed, onSetIsMypage, reRenderCount } = useFeed();
 
   useEffect(() => {
     onGetMypageFeed();
+  }, [reRenderCount]);
+
+  useEffect(() => {
     onSetIsMypage(true);
   }, []);
+
   return (
     <>
       <S.FeedContainer>
         <Header />
         <S.MypageBlockWrapper>
-          <ProfileBlock />
+          {/* <ProfileBlock /> */}
           <WeatherStatusBlock />
           <MypageCategoryBlock />
           <MoveToUploadBlock />

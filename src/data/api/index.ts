@@ -113,3 +113,7 @@ export const likePost = async (postId: string): Promise<number> => {
   const response = await instanceAxios.get(`/like/${postId}`);
   return response.status;
 };
+export const deletePost = async (postId: string): Promise<number> => {
+  const response = await instanceAxios.delete(`/post/${postId}`);
+  return response.status;
+};
