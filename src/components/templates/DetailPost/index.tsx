@@ -48,7 +48,7 @@ const DetailPost: React.FC<Props> = () => {
     <S.DetailPostContainer>
       <S.DetailPostWrapper>
         <S.PostModifyButtonWrapper>
-          <PostModifyButton fontSize={0.875} />
+          <PostModifyButton fontSize={0.875} postId={postData.post._id} />
         </S.PostModifyButtonWrapper>
         <S.DetailPost>
           <FeedImg
@@ -72,7 +72,12 @@ const DetailPost: React.FC<Props> = () => {
             </S.ScrollArea>
             <div>
               <S.DetailPostInfoWrapper>
-                <PostLikeButton width="1.125rem" height="1.563rem" />
+                <PostLikeButton
+                  width="1.125rem"
+                  height="1.563rem"
+                  postId={postData.post._id}
+                  likedId={postData.user.likedId}
+                />
                 <TagCommentCount
                   likeCount={postData.post.likeN}
                   commentCount={postData.post.cmtN}
