@@ -7,6 +7,7 @@ interface IProps {
   imgSrc: string;
   size: number;
   isShadow?: true;
+  handleClickEvent: () => void;
 }
 
 const ProfileImg: React.FC<IProps> = ({
@@ -14,6 +15,7 @@ const ProfileImg: React.FC<IProps> = ({
   imgSrc,
   isShadow,
   size,
+  handleClickEvent,
 }) => (
   <S.img
     src={imgSrc}
