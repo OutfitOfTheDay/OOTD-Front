@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import * as S from './style';
 import * as apiTypes from '../../../data/api/apiTypes';
-import useFeed from 'src/hooks/useFeed';
 import {
   ImgNumberWrapper,
   FeedImg,
@@ -24,7 +23,6 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
     weather: post.post.weather,
     date: post.post.date,
   };
-  const { isMypage } = useFeed();
   const [photoIndex, setPhotoIndex] = useState<number>(0);
   const numberOfPhoto = post.post.pictures.length;
   const getPhotoIndex = (index: number): void => {

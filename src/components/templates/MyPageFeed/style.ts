@@ -11,7 +11,5 @@ export const MypageBlockWrapper = styled.div`
   position: fixed;
   right: 15.56rem;
   top: 7.5rem;
-  height: 45rem;
   flex-direction: column;
-  justify-content: space-between;
 `;

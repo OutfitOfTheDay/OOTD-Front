@@ -12,15 +12,30 @@ import MypageCategoryBlock from 'src/components/modules/MypageCategoryBlock';
 import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 
 const Feed: React.FC = () => {
-  const { feedList, onGetMypageFeed, onSetIsMypage, reRenderCount } = useFeed();
+  const {
+    feedList,
+    onGetMypageFeed,
+    onSetIsMypage,
+    reRenderCount,
+    onGetMypageTagFeed,
+  } = useFeed();
+  const { selectedMypageFeedItem } = useFeedSort();
 
-  useEffect(() => {
-    onGetMypageFeed();
-  }, [reRenderCount]);
+  const getFeedBySelectedItem = () => {
+    if (selectedMypageFeedItem === 'MY STYLE') {
+      onGetMypageFeed();
+    } else if (selectedMypageFeedItem === 'TAG') {
+      onGetMypageTagFeed();
+    }
+  };
 
   useEffect(() => {
     onSetIsMypage(true);
   }, []);
+
+  useEffect(() => {
+    getFeedBySelectedItem();
+  }, [reRenderCount, selectedMypageFeedItem]);
 
   return (
     <>

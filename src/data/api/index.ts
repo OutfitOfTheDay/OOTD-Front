@@ -4,9 +4,30 @@ import * as apiTypes from './apiTypes';
 import { GetProfileApiType } from './apiTypes';
 
 const instanceAxios = axios.create({
-  baseURL: 'http://10.156.145.162:1212',
-  headers: { userId: '5edc9b14e7179a6b6367fee9' },
+  baseURL: 'http://192.168.43.47:1212',
+  // headers:  { userId: '5edc9b14e7179a6b6367fee9' },
 });
+
+//=======
+
+export const facebookLogIn = async () => {
+  const response = await instanceAxios.get('/auth/facebook');
+  console.log(response.status);
+  return response.status;
+};
+
+export const googleLogIn = async () => {
+  const response = await instanceAxios.get('/auth/google');
+  console.log(response.status);
+  return response.data;
+};
+
+export const logOut = async () => {
+  const response = await instanceAxios.get('/logout');
+  return response.status;
+};
+
+//======
 
 export const getWeatherStatusApi = async (payload: {
   lat: number;
@@ -18,6 +39,7 @@ export const getWeatherStatusApi = async (payload: {
       lon: payload.lon,
     },
   });
+  // console.log(response.status);
   return response.data;
 };
 
@@ -101,16 +123,13 @@ export const getMypageFeed = async (): Promise<apiTypes.FeedListType> => {
 };
 
 export const getMypageTagFeed = async (): Promise<apiTypes.FeedListType> => {
-  const response = await instanceAxios.get(`/mypage/tagfeed`, {
-    headers: {
-      userId: '5edc9b14e7179a6b6367fee9',
-    },
-  });
+  const response = await instanceAxios.get(`/mypage/tagfeed`);
   return response.data;
 };
 
 export const likePost = async (postId: string): Promise<number> => {
   const response = await instanceAxios.get(`/like/${postId}`);
+  console.log(response.status);
   return response.status;
 };
 export const deletePost = async (postId: string): Promise<number> => {

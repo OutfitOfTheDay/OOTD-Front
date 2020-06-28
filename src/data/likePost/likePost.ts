@@ -16,10 +16,12 @@ export type LikePostAction = ReturnType<typeof like> | LikePostAsyncActionType;
 
 export interface LikePostState {
   LikeStatus: 0 | 200 | 400 | 500;
+  reRenderCount: number;
 }
 
 const initialState: LikePostState = {
   LikeStatus: 0,
+  reRenderCount: 0,
 };
 
 export default function LikePostReducer(
@@ -30,7 +32,7 @@ export default function LikePostReducer(
     case LIKE_POST:
       return { ...state };
     case LIKE_POST_SUCCESS:
-      return { ...state, LikeStatus: action.payload };
+      return { ...state, reRenderCount: state.reRenderCount + 1 };
     case LIKE_POST_FAILURE:
       return { ...state, LikeStatus: action.payload };
     default:

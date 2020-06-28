@@ -14,6 +14,7 @@ import { weather as weatherIcon } from 'assets/index';
 import usePostUpload from '../../../hooks/usePostUpload';
 import useWeatherStatus from '../../../hooks/useWeatherStatus';
 import gps from '../../../utils/geoLocation';
+import { Link } from 'react-router-dom';
 
 const StyleUpload: React.FC = () => {
   const {
@@ -45,7 +46,7 @@ const StyleUpload: React.FC = () => {
       <SubTitle>DESCRIPTION</SubTitle>
       <DescriptionInput
         placeholder="내용을 입력해주세요."
-        onChange={e => onChangeDescription(e.target.value)}
+        onChange={(e) => onChangeDescription(e.target.value)}
         value={description}
       />
       <WeatherHeaderWrapper>
@@ -62,12 +63,14 @@ const StyleUpload: React.FC = () => {
         weather={weather}
         onChangeWeatherStatus={onChangeWeatherStatus}
       />
+      {/* <Link to="/"> */}
       <UploadBtn
         isAllFilled={!!(imgList.length > 0 && description)}
         onClick={() => onUploadPost({ imgList, description, weather })}
       >
         업로드
       </UploadBtn>
+      {/* </Link> */}
     </StyleUploadWrapper>
   );
 };

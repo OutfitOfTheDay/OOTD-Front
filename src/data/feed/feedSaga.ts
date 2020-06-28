@@ -37,6 +37,7 @@ function* getMypageFeeds() {
     });
   }
 }
+
 function* getMypageTagFeeds() {
   try {
     const feedData = yield call(getMypageTagFeed);
@@ -59,7 +60,7 @@ function* deleteFeedPost(action: feed.FeedAction) {
       type: feed.DELETE_POST_SUCCESS,
       payload: deletePostStatus,
     });
-  } catch (error) {
+  } catch ( error) {
     yield put({
       type: feed.DELETE_POST_FAILURE,
       payload: error,

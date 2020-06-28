@@ -12,11 +12,20 @@ import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import UserProfileImg from 'atoms/UserProfileImg';
 import geoLocation from '../../../utils/geoLocation';
+import useLikePost from 'src/hooks/useLikePost';
+import useGlobal from 'src/hooks/useGlobal';
+import useModal from 'src/hooks/useModal';
+import { ModalTypes } from 'src/data/modal/modal';
+import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 
 const Feed: React.FC = () => {
   const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
   const { weather, onSetWeatherStatus, weatherStatus } = useWeatherStatus();
+  const { reRenderCount } = useLikePost();
+  const { onChangeModal } = useModal();
+  const { isLogin } = useGlobal();
+
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
     selectedSortItem: 'POPULAR' | 'NEW',
@@ -45,21 +54,35 @@ const Feed: React.FC = () => {
     if (weatherStatus === 200) {
       onGetFeed(getFeedParams);
     }
-  }, [selectedFeedItem, selectedSortItem, weatherStatus]);
+  }, [selectedFeedItem, selectedSortItem, weatherStatus, reRenderCount]);
 
   return (
     <>
       <S.FeedContainer>
         <Header />
         <S.FeedStatusBlockWrapper>
-          <Link to="/mypage">
-            <S.UserProfileBlock>
-              <UserProfileImg imgURL="" size=" 3.75rem" />
-              <S.UserName>김땡땡 </S.UserName>
-            </S.UserProfileBlock>
-          </Link>
+          {isLogin ? (
+            <Link to="/mypage">
+              <S.UserProfileBlock>
+                <UserProfileImg imgURL="" size=" 3.75rem" />
+                <S.UserName>김땡땡  </S.UserName>
+              </S.UserProfileBlock>
+            </Link>
+          ) : (
+            <>
+              <S.goLogInText>로그인이 필요한 서비스입니다</S.goLogInText>
+              <S.goLogInButton
+                onClick={() => {
+                  onChangeModal(ModalTypes.LogIn);
+                }}
+              >
+                로그인하기
+              </S.goLogInButton>
+            </>
+          )}
           <WeatherStatusBlock />
           <FeedSortStatusBlock />
+          {isLogin ? <MoveToUploadBlock /> : <></>}
         </S.FeedStatusBlockWrapper>
         {feedList.length !== 0 ? (
           <>

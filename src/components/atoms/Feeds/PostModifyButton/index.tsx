@@ -12,17 +12,19 @@ interface Props {
 }
 const PostModifyButton: React.FC<Props> = ({ fontSize, postId }) => {
   const { isMypage } = useFeed();
-  const { onChangeModal } = useModal();
+  const { onChangeModal, onGetPostId } = useModal();
+
+  const openDeletePost = () => {
+    onChangeModal(ModalTypes.DeletePost);
+    onGetPostId(postId);
+  };
 
   return (
     <>
       {isMypage ? (
         <S.PostModifyButtonWrapper>
           <S.PostModifyButton fontSize={fontSize}>수정</S.PostModifyButton>
-          <S.PostModifyButton
-            fontSize={fontSize}
-            onClick={() => onChangeModal(ModalTypes.DeletePost)}
-          >
+          <S.PostModifyButton fontSize={fontSize} onClick={openDeletePost}>
             삭제
           </S.PostModifyButton>
         </S.PostModifyButtonWrapper>
