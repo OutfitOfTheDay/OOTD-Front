@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { all, call } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
-
+import { routerReducer, routerMiddleware } from 'react-router-redux';
 import feed, { FeedState } from './feed/feed';
 import detailPost, { DetailPostState } from './detailPost';
 import comment, { CommentState } from './comment/comment';
@@ -14,7 +14,6 @@ import mypageReducer from './modules/Mypage';
 import weatherStatusReducer, {
   InitialState as WeatherState,
 } from './modules/WeatherStatus';
-//-=====
 import globalReducer, { GlobalState } from './modules/global';
 
 import mypage from './modules/Mypage/MypageSaga';
@@ -23,9 +22,8 @@ import weatherStatus from './modules/WeatherStatus/WeatherStatusSaga';
 import { commentSaga } from './comment/commentSaga';
 import { feedSaga } from './feed/feedSaga';
 import { likePostSaga } from './likePost/likePostSaga';
-//====
 import { loginSaga } from './modules/Global/loginSaga';
-//
+
 export interface StoreState {
   feed: FeedState;
   detailPost: DetailPostState;
@@ -65,6 +63,7 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleWare)),
 );
+
 export default store;
 
 export type rootState = ReturnType<typeof rootReducer>;
