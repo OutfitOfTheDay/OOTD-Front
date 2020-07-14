@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import * as S from './style';
 import FeedPost from '../../modules/FeedPost';
@@ -21,17 +21,18 @@ const Feed: React.FC = () => {
   } = useFeed();
   const { selectedMypageFeedItem } = useFeedSort();
 
-  const getFeedBySelectedItem = () => {
-    if (selectedMypageFeedItem === 'MY STYLE') {
-      onGetMypageFeed();
-    } else if (selectedMypageFeedItem === 'TAG') {
-      onGetMypageTagFeed();
-    }
-  };
-
+  const token = localStorage.getItem('token');
   useEffect(() => {
     onSetIsMypage(true);
   }, []);
+
+  const getFeedBySelectedItem = () => {
+    if (selectedMypageFeedItem === 'MY STYLE') {
+      onGetMypageFeed(token);
+    } else if (selectedMypageFeedItem === 'TAG') {
+      onGetMypageTagFeed(token);
+    }
+  };
 
   useEffect(() => {
     getFeedBySelectedItem();
@@ -42,7 +43,7 @@ const Feed: React.FC = () => {
       <S.FeedContainer>
         <Header />
         <S.MypageBlockWrapper>
-          {/* <ProfileBlock /> */}
+          <ProfileBlock />
           <WeatherStatusBlock />
           <MypageCategoryBlock />
           <MoveToUploadBlock />

@@ -23,12 +23,14 @@ function* getMainFeed(action: feed.FeedAction) {
   }
 }
 
-function* getMypageFeeds() {
+function* getMypageFeeds(action: feed.GetMypageFeed) {
+  const token: string = action.payload.token;
+  console.log(token);
   try {
-    const feedData = yield call(getMypageFeed);
+    const feedData = yield call(getMypageFeed, { token });
     yield put({
       type: feed.GET_MYPAGE_FEED_SUCCESS,
-      payload: feedData,
+      payload: { feedData },
     });
   } catch (error) {
     yield put({
@@ -38,12 +40,13 @@ function* getMypageFeeds() {
   }
 }
 
-function* getMypageTagFeeds() {
+function* getMypageTagFeeds(action: feed.GetMypageTagFeed) {
+  const token: string = action.payload.token;
   try {
-    const feedData = yield call(getMypageTagFeed);
+    const feedData = yield call(getMypageTagFeed, { token });
     yield put({
       type: feed.GET_MYPAGE_TAG_FEED_SUCCESS,
-      payload: feedData,
+      payload: { feedData },
     });
   } catch (error) {
     yield put({
@@ -53,14 +56,16 @@ function* getMypageTagFeeds() {
   }
 }
 
-function* deleteFeedPost(action: feed.FeedAction) {
+function* deleteFeedPost(action: feed.DeletePost) {
+  const token: string = action.payload.token;
+  const postId: string = action.payload.postId;
   try {
-    const deletePostStatus = yield call(deletePost, action.payload);
+    const deletePostStatus = yield call(deletePost, { token, postId });
     yield put({
       type: feed.DELETE_POST_SUCCESS,
       payload: deletePostStatus,
     });
-  } catch ( error) {
+  } catch (error) {
     yield put({
       type: feed.DELETE_POST_FAILURE,
       payload: error,
@@ -71,5 +76,6 @@ function* deleteFeedPost(action: feed.FeedAction) {
 export function* feedSaga() {
   yield takeLatest(feed.GET_FEED, getMainFeed);
   yield takeLatest(feed.GET_MYPAGE_FEED, getMypageFeeds);
+  yield takeLatest(feed.GET_MYPAGE_TAG_FEED, getMypageTagFeeds);
   yield takeLatest(feed.DELETE_POST, deleteFeedPost);
 }

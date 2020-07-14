@@ -19,6 +19,7 @@ const PostLikeButton: React.FC<Props> = ({
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const { likePost } = useLikePost();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     setIsLikedPost();
@@ -32,12 +33,8 @@ const PostLikeButton: React.FC<Props> = ({
     setIsSelected(isLikedPost);
   };
 
-  // const likeReq = (postId: string) => {
-  //   likePost(postId);
-  // };
-
   const onLikePost = () => {
-    likePost(postId);
+    likePost(postId, token);
     setIsSelected(!isSelected);
   };
 

@@ -12,9 +12,10 @@ export default function useLikePost() {
     (state: rootState) => state.likePostReducer.reRenderCount,
   );
   const dispatch = useDispatch();
-  const likePost = useCallback((postId: string) => dispatch(like(postId)), [
-    dispatch,
-  ]);
+  const likePost = useCallback(
+    (postId: string, token: string) => dispatch(like(postId, token)),
+    [dispatch],
+  );
 
   return {
     reRenderCount,

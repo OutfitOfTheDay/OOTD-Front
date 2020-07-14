@@ -24,7 +24,7 @@ const Feed: React.FC = () => {
   const { weather, onSetWeatherStatus, weatherStatus } = useWeatherStatus();
   const { reRenderCount } = useLikePost();
   const { onChangeModal } = useModal();
-  const { isLogin } = useGlobal();
+  const { isLogin, userInfo, onSetIsLogin } = useGlobal();
 
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
@@ -46,9 +46,18 @@ const Feed: React.FC = () => {
     status: weather.status,
     temp: weather.temp,
   };
+
+  const checkIsLogin = () => {
+    if (localStorage.getItem('token') !== null) {
+      onSetIsLogin(true);
+    } else {
+      onSetIsLogin(false);
+    }
+  };
   useEffect(() => {
     geoLocation(onSetWeatherStatus);
     onSetIsMypage(false);
+    checkIsLogin();
   }, []);
   useEffect(() => {
     if (weatherStatus === 200) {
@@ -64,8 +73,8 @@ const Feed: React.FC = () => {
           {isLogin ? (
             <Link to="/mypage">
               <S.UserProfileBlock>
-                <UserProfileImg imgURL="" size=" 3.75rem" />
-                <S.UserName>김땡땡  </S.UserName>
+                <UserProfileImg imgURL={userInfo.profile} size=" 3.75rem" />
+                <S.UserName>{userInfo.userName} </S.UserName>
               </S.UserProfileBlock>
             </Link>
           ) : (

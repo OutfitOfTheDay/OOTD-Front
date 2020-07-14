@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import * as S from './style';
 import {
   FeedImg,
@@ -40,8 +41,9 @@ const DetailPost: React.FC<Props> = () => {
       setPhotoIndex(photoIndex - 1);
     } else setPhotoIndex(numberOfPhoto - 1);
   };
+  const token = localStorage.getItem('token');
   useEffect(() => {
-    onGetComment(postId);
+    onGetComment(postId, token);
   }, [reRenderCount]);
 
   return (

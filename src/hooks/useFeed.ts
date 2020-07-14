@@ -22,13 +22,15 @@ export default function useFeed() {
       dispatch(getFeed(feedRequestParams)),
     [dispatch],
   );
-  const onGetMypageFeed = useCallback(() => dispatch(getMypageFeed()), [
-    dispatch,
-  ]);
+  const onGetMypageFeed = useCallback(
+    (token: string) => dispatch(getMypageFeed(token)),
+    [dispatch],
+  );
 
-  const onGetMypageTagFeed = useCallback(() => dispatch(getMypageTagFeed()), [
-    dispatch,
-  ]);
+  const onGetMypageTagFeed = useCallback(
+    (token: string) => dispatch(getMypageTagFeed(token)),
+    [dispatch],
+  );
 
   const onSetIsMypage = useCallback(
     (isMypage: boolean) => dispatch(setIsMypage(isMypage)),
@@ -36,7 +38,7 @@ export default function useFeed() {
   );
 
   const onDeletePost = useCallback(
-    (postId: string) => dispatch(deletePost(postId)),
+    (postId: string, token: string) => dispatch(deletePost(postId, token)),
     [dispatch],
   );
   return {

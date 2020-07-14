@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
+import React, { useState, ChangeEvent, KeyboardEvent, useEffect } from 'react';
 
 import * as S from './style';
 import useComment from '../../../../hooks/useComment';
@@ -11,10 +11,11 @@ interface Props {
 const WritingComment: React.FC<Props> = ({ postId }) => {
   const [comment, setComment] = useState('');
   const { onAddComment } = useComment();
+  const token = localStorage.getItem('token');
 
   const addComment = () => {
     if (comment.length > 0) {
-      onAddComment(comment, postId);
+      onAddComment(comment, postId, token);
     }
     setComment('');
   };

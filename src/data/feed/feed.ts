@@ -20,16 +20,18 @@ export const getFeed = (feedRequestParams: apiTypes.FeedRequestParams) => ({
   payload: feedRequestParams,
 });
 
-export const getMypageFeed = () => ({
+export const getMypageFeed = (token: string) => ({
   type: GET_MYPAGE_FEED,
+  payload: { token },
 });
-export const deletePost = (postId: string) => ({
+export const deletePost = (postId: string, token: string) => ({
   type: DELETE_POST,
-  payload: postId,
+  payload: { postId, token },
 });
 
-export const getMypageTagFeed = () => ({
+export const getMypageTagFeed = (token: string) => ({
   type: GET_MYPAGE_TAG_FEED,
+  payload: { token },
 });
 
 export const getPostIndex = (postIndex: number) => ({
@@ -47,19 +49,37 @@ export interface FeedAsyncActionType {
   payload: any;
 }
 
-export interface MypageFeedAsyncActionType {
-  type: typeof GET_MYPAGE_FEED_SUCCESS | typeof GET_MYPAGE_FEED_FAILURE;
-  payload: apiTypes.FeedListType[];
+export interface GetMypageFeed {
+  type:
+    | typeof GET_MYPAGE_FEED
+    | typeof GET_MYPAGE_FEED_FAILURE
+    | typeof GET_MYPAGE_FEED_SUCCESS;
+  payload: {
+    token: string;
+    feedData?: apiTypes.FeedListType[];
+  };
 }
 
-export interface MypageTagFeedAsyncActionType {
-  type: typeof GET_MYPAGE_TAG_FEED_SUCCESS | typeof GET_MYPAGE_TAG_FEED_FAILURE;
-  payload: apiTypes.FeedListType[];
+export interface GetMypageTagFeed {
+  type:
+    | typeof GET_MYPAGE_TAG_FEED
+    | typeof GET_MYPAGE_TAG_FEED_FAILURE
+    | typeof GET_MYPAGE_TAG_FEED_SUCCESS;
+  payload: {
+    token: string;
+    feedData?: apiTypes.FeedListType[];
+  };
 }
 
-export interface DeletePostAsyncActionType {
-  type: typeof DELETE_POST_SUCCESS | typeof DELETE_POST_FAILURE;
-  payload: any;
+export interface DeletePost {
+  type:
+    | typeof DELETE_POST
+    | typeof DELETE_POST_SUCCESS
+    | typeof DELETE_POST_FAILURE;
+  payload: {
+    token: string;
+    postId: string;
+  };
 }
 
 export type FeedAction =
@@ -67,13 +87,12 @@ export type FeedAction =
   | ReturnType<typeof getPostIndex>
   | FeedAsyncActionType
   | ReturnType<typeof deletePost>
-  | DeletePostAsyncActionType;
+  | DeletePost;
 export type MypageAction =
-  | ReturnType<typeof getMypageFeed>
+  | GetMypageFeed
+  | GetMypageTagFeed
   | ReturnType<typeof getMypageTagFeed>
-  | ReturnType<typeof setIsMypage>
-  | MypageFeedAsyncActionType
-  | MypageTagFeedAsyncActionType;
+  | ReturnType<typeof setIsMypage>;
 
 export interface FeedState {
   feed: apiTypes.FeedListType[];
@@ -81,6 +100,7 @@ export interface FeedState {
   feedRequestParams: apiTypes.FeedRequestParams;
   isMypage: boolean;
   reRenderCount: number;
+  postId: string;
 }
 
 const initialState: FeedState = {
@@ -88,29 +108,6 @@ const initialState: FeedState = {
     {
       post: {
         _id: '0',
-        content: 'OOTD',
-        likeN: 0,
-        cmtN: 0,
-        pictures: [
-          'https://dimg.donga.com/i/600/0/90/ugc/CDB/WEEKLY/Article/5c/a6/e3/1c/5ca6e31c198dd2738de6.jpg',
-        ],
-        date: 'yyyy.mm.dd',
-        weather: {
-          status: 1,
-          temp: 0,
-        },
-        userId: 'q',
-      },
-      user: {
-        userName: 'OOTD',
-        profile:
-          'https://cdn.allets.com/500/2018/08/27/500_322525_1535357464.jpeg',
-        likedId: ['2'],
-      },
-    },
-    {
-      post: {
-        _id: '2',
         content: 'OOTD',
         likeN: 0,
         cmtN: 0,
@@ -140,6 +137,7 @@ const initialState: FeedState = {
   },
   isMypage: true,
   reRenderCount: 0,
+  postId: '',
 };
 
 export default function feed(
@@ -156,15 +154,15 @@ export default function feed(
     case GET_MYPAGE_FEED:
       return { ...state };
     case GET_MYPAGE_FEED_SUCCESS:
-      return { ...state, feed: action.payload };
+      return { ...state, feed: action.payload.feedData };
     case GET_MYPAGE_TAG_FEED:
       return { ...state };
     case GET_MYPAGE_TAG_FEED_SUCCESS:
-      return { ...state, feed: action.payload };
+      return { ...state, feed: action.payload.feedData };
     case SET_IS_MYPAGE:
       return { ...state, isMypage: action.payload };
     case DELETE_POST:
-      return { ...state };
+      return { ...state, postId: action.payload.postId };
     case DELETE_POST_SUCCESS:
       return { ...state, reRenderCount: state.reRenderCount + 1 };
     default:

@@ -18,11 +18,12 @@ export default function useComment() {
   );
   const dispatch = useDispatch();
   const onGetComment = useCallback(
-    (postId: string) => dispatch(getComment(postId)),
+    (postId: string, token: string) => dispatch(getComment(postId, token)),
     [dispatch],
   );
   const onAddComment = useCallback(
-    (comment: string, postId: string) => dispatch(addComment(comment, postId)),
+    (comment: string, postId: string, token) =>
+      dispatch(addComment(comment, postId, token)),
     [dispatch],
   );
   return {

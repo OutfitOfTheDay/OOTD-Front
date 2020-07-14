@@ -2,9 +2,9 @@ export const LIKE_POST = 'LIKE_POST' as const;
 export const LIKE_POST_SUCCESS = 'LIKE_POST_SUCCESS' as const;
 export const LIKE_POST_FAILURE = 'LIKE_POST_SUCCESS' as const;
 
-export const like = (postId: string) => ({
+export const like = (postId: string, token: string) => ({
   type: LIKE_POST,
-  payload: postId,
+  payload: { postId, token },
 });
 
 export interface LikePostAsyncActionType {
@@ -17,9 +17,11 @@ export type LikePostAction = ReturnType<typeof like> | LikePostAsyncActionType;
 export interface LikePostState {
   LikeStatus: 0 | 200 | 400 | 500;
   reRenderCount: number;
+  postId: string;
 }
 
 const initialState: LikePostState = {
+  postId: '',
   LikeStatus: 0,
   reRenderCount: 0,
 };
