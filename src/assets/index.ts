@@ -12,6 +12,7 @@ import auth_facebook from './modal_icon/auth_facebook.png';
 import auth_google from './modal_icon/auth_google.png';
 import add_img from './upload/add_img.png';
 import delete_img from './upload/delete_img.png';
+import camera from './profile/camera.png';
 
 export const weather = {
   disabled,
@@ -28,7 +29,7 @@ export const feed = {
   right_move_button,
 };
 export const header = {
-  defualt_profile: default_profile,
+  default_profile,
 };
 
 export const modal = {
@@ -40,4 +41,8 @@ export const modal = {
 export const upload = {
   add_img,
   delete_img,
+};
+
+export const profile = {
+  camera,
 };
