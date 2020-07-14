@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import * as S from './style';
-// import { profile } from 'assets/index';
 import readFile from '../../../../utils/readFile';
+import { header, profile } from 'assets/index';
 
 interface Props {
   onChangeProfileImg: (img: File) => void;
-  profileImg: File;
+  profileImg: File | string;
 }
 
 const ProfileImg: React.FC<Props> = ({ onChangeProfileImg, profileImg }) => {
@@ -26,7 +26,11 @@ const ProfileImg: React.FC<Props> = ({ onChangeProfileImg, profileImg }) => {
 
   return (
     <S.UserImg
-      img={profileImg === null ? '' : URL.createObjectURL(profileImg)}
+      img={
+        profileImg instanceof File
+          ? URL.createObjectURL(profileImg)
+          : header.default_profile
+      }
       isHovered={isHovered}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMoverOut}
@@ -39,7 +43,7 @@ const ProfileImg: React.FC<Props> = ({ onChangeProfileImg, profileImg }) => {
           accept=".jpg, .jpeg, .png"
         />
         <label htmlFor="user-img-input">
-          {/* <img src={profile.camera} alt="select img" /> */}
+          <img src={profile.camera} alt="select img" />
         </label>
       </div>
     </S.UserImg>

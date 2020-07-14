@@ -17,7 +17,7 @@ const Header: React.FC = () => {
     <S.HeaderWrapper>
       <S.Logo>#OOTD</S.Logo>
       <Img
-        imgSrc={header.defualt_profile}
+        imgSrc={header.default_profile}
         size={40}
         className="header"
         handleClickEvent={handleClickList}

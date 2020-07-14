@@ -10,7 +10,7 @@ export const EDIT_PROFILE_FAILURE = 'EDIT_PROFILE_FAILURE';
 interface ChangeProfileImg {
   type: typeof CHANGE_PROFILE_IMG;
   payload: {
-    img: File;
+    img: File | string;
   };
 }
 
@@ -28,8 +28,9 @@ export interface GetProfile {
     | typeof GET_PROFILE_FAILURE;
   payload: {
     userName?: string;
-    profile?: File;
-    getStatus?: 0 | 200 | 400 | 404;
+    profile?: File | string;
+    getStatus?: number;
+    token?: string;
   };
 }
 
@@ -39,9 +40,10 @@ export interface EditProfile {
     | typeof EDIT_PROFILE_SUCCESS
     | typeof EDIT_PROFILE_FAILURE;
   payload: {
-    img?: File;
+    img?: File | string;
     name?: string;
     editStatus?: 0 | 200 | 400 | 404;
+    token?: string;
   };
 }
 
@@ -51,7 +53,7 @@ type MypageActions =
   | GetProfile
   | EditProfile;
 
-export const changeProfileImg = (img: File): ChangeProfileImg => ({
+export const changeProfileImg = (img: File | string): ChangeProfileImg => ({
   type: CHANGE_PROFILE_IMG,
   payload: { img },
 });
@@ -63,14 +65,15 @@ export const changeProfileName = (name: string): ChangeProfileName => ({
   },
 });
 
-export const getProfile = (): GetProfile => ({
-  payload: {},
+export const getProfile = (token: string): GetProfile => ({
+  payload: { token },
   type: GET_PROFILE,
 });
 
 export const editProfile = (payload: {
-  img: File;
-  name: string;
+  img?: File | string;
+  name?: string;
+  token: string;
 }): EditProfile => ({
   payload,
   type: EDIT_PROFILE,
@@ -79,7 +82,7 @@ export const editProfile = (payload: {
 interface InitialState {
   editStatus: 0 | 200 | 400 | 404;
   getStatus: 0 | 200 | 400 | 404;
-  img: File;
+  img: File | string;
   isChanged: boolean;
   name: string;
 }

@@ -7,6 +7,7 @@ import {
   changeDescription,
   deleteImg,
   uploadPost,
+  clearUploadStatus,
 } from '../data/modules/PostUpload';
 
 export default function usePostUpload() {
@@ -15,6 +16,9 @@ export default function usePostUpload() {
   );
   const description = useSelector(
     (state: rootState) => state.postUploadReducer.description,
+  );
+  const uploadPostStatus = useSelector(
+    (state: rootState) => state.postUploadReducer.uploadStatus,
   );
   const dispatch = useDispatch();
 
@@ -30,16 +34,25 @@ export default function usePostUpload() {
     [dispatch],
   );
   const onUploadPost = useCallback(
-    (post: {
-      imgList: File[];
-      description: string;
-      weather: {
-        status: number;
-        temp: number;
-      };
-    }) => dispatch(uploadPost(post)),
+    (
+      post: {
+        imgList: File[];
+        description: string;
+        weather: {
+          status: number;
+          temp: number;
+        };
+      },
+      token: string,
+    ) => {
+      dispatch(uploadPost(post, token));
+    },
     [dispatch],
   );
+
+  const onClearUploadStatus = useCallback(() => {
+    dispatch(clearUploadStatus());
+  }, [dispatch]);
 
   return {
     description,
@@ -48,5 +61,7 @@ export default function usePostUpload() {
     onChangeDescription,
     onDeleteImg,
     onUploadPost,
+    uploadPostStatus,
+    onClearUploadStatus,
   };
 }

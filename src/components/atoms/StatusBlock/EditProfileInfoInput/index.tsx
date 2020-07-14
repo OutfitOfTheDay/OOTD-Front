@@ -7,9 +7,9 @@ import { ModalTypes } from 'src/data/modal/modal';
 interface Props {
   isChanged: boolean;
   onChangeProfileName: (name: string) => void;
-  onEditProfile: (img: File, name: string) => void;
+  onEditProfile: (img: File | string, name: string) => void;
   profileName: string;
-  profileImg: File;
+  profileImg: File | string;
 }
 
 const ProfileInfo: React.FC<Props> = ({
