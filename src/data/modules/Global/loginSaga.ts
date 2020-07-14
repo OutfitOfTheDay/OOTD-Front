@@ -1,7 +1,8 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 
-import { facebookLogIn, googleLogIn, logOut } from '../../api/index';
+import { facebookLogIn, googleLogIn, logOut, logIn } from '../../api/index';
 import * as global from './index';
+import * as apiTypes from '../../api/apiTypes';
 
 function* getFacebookLogin() {
   try {
@@ -16,12 +17,12 @@ function* getFacebookLogin() {
   }
 }
 
-function* getGooGleLogin() {
+function* getGooGleLogin(action: global.loginAction) {
   try {
-    const googleLoginStatus = yield call(googleLogIn);
+    const loginRes: apiTypes.LoginResType = yield call(logIn, action.payload);
     yield put({
       type: global.GOOGLE_LOGIN_SUCCESS,
-      payload: googleLoginStatus,
+      payload: loginRes.user,
     });
   } catch (error) {
     yield put({

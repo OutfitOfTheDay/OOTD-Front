@@ -1,3 +1,5 @@
+import * as apiTypes from '../../api/apiTypes';
+
 export const SET_IS_LOGIN = 'SET_IS_LOGIN' as const;
 
 //=== login
@@ -22,8 +24,9 @@ export const getFaceBookLogin = () => ({
   type: FACEBOOK_LOGIN,
 });
 
-export const getGoogleLogin = () => ({
+export const getGoogleLogin = (loginParams: apiTypes.LoginReqParamsType) => ({
   type: GOOGLE_LOGIN,
+  payload: loginParams,
 });
 
 export const setLogOut = () => ({
@@ -34,31 +37,45 @@ export interface LoginAsyncAction {
   type:
     | typeof FACEBOOK_LOGIN_SUCCESS
     | typeof FACEBOOK_LOGIN_FAILURE
-    | typeof GOOGLE_LOGIN_SUCCESS
-    | typeof GOOGLE_LOGIN_FAILURE
     | typeof LOG_OUT_SUCCESS
     | typeof LOG_OUT_FAILURE;
   payload: any;
 }
 
+export interface GoogleLogin {
+  type: typeof GOOGLE_LOGIN_SUCCESS | typeof GOOGLE_LOGIN_FAILURE;
+  payload: apiTypes.LoginUserInfoType;
+}
+export type loginAction = ReturnType<typeof getGoogleLogin>;
 export type globalAction =
   | ReturnType<typeof setIsLogin>
   | ReturnType<typeof getFaceBookLogin>
-  | ReturnType<typeof getGoogleLogin>
   | ReturnType<typeof setLogOut>
-  | LoginAsyncAction;
+  | LoginAsyncAction
+  | loginAction
+  | GoogleLogin;
 
 //====
 export interface GlobalState {
+  loginParams: apiTypes.LoginReqParamsType;
   isLogin: boolean;
   loginStatus: number;
-  oauthPage: any;
+  user: apiTypes.LoginUserInfoType;
 }
 
 const initialState: GlobalState = {
+  loginParams: {
+    userId: '',
+    userName: '',
+    accessToken: '',
+  },
   isLogin: false,
   loginStatus: 0,
-  oauthPage: 0,
+  user: {
+    id: '',
+    profile: '',
+    userName: 'OOTD',
+  },
 };
 
 const globalReducer = (
@@ -74,9 +91,9 @@ const globalReducer = (
     case FACEBOOK_LOGIN_SUCCESS:
       return { ...state, isLogin: true, loginStatus: action.payload };
     case GOOGLE_LOGIN:
-      return { ...state };
+      return { ...state, loginParams: action.payload };
     case GOOGLE_LOGIN_SUCCESS:
-      return { ...state, isLogin: true };
+      return { ...state, isLogin: true, user: action.payload };
     case LOG_OUT:
       return { ...state };
     case LOG_OUT_SUCCESS:
