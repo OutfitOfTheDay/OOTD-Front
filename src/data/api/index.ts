@@ -1,24 +1,28 @@
 import axios from 'axios';
+
 import * as apiTypes from './apiTypes';
 
-import { GetProfileApiType } from './apiTypes';
-
+//=========
 const instanceAxios = axios.create({
-  baseURL: 'http://192.168.43.47:1212',
-  // headers:  { userId: '5edc9b14e7179a6b6367fee9' },
+  baseURL: 'http://192.168.43.226:1212',
 });
 
-//=======
+export const logIn = async (
+  loginReqParms: apiTypes.LoginReqParamsType,
+): Promise<apiTypes.LoginResType> => {
+  const response = await instanceAxios.post('/login', loginReqParms);
+  console.log(response.data);
+  localStorage.setItem('token', response.data.token);
+  return response.data;
+};
 
 export const facebookLogIn = async () => {
   const response = await instanceAxios.get('/auth/facebook');
-  console.log(response.status);
   return response.status;
 };
 
-export const googleLogIn = async () => {
+export const googleLogIn = async (): Promise<apiTypes.LoginReqParamsType> => {
   const response = await instanceAxios.get('/auth/google');
-  console.log(response.status);
   return response.data;
 };
 
@@ -39,7 +43,6 @@ export const getWeatherStatusApi = async (payload: {
       lon: payload.lon,
     },
   });
-  // console.log(response.status);
   return response.data;
 };
 
@@ -53,28 +56,43 @@ export const getFeedData = async (
       temp: feedParams.temp,
     },
   });
-  console.log(response.data);
-  return response.data;
-};
-export const getCommentData = async (
-  commentParams: string,
-): Promise<apiTypes.CommentDataType> => {
-  const response = await instanceAxios.get(`/post/${commentParams}`);
   return response.data;
 };
 
-export const writingComment = async (
-  text: string,
-  postId: string,
-): Promise<number> => {
-  const response = await instanceAxios.post(`/comment`, {
-    postId,
-    text,
+export const getCommentData = async (payload: {
+  token: string;
+  postId: string;
+}): Promise<apiTypes.CommentDataType> => {
+  const response = await instanceAxios.get(`/post/${payload.postId}`, {
+    headers: {
+      'x-access-token': payload.token,
+    },
   });
+  return response.data;
+};
+
+export const writingComment = async (payload: {
+  text: string;
+  postId: string;
+  token: string;
+}): Promise<number> => {
+  const response = await instanceAxios.post(
+    `/comment`,
+    {
+      postId: payload.postId,
+      text: payload.text,
+    },
+    {
+      headers: {
+        'x-access-token': payload.token,
+      },
+    },
+  );
   return response.status;
 };
 
 export const uploadPost = async (payload: {
+  token: string;
   post: {
     imgList: File[];
     description: string;
@@ -91,48 +109,78 @@ export const uploadPost = async (payload: {
   postData.append('temp', payload.post.weather.temp.toString());
 
   const response = await instanceAxios.post('/post', postData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: {
+      'x-access-token': payload.token,
+      'Content-Type': 'multipart/form-data',
+    },
   });
   return response.data;
 };
 
-export const getProfile = async (): Promise<GetProfileApiType> => {
-  const response = await instanceAxios.get('/mypage');
+export const getProfile = async (payload: {
+  token: string;
+}): Promise<apiTypes.GetProfileApiType> => {
+  const response = await instanceAxios.get('/mypage', {
+    headers: { 'x-access-token': payload.token },
+  });
   return response.data;
 };
 
 export const editProfile = async (payload: {
+  token: string;
   userName: string;
-  profile: File;
+  profile: File | string;
 }) => {
+  console.log(payload);
   const postData = new FormData();
   postData.append('userName', payload.userName);
   postData.append('profile', payload.profile);
-
+  console.log(postData);
   const response = await instanceAxios.patch('/mypage', postData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: {
+      'x-access-token': payload.token,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data;
+};
+
+export const getMypageFeed = async (payload: {
+  token: string;
+}): Promise<apiTypes.FeedListType> => {
+  console.log(payload.token);
+  const response = await instanceAxios.get(`/mypage/myfeed`, {
+    headers: { 'x-access-token': payload.token },
+  });
+  return response.data;
+};
+
+export const getMypageTagFeed = async (payload: {
+  token: string;
+}): Promise<apiTypes.FeedListType> => {
+  const response = await instanceAxios.get(`/mypage/tagfeed`, {
+    headers: { 'x-access-token': payload.token },
   });
 
   return response.data;
 };
 
-export const getMypageFeed = async (): Promise<apiTypes.FeedListType> => {
-  const response = await instanceAxios.get(`/mypage/myfeed`);
-  console.log(response.data);
-  return response.data;
-};
-
-export const getMypageTagFeed = async (): Promise<apiTypes.FeedListType> => {
-  const response = await instanceAxios.get(`/mypage/tagfeed`);
-  return response.data;
-};
-
-export const likePost = async (postId: string): Promise<number> => {
-  const response = await instanceAxios.get(`/like/${postId}`);
-  console.log(response.status);
+export const likePost = async (payload: {
+  token: string;
+  postId: string;
+}): Promise<number> => {
+  const response = await instanceAxios.get(`/like/${payload.postId}`, {
+    headers: { 'x-access-token': payload.token },
+  });
   return response.status;
 };
-export const deletePost = async (postId: string): Promise<number> => {
-  const response = await instanceAxios.delete(`/post/${postId}`);
+
+export const deletePost = async (payload: {
+  token: string;
+  postId: string;
+}): Promise<number> => {
+  const response = await instanceAxios.delete(`/post/${payload.postId}`, {
+    headers: { 'x-access-token': payload.token },
+  });
   return response.status;
 };
