@@ -4,7 +4,7 @@ import useGlobal from '../../../../hooks/useGlobal';
 import useModal from '../../../../hooks/useModal';
 import * as S from './style';
 import { ModalTypes } from 'src/data/modal/modal';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 interface IProps {
   isClicked: boolean;
@@ -14,10 +14,15 @@ interface IProps {
 const SelectBlock: React.FC<IProps> = ({ isClicked }) => {
   const { isLogin, onSetIsLogin } = useGlobal();
   const { onChangeModal } = useModal();
+  const history = useHistory();
+
   const onLogOut = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     onSetIsLogin(false);
+    history.push('/');
   };
+  
   return (
     <S.BlockContainer isClicked={isClicked} isLogin={isLogin}>
       {isLogin ? (
