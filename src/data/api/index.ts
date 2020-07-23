@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import * as apiTypes from './apiTypes';
 
-//=========
 const instanceAxios = axios.create({
   baseURL: 'http://192.168.43.226:1212',
 });
@@ -11,8 +10,8 @@ export const logIn = async (
   loginReqParms: apiTypes.LoginReqParamsType,
 ): Promise<apiTypes.LoginResType> => {
   const response = await instanceAxios.post('/login', loginReqParms);
-  console.log(response.data);
   localStorage.setItem('token', response.data.token);
+  localStorage.setItem('user', JSON.stringify(response.data.user));
   return response.data;
 };
 
@@ -30,8 +29,6 @@ export const logOut = async () => {
   const response = await instanceAxios.get('/logout');
   return response.status;
 };
-
-//======
 
 export const getWeatherStatusApi = async (payload: {
   lat: number;
@@ -161,6 +158,7 @@ export const getMypageTagFeed = async (payload: {
   const response = await instanceAxios.get(`/mypage/tagfeed`, {
     headers: { 'x-access-token': payload.token },
   });
+  console.log(response.data);
 
   return response.data;
 };
