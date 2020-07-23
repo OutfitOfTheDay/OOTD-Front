@@ -26,10 +26,10 @@ const PostLikeButton: React.FC<Props> = ({
   }, []);
 
   const setIsLikedPost = () => {
-    let isLikedPost = likedId.some((id) => {
+    let isLikedPost = likedId.some(id => {
       return id === postId;
     });
-    console.log(isLikedPost);
+    // console.log(isLikedPost);
     setIsSelected(isLikedPost);
   };
 

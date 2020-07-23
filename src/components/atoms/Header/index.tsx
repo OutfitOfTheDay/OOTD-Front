@@ -5,6 +5,7 @@ import * as S from './style';
 import { header } from 'assets/index';
 import Img from 'atoms/public/ProfileImg';
 import SelectBlock from './SelectBlock';
+import { useMypage } from '../../../hooks';
 
 const Header: React.FC = () => {
   const [isClicked, setIsClicked] = React.useState(false);
@@ -13,11 +14,13 @@ const Header: React.FC = () => {
     setIsClicked(!isClicked);
   };
 
+  const { profileImg } = useMypage();
+
   return (
     <S.HeaderWrapper>
       <S.Logo>#OOTD</S.Logo>
       <Img
-        imgSrc={header.default_profile}
+        imgSrc={profileImg || header.default_profile}
         size={40}
         className="header"
         handleClickEvent={handleClickList}

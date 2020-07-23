@@ -8,9 +8,11 @@ export const BlockContainer = styled.ul<{
 }>`
   width: 11.25rem;
   height: ${({ isLogin }) => (isLogin ? '7.5rem' : '3.75rem')};
+  padding: 1.25rem 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   border: solid 1px ${MainColor};
@@ -31,9 +33,5 @@ export const ListItem = styled.li`
 
   &:hover {
     color: ${MainColor};
-  }
-
-  &:nth-child(2) {
-    margin-top: 1.5rem;
   }
 `;

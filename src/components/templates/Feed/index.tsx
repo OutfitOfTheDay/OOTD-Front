@@ -15,6 +15,7 @@ import geoLocation from '../../../utils/geoLocation';
 import useLikePost from 'src/hooks/useLikePost';
 import useGlobal from 'src/hooks/useGlobal';
 import useModal from 'src/hooks/useModal';
+import { useMypage } from 'src/hooks';
 import { ModalTypes } from 'src/data/modal/modal';
 import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 
@@ -25,6 +26,7 @@ const Feed: React.FC = () => {
   const { reRenderCount } = useLikePost();
   const { onChangeModal } = useModal();
   const { isLogin, userInfo, onSetIsLogin } = useGlobal();
+  const { onGetProfile } = useMypage();
 
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
@@ -50,6 +52,7 @@ const Feed: React.FC = () => {
   const checkIsLogin = () => {
     if (localStorage.getItem('token') !== null) {
       onSetIsLogin(true);
+      onGetProfile(localStorage.getItem('token'));
     } else {
       onSetIsLogin(false);
     }
@@ -58,6 +61,8 @@ const Feed: React.FC = () => {
     geoLocation(onSetWeatherStatus);
     onSetIsMypage(false);
     checkIsLogin();
+    // isLogin && onGetProfile(localStorage.getItem('token'));
+    // console.log(isLogin);
   }, []);
   useEffect(() => {
     if (weatherStatus === 200) {
