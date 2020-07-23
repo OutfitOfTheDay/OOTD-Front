@@ -14,8 +14,14 @@ import { weather as weatherIcon } from 'assets/index';
 import usePostUpload from '../../../hooks/usePostUpload';
 import useWeatherStatus from '../../../hooks/useWeatherStatus';
 import gps from '../../../utils/geoLocation';
+import { Link, useHistory } from 'react-router-dom';
 
-const StyleUpload: React.FC = () => {
+interface Props {
+  isEditMode: boolean;
+  postId?: string;
+}
+
+const StyleUpload: React.FC<Props> = ({ isEditMode, postId }) => {
   const {
     imgList,
     description,
@@ -23,16 +29,32 @@ const StyleUpload: React.FC = () => {
     onDeleteImg,
     onChangeDescription,
     onUploadPost,
+    uploadPostStatus,
+    onClearUploadStatus,
   } = usePostUpload();
   const {
     onChangeWeatherStatus,
     onSetWeatherStatus,
     weather,
   } = useWeatherStatus();
+  const history = useHistory();
+  const token = localStorage.getItem('token');
 
   React.useEffect(() => {
-    gps(onSetWeatherStatus);
+    if (isEditMode) {
+      gps(onSetWeatherStatus);
+    } else {
+      //post id로 post List 찾기
+      
+    } 
   }, []);
+
+  React.useEffect(() => {
+    if (uploadPostStatus === 200) {
+      history.push('/');
+      onClearUploadStatus();
+    }
+  }, [uploadPostStatus]);
 
   return (
     <StyleUploadWrapper>
@@ -45,7 +67,7 @@ const StyleUpload: React.FC = () => {
       <SubTitle>DESCRIPTION</SubTitle>
       <DescriptionInput
         placeholder="내용을 입력해주세요."
-        onChange={e => onChangeDescription(e.target.value)}
+        onChange={(e) => onChangeDescription(e.target.value)}
         value={description}
       />
       <WeatherHeaderWrapper>
@@ -64,9 +86,11 @@ const StyleUpload: React.FC = () => {
       />
       <UploadBtn
         isAllFilled={!!(imgList.length > 0 && description)}
-        onClick={() => onUploadPost({ imgList, description, weather })}
+        onClick={() => {
+          onUploadPost({ imgList, description, weather }, token);
+        }}
       >
-        업로드
+        {isEditMode ? '수정' : '업로드'}
       </UploadBtn>
     </StyleUploadWrapper>
   );

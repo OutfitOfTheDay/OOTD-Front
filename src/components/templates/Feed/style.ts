@@ -13,6 +13,17 @@ export const FeedStatusBlockWrapper = styled.div`
   top: 7.5rem;
 `;
 
+export const goLogInText = styled.p`
+  color: ${MainColor};
+  font-size: 1rem;
+`;
+
+export const goLogInButton = styled.button`
+  color: ${MainColor};
+  font-size: 0.875rem;
+  font-weight: 800;
+`;
+
 export const UserProfileBlock = styled.div`
   display: flex;
   width: 20rem;

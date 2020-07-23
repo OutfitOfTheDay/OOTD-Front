@@ -7,7 +7,7 @@ export const GlobalStyle: GlobalStyleComponent<
   {},
   DefaultTheme
 > = createGlobalStyle`
-@import url("https://www.fontzip.com/storage/2018/12/11/play-pretend/webfonts/Play Pretend.css");
+@import url("https://www.fontzip.com/storage/2018/12/11/play-pretend/webfonts/PlayPretend.css");
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,

@@ -1,4 +1,5 @@
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
 import { uploadPost } from '../../api';
 import {
@@ -21,13 +22,14 @@ function* postUpload(action: UploadPost) {
     imgList: action.payload.post.imgList,
     weather: action.payload.post.weather,
   };
-
+  const token: string = action.payload.token;
   try {
-    yield call(uploadPost, { post });
+    yield call(uploadPost, { post, token });
 
     yield put({
       type: UPLOAD_POST_SUCCESS,
     });
+    yield put(push('/mypage'));
   } catch (e) {
     yield put({
       payload: { uploadStatus: e.response.status },

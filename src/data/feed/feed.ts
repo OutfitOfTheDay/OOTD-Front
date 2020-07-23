@@ -3,11 +3,35 @@ import * as apiTypes from '../api/apiTypes';
 export const GET_FEED = 'GET_FEED' as const;
 export const GET_FEED_SUCCESS = 'GET_FEED_SUCCESS';
 export const GET_FEED_FAILURE = 'GET_FEED_FAILURE';
+export const GET_MYPAGE_FEED = 'GET_MYPAGE_FEED' as const;
+export const GET_MYPAGE_FEED_SUCCESS = 'GET_MYPAGE_FEED_SUCCESS';
+export const GET_MYPAGE_FEED_FAILURE = 'GET_MYPAGE_FEED_FAILURE';
+export const GET_MYPAGE_TAG_FEED = 'GET_MYPAGE_TAG_FEED' as const;
+export const GET_MYPAGE_TAG_FEED_SUCCESS = 'GET_MYPAGE_TAG_FEED_SUCCESS';
+export const GET_MYPAGE_TAG_FEED_FAILURE = 'GET_MYPAGE_TAG_FEED_FAILURE';
+export const DELETE_POST = 'DELETE_POST' as const;
+export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS' as const;
+export const DELETE_POST_FAILURE = 'DELETE_POST_FAILURE' as const;
 export const GET_POST_INDEX = 'GET_POST_INDEX' as const;
+export const SET_IS_MYPAGE = 'SET_IS_MYPAGE' as const;
 
 export const getFeed = (feedRequestParams: apiTypes.FeedRequestParams) => ({
   type: GET_FEED,
   payload: feedRequestParams,
+});
+
+export const getMypageFeed = (token: string) => ({
+  type: GET_MYPAGE_FEED,
+  payload: { token },
+});
+export const deletePost = (postId: string, token: string) => ({
+  type: DELETE_POST,
+  payload: { postId, token },
+});
+
+export const getMypageTagFeed = (token: string) => ({
+  type: GET_MYPAGE_TAG_FEED,
+  payload: { token },
 });
 
 export const getPostIndex = (postIndex: number) => ({
@@ -15,20 +39,68 @@ export const getPostIndex = (postIndex: number) => ({
   payload: postIndex,
 });
 
+export const setIsMypage = (isMypage: boolean) => ({
+  type: SET_IS_MYPAGE,
+  payload: isMypage,
+});
+
 export interface FeedAsyncActionType {
   type: typeof GET_FEED_SUCCESS | typeof GET_FEED_FAILURE;
   payload: any;
 }
 
+export interface GetMypageFeed {
+  type:
+    | typeof GET_MYPAGE_FEED
+    | typeof GET_MYPAGE_FEED_FAILURE
+    | typeof GET_MYPAGE_FEED_SUCCESS;
+  payload: {
+    token: string;
+    feedData?: apiTypes.FeedListType[];
+  };
+}
+
+export interface GetMypageTagFeed {
+  type:
+    | typeof GET_MYPAGE_TAG_FEED
+    | typeof GET_MYPAGE_TAG_FEED_FAILURE
+    | typeof GET_MYPAGE_TAG_FEED_SUCCESS;
+  payload: {
+    token: string;
+    feedData?: apiTypes.FeedListType[];
+  };
+}
+
+export interface DeletePost {
+  type:
+    | typeof DELETE_POST
+    | typeof DELETE_POST_SUCCESS
+    | typeof DELETE_POST_FAILURE;
+  payload: {
+    token: string;
+    postId: string;
+  };
+}
+
 export type FeedAction =
   | ReturnType<typeof getFeed>
   | ReturnType<typeof getPostIndex>
-  | FeedAsyncActionType;
+  | FeedAsyncActionType
+  | ReturnType<typeof deletePost>
+  | DeletePost;
+export type MypageAction =
+  | GetMypageFeed
+  | GetMypageTagFeed
+  | ReturnType<typeof getMypageTagFeed>
+  | ReturnType<typeof setIsMypage>;
 
 export interface FeedState {
   feed: apiTypes.FeedListType[];
   postIndex: number;
   feedRequestParams: apiTypes.FeedRequestParams;
+  isMypage: boolean;
+  reRenderCount: number;
+  postId: string;
 }
 
 const initialState: FeedState = {
@@ -36,26 +108,24 @@ const initialState: FeedState = {
     {
       post: {
         _id: '0',
-        content:
-          '인간에게는 누구나 자신만의 산수가 있다.\n 그리고 언젠가는 그걸 발견하기 마련이다\n 세상엔 수학정도가 필요한 인생도 있겠지만 \n 대부분 산수에서 끝장이다 \n 어느새 삶은 저물기 마련이다',
-        likeN: 1,
-        cmtN: 1,
+        content: 'OOTD',
+        likeN: 0,
+        cmtN: 0,
         pictures: [
           'https://dimg.donga.com/i/600/0/90/ugc/CDB/WEEKLY/Article/5c/a6/e3/1c/5ca6e31c198dd2738de6.jpg',
-          'https://i.pinimg.com/originals/2e/5b/01/2e5b01db65071915dff659cf5f4fa3f1.png',
-          'https://img.insight.co.kr/static/2017/10/11/700/4565ef482f2pb91l8u30.jpg',
         ],
         date: 'yyyy.mm.dd',
         weather: {
           status: 1,
-          temp: 16,
+          temp: 0,
         },
         userId: 'q',
       },
       user: {
-        userName: '가나다',
+        userName: 'OOTD',
         profile:
-          ' https://cdn.allets.com/500/2018/08/27/500_322525_1535357464.jpeg',
+          'https://cdn.allets.com/500/2018/08/27/500_322525_1535357464.jpeg',
+        likedId: ['2'],
       },
     },
   ],
@@ -63,13 +133,16 @@ const initialState: FeedState = {
   feedRequestParams: {
     sortN: 1,
     status: 1,
-    temp: 25,
+    temp: 0,
   },
+  isMypage: true,
+  reRenderCount: 0,
+  postId: '',
 };
 
 export default function feed(
   state = initialState,
-  action: FeedAction,
+  action: FeedAction | MypageAction,
 ): FeedState {
   switch (action.type) {
     case GET_FEED:
@@ -78,6 +151,20 @@ export default function feed(
       return { ...state, feed: action.payload };
     case GET_POST_INDEX:
       return { ...state, postIndex: action.payload };
+    case GET_MYPAGE_FEED:
+      return { ...state };
+    case GET_MYPAGE_FEED_SUCCESS:
+      return { ...state, feed: action.payload.feedData };
+    case GET_MYPAGE_TAG_FEED:
+      return { ...state };
+    case GET_MYPAGE_TAG_FEED_SUCCESS:
+      return { ...state, feed: action.payload.feedData };
+    case SET_IS_MYPAGE:
+      return { ...state, isMypage: action.payload };
+    case DELETE_POST:
+      return { ...state, postId: action.payload.postId };
+    case DELETE_POST_SUCCESS:
+      return { ...state, reRenderCount: state.reRenderCount + 1 };
     default:
       return state;
   }

@@ -8,6 +8,7 @@ export const BlockWrapper = styled.div`
   border: 1px solid ${MainColor};
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background: white;
+  margin-bottom: 1.25rem;
 
   &.upload {
     height: 3.75rem;
@@ -42,7 +43,7 @@ export const BlockTitle = styled.h2<{ margin: number }>`
   font-family: 'Play Pretend';
   -webkit-text-stroke: 1px ${MainColor};
   color: ${SubColor};
-  margin-bottom: ${props => props.margin / 16}rem;
+  margin-bottom: ${(props) => props.margin / 16}rem;
 `;
 
 export const TitleWrapper = styled.div`

@@ -7,26 +7,32 @@ export const ADD_COMMENT = 'ADD_COMMENT' as const;
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS' as const;
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE' as const;
 
-export const getComment = (postId: string): GetComment => ({
+export const getComment = (postId: string, token: string): GetComment => ({
   type: GET_COMMENT,
-  payload: { postId },
+  payload: { postId, token },
 });
 
-export const addComment = (text: string, postId: string): AddComment => ({
+export const addComment = (
+  text: string,
+  postId: string,
+  token: string,
+): AddComment => ({
   type: ADD_COMMENT,
-  payload: { text, postId },
+  payload: { text, postId, token },
 });
 
 export interface GetComment {
   type: typeof GET_COMMENT;
   payload: {
     postId: string;
+    token: string;
   };
 }
 
 export interface AddComment {
   type: typeof ADD_COMMENT;
   payload: {
+    token: string;
     text: string;
     postId: string;
   };
@@ -63,11 +69,11 @@ export const initialState: CommentState = {
         date: 'yyyy.mm.dd',
         _id: 'adsf',
         postId: 'aasdf',
-        text: '가나다라',
+        text: '로딩중이에요',
       },
       user: {
         _id: '',
-        userName: '가나다',
+        userName: 'OOTD',
         profile: '',
       },
     },

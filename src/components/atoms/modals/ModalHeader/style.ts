@@ -19,4 +19,5 @@ export const ModalName = styled.p<{ isLogin: boolean }>`
 export const closeButton = styled.img`
   width: 1.25em;
   height: 1.25em;
+  cursor: pointer;
 `;

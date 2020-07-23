@@ -15,10 +15,15 @@ const ProfileBlock: React.FC = () => {
     onGetProfile,
     isChanged,
   } = useProfile();
+  const token = localStorage.getItem('token');
 
   React.useEffect(() => {
-    onGetProfile();
+    onGetProfile(token);
   }, []);
+
+  const onSetEditProfile = () => {
+    onEditProfile(profileImg, profileName, token);
+  };
 
   return (
     <BlockWrapper className="profile">
@@ -32,7 +37,7 @@ const ProfileBlock: React.FC = () => {
         onChangeProfileName={onChangeProfileName}
         profileImg={profileImg}
         profileName={profileName}
-        onEditProfile={onEditProfile}
+        onEditProfile={onSetEditProfile}
       />
     </BlockWrapper>
   );

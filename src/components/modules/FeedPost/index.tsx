@@ -8,6 +8,7 @@ import {
   TagCommentCount,
   PostContent,
   PostLikeButton,
+  PostModifyButton,
 } from '../../atoms/Feeds';
 
 interface Props {
@@ -52,7 +53,15 @@ const FeedPost: React.FC<Props> = ({ post, postId }) => {
         selectedPhotoIndex={photoIndex}
       />
       <S.PostContentWrapper>
-        <PostLikeButton width="1.563rem" height="2.125rem" />
+        <S.IsMypageWrapper>
+          <PostLikeButton
+            width="1.563rem"
+            height="2.125rem"
+            likedId={post.user.likedId}
+            postId={post.post._id}
+          />
+          <PostModifyButton fontSize={1} postId={post.post._id} />
+        </S.IsMypageWrapper>
         <TagCommentCount
           commentCount={post.post.cmtN}
           likeCount={post.post.likeN}

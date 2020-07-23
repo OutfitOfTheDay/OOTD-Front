@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import UserProfileImg from '../../UserProfileImg/index';
+import setWeatherIcon from 'src/utils/setWeatherIcon';
 
 interface Props {
   profilePhoto: string;
@@ -27,7 +28,7 @@ const DetailPostWriterProfile: React.FC<Props> = ({
       <S.WritingDataeWeatherWrapper>
         <S.WritingDate>{writeDate}</S.WritingDate>
         <S.WritingWeatherWrapper>
-          <S.WritingWeatherStatus />
+          <S.WritingWeatherStatus src={setWeatherIcon(weather.status)} />
           <S.WritingTemp>{weather.temp}°C</S.WritingTemp>
         </S.WritingWeatherWrapper>
       </S.WritingDataeWeatherWrapper>

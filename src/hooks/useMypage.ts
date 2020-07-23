@@ -21,16 +21,26 @@ export default function useMypage() {
   const dispatch = useDispatch();
 
   const onChangeProfileImg = useCallback(
-    (img: File) => dispatch(changeProfileImg(img)),
+    (img: File | string) => dispatch(changeProfileImg(img)),
     [dispatch],
   );
   const onChangeProfileName = useCallback(
     (name: string) => dispatch(changeProfileName(name)),
     [dispatch],
   );
-  const onGetProfile = useCallback(() => dispatch(getProfile()), [dispatch]);
+  const onGetProfile = useCallback(
+    (token: string) => dispatch(getProfile(token)),
+    [dispatch],
+  );
   const onEditProfile = useCallback(
-    (img: File, name: string) => dispatch(editProfile({ img, name })),
+    (img: File | string, name: string, token: string) =>
+      dispatch(
+        editProfile({
+          img,
+          name,
+          token,
+        }),
+      ),
     [dispatch],
   );
 

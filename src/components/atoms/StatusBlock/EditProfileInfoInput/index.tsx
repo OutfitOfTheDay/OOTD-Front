@@ -1,13 +1,15 @@
 import * as React from 'react';
 
 import * as S from './style';
+import useModal from 'src/hooks/useModal';
+import { ModalTypes } from 'src/data/modal/modal';
 
 interface Props {
   isChanged: boolean;
   onChangeProfileName: (name: string) => void;
-  onEditProfile: (img: File, name: string) => void;
+  onEditProfile: (img: File | string, name: string) => void;
   profileName: string;
-  profileImg: File;
+  profileImg: File | string;
 }
 
 const ProfileInfo: React.FC<Props> = ({
@@ -17,6 +19,7 @@ const ProfileInfo: React.FC<Props> = ({
   profileName,
   profileImg,
 }) => {
+  const { onChangeModal } = useModal();
   const handleChangeProfileName = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChangeProfileName(e.target.value);
   };
@@ -31,7 +34,9 @@ const ProfileInfo: React.FC<Props> = ({
           onChange={handleChangeProfileName}
         />
       </S.InputContainer>
-      <S.AccountSetting>회원탈퇴</S.AccountSetting>
+      <S.AccountSetting onClick={() => onChangeModal(ModalTypes.DeleteAccount)}>
+        회원탈퇴
+      </S.AccountSetting>
       <S.AccountSetting>로그아웃</S.AccountSetting>
 
       <S.ProfileEditBtn

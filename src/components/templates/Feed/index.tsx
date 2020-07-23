@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as S from './style';
 import * as apiTypes from 'src/data/api/apiTypes';
@@ -10,11 +11,21 @@ import Header from 'modules/Header';
 import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import UserProfileImg from 'atoms/UserProfileImg';
+import geoLocation from '../../../utils/geoLocation';
+import useLikePost from 'src/hooks/useLikePost';
+import useGlobal from 'src/hooks/useGlobal';
+import useModal from 'src/hooks/useModal';
+import { ModalTypes } from 'src/data/modal/modal';
+import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 
 const Feed: React.FC = () => {
-  const { feedList, onGetFeed } = useFeed();
+  const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
-  const { weather } = useWeatherStatus();
+  const { weather, onSetWeatherStatus, weatherStatus } = useWeatherStatus();
+  const { reRenderCount } = useLikePost();
+  const { onChangeModal } = useModal();
+  const { isLogin, userInfo, onSetIsLogin } = useGlobal();
+
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
     selectedSortItem: 'POPULAR' | 'NEW',
@@ -35,20 +46,52 @@ const Feed: React.FC = () => {
     status: weather.status,
     temp: weather.temp,
   };
+
+  const checkIsLogin = () => {
+    if (localStorage.getItem('token') !== null) {
+      onSetIsLogin(true);
+    } else {
+      onSetIsLogin(false);
+    }
+  };
   useEffect(() => {
-    onGetFeed(getFeedParams);
-  }, [selectedFeedItem, selectedSortItem]);
+    geoLocation(onSetWeatherStatus);
+    onSetIsMypage(false);
+    checkIsLogin();
+  }, []);
+  useEffect(() => {
+    if (weatherStatus === 200) {
+      onGetFeed(getFeedParams);
+    }
+  }, [selectedFeedItem, selectedSortItem, weatherStatus, reRenderCount]);
+
   return (
     <>
       <S.FeedContainer>
         <Header />
         <S.FeedStatusBlockWrapper>
-          <S.UserProfileBlock>
-            <UserProfileImg imgURL="" size=" 3.75rem" />
-            <S.UserName>김땡땡 </S.UserName>
-          </S.UserProfileBlock>
+          {isLogin ? (
+            <Link to="/mypage">
+              <S.UserProfileBlock>
+                <UserProfileImg imgURL={userInfo.profile} size=" 3.75rem" />
+                <S.UserName>{userInfo.userName} </S.UserName>
+              </S.UserProfileBlock>
+            </Link>
+          ) : (
+            <>
+              <S.goLogInText>로그인이 필요한 서비스입니다</S.goLogInText>
+              <S.goLogInButton
+                onClick={() => {
+                  onChangeModal(ModalTypes.LogIn);
+                }}
+              >
+                로그인하기
+              </S.goLogInButton>
+            </>
+          )}
           <WeatherStatusBlock />
           <FeedSortStatusBlock />
+          {isLogin ? <MoveToUploadBlock /> : <></>}
         </S.FeedStatusBlockWrapper>
         {feedList.length !== 0 ? (
           <>

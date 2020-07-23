@@ -15,7 +15,9 @@ import {
 
 function* getProfileInfo(action: GetProfile) {
   try {
-    const response: GetProfileApiType = yield call(getProfile);
+    const response: GetProfileApiType = yield call(getProfile, {
+      token: action.payload.token,
+    });
 
     yield put({
       payload: {
@@ -37,6 +39,7 @@ function* getProfileInfo(action: GetProfile) {
 function* putProfileInfo(action: EditProfile) {
   try {
     yield call(editProfile, {
+      token: action.payload.token,
       userName: action.payload.name,
       profile: action.payload.img,
     });

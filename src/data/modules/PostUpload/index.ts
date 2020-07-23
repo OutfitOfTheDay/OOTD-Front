@@ -1,5 +1,6 @@
 const ADD_IMG = 'ADD_IMG';
 const DELETE_IMG = 'DELETE_IMG';
+const CLEAR_UPLOAD_STATUS = 'CLEAR_UPLOAD_STATUS';
 const CHANGE_DESCRIPTION = 'CHANGE_DESCRIPTION';
 export const UPLOAD_POST = 'UPLOAD_POST';
 export const UPLOAD_POST_SUCCESS = 'UPLOAD_POST_SUCCESS';
@@ -41,6 +42,14 @@ export interface UploadPost {
       };
     };
     uploadStatus?: 0 | 200 | 400 | 401;
+    token: string;
+  };
+}
+
+export interface SetUploadStatus {
+  type: typeof CLEAR_UPLOAD_STATUS;
+  payload: {
+    uploadStatus: 0 | 200 | 400 | 401 | 404;
   };
 }
 
@@ -65,16 +74,24 @@ export const changeDescription = (description: string): ChangeDescription => ({
   },
 });
 
-export const uploadPost = (post: {
-  imgList: File[];
-  description: string;
-  weather: {
-    status: number;
-    temp: number;
-  };
-}): UploadPost => ({
+export const clearUploadStatus = () => ({
+  type: CLEAR_UPLOAD_STATUS,
+});
+
+export const uploadPost = (
+  post: {
+    imgList: File[];
+    description: string;
+    weather: {
+      status: number;
+      temp: number;
+    };
+  },
+  token: string,
+): UploadPost => ({
   payload: {
     post,
+    token,
   },
   type: UPLOAD_POST,
 });
@@ -83,7 +100,8 @@ type PostUploadActionTypes =
   | AddImg
   | ChangeDescription
   | DeleteImg
-  | UploadPost;
+  | UploadPost
+  | SetUploadStatus;
 
 interface RootState {
   imgList: File[];
@@ -135,6 +153,12 @@ const postUploadReducer = (
         ...state,
         uploadStatus: action.payload.uploadStatus,
       };
+    case CLEAR_UPLOAD_STATUS: {
+      return {
+        ...state,
+        uploadStatus: 0,
+      };
+    }
     default:
       return state;
   }
