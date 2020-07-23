@@ -3,6 +3,8 @@ import * as React from 'react';
 import * as S from './style';
 import useModal from 'src/hooks/useModal';
 import { ModalTypes } from 'src/data/modal/modal';
+import { useHistory } from 'react-router-dom';
+import useGlobal from 'src/hooks/useGlobal';
 
 interface Props {
   isChanged: boolean;
@@ -20,10 +22,18 @@ const ProfileInfo: React.FC<Props> = ({
   profileImg,
 }) => {
   const { onChangeModal } = useModal();
+  const { onSetIsLogin } = useGlobal();
   const handleChangeProfileName = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChangeProfileName(e.target.value);
   };
+  const history = useHistory();
 
+  const onLogOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    onSetIsLogin(false);
+    history.push('/');
+  };
   return (
     <>
       <S.InputContainer>
