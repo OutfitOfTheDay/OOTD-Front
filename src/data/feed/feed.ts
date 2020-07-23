@@ -111,21 +111,18 @@ const initialState: FeedState = {
         content: 'OOTD',
         likeN: 0,
         cmtN: 0,
-        pictures: [
-          'https://dimg.donga.com/i/600/0/90/ugc/CDB/WEEKLY/Article/5c/a6/e3/1c/5ca6e31c198dd2738de6.jpg',
-        ],
+        pictures: [''],
         date: 'yyyy.mm.dd',
         weather: {
           status: 1,
           temp: 0,
         },
-        userId: 'q',
+        userId: '',
       },
       user: {
         userName: 'OOTD',
-        profile:
-          'https://cdn.allets.com/500/2018/08/27/500_322525_1535357464.jpeg',
-        likedId: ['2'],
+        profile: '',
+        likedId: [],
       },
     },
   ],

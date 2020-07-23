@@ -65,10 +65,10 @@ export const initialState: CommentState = {
   commentList: [
     {
       comment: {
-        userId: 'asdf',
+        userId: '',
         date: 'yyyy.mm.dd',
-        _id: 'adsf',
-        postId: 'aasdf',
+        _id: '',
+        postId: '',
         text: '로딩중이에요',
       },
       user: {
