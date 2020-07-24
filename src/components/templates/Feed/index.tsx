@@ -73,8 +73,8 @@ const Feed: React.FC = () => {
           {isLogin ? (
             <Link to="/mypage">
               <S.UserProfileBlock>
-                <UserProfileImg imgURL={userData.profile} size=" 3.75rem" />
-                <S.UserName>{userData.userName}</S.UserName>
+                <UserProfileImg imgURL={profileImg} size=" 3.75rem" />
+                <S.UserName>{profileName}</S.UserName>
               </S.UserProfileBlock>
             </Link>
           ) : (
