@@ -31,6 +31,7 @@ const Feed: React.FC = () => {
       onSetIsMypage(true);
     } else if (selectedMypageFeedItem === 'TAG') {
       onGetMypageTagFeed(token);
+      onSetIsMypage(false);
     }
   };
 
