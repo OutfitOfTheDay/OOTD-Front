@@ -34,17 +34,16 @@ const ProfileInfo: React.FC<Props> = ({
           onChange={handleChangeProfileName}
         />
       </S.InputContainer>
-      <S.AccountSetting onClick={() => onChangeModal(ModalTypes.DeleteAccount)}>
-        회원탈퇴
-      </S.AccountSetting>
-      <S.AccountSetting>로그아웃</S.AccountSetting>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <S.AccountSetting>로그아웃</S.AccountSetting>
 
-      <S.ProfileEditBtn
-        isChanged={isChanged}
-        onClick={() => onEditProfile(profileImg, profileName)}
-      >
-        수정
-      </S.ProfileEditBtn>
+        <S.ProfileEditBtn
+          isChanged={isChanged}
+          onClick={() => onEditProfile(profileImg, profileName)}
+        >
+          수정
+        </S.ProfileEditBtn>
+      </div>
     </>
   );
 };

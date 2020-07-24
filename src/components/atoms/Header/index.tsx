@@ -20,7 +20,11 @@ const Header: React.FC = () => {
     <S.HeaderWrapper>
       <S.Logo>#OOTD</S.Logo>
       <Img
-        imgSrc={profileImg || header.default_profile}
+        imgSrc={
+          profileImg instanceof File
+            ? URL.createObjectURL(profileImg)
+            : header.default_profile
+        }
         size={40}
         className="header"
         handleClickEvent={handleClickList}

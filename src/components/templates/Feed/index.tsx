@@ -7,11 +7,9 @@ import FeedPost from '../../modules/FeedPost';
 import useFeed from '../../../hooks/useFeed';
 import useFeedSort from '../../../hooks/useFeedSort';
 import useWeatherStatus from 'src/hooks/useWeatherStatus';
-import Header from 'modules/Header';
 import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import UserProfileImg from 'atoms/UserProfileImg';
-import geoLocation from '../../../utils/geoLocation';
 import useLikePost from 'src/hooks/useLikePost';
 import useGlobal from 'src/hooks/useGlobal';
 import useModal from 'src/hooks/useModal';
@@ -22,11 +20,11 @@ import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 const Feed: React.FC = () => {
   const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
-  const { weather, onSetWeatherStatus, weatherStatus } = useWeatherStatus();
+  const { weather, weatherStatus } = useWeatherStatus();
   const { reRenderCount } = useLikePost();
   const { onChangeModal } = useModal();
-  const { isLogin, userInfo, onSetIsLogin } = useGlobal();
-  const { onGetProfile } = useMypage();
+  const { isLogin, onSetIsLogin } = useGlobal();
+  const { profileImg, profileName } = useMypage();
 
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
@@ -52,17 +50,13 @@ const Feed: React.FC = () => {
   const checkIsLogin = () => {
     if (localStorage.getItem('token') !== null) {
       onSetIsLogin(true);
-      onGetProfile(localStorage.getItem('token'));
     } else {
       onSetIsLogin(false);
     }
   };
   useEffect(() => {
-    geoLocation(onSetWeatherStatus);
     onSetIsMypage(false);
     checkIsLogin();
-    // isLogin && onGetProfile(localStorage.getItem('token'));
-    // console.log(isLogin);
   }, []);
   useEffect(() => {
     if (weatherStatus === 200) {
@@ -73,13 +67,12 @@ const Feed: React.FC = () => {
   return (
     <>
       <S.FeedContainer>
-        <Header />
         <S.FeedStatusBlockWrapper>
           {isLogin ? (
             <Link to="/mypage">
               <S.UserProfileBlock>
-                <UserProfileImg imgURL={userInfo.profile} size=" 3.75rem" />
-                <S.UserName>{userInfo.userName} </S.UserName>
+                <UserProfileImg imgURL={profileImg} size=" 3.75rem" />
+                <S.UserName>{profileName} </S.UserName>
               </S.UserProfileBlock>
             </Link>
           ) : (

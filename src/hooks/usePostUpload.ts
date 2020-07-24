@@ -22,9 +22,10 @@ export default function usePostUpload() {
   );
   const dispatch = useDispatch();
 
-  const onAddImg = useCallback((newImg: File) => dispatch(addImg(newImg)), [
-    dispatch,
-  ]);
+  const onAddImg = useCallback(
+    (newImg: File | string) => dispatch(addImg(newImg)),
+    [dispatch],
+  );
   const onDeleteImg = useCallback(
     (index: number) => dispatch(deleteImg(index)),
     [dispatch],

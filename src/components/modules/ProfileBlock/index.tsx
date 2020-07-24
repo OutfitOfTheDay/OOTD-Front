@@ -7,8 +7,8 @@ import useProfile from '../../../hooks/useMypage';
 
 const ProfileBlock: React.FC = () => {
   const {
-    profileImg,
-    profileName,
+    changedImg,
+    changedName,
     onChangeProfileImg,
     onChangeProfileName,
     onEditProfile,
@@ -22,7 +22,7 @@ const ProfileBlock: React.FC = () => {
   }, []);
 
   const onSetEditProfile = () => {
-    onEditProfile(profileImg, profileName, token);
+    onEditProfile(changedImg, changedName, token);
   };
 
   return (
@@ -30,13 +30,13 @@ const ProfileBlock: React.FC = () => {
       <BlockTitle margin={16}>PROFILE</BlockTitle>
       <EditImg
         onChangeProfileImg={onChangeProfileImg}
-        profileImg={profileImg}
+        profileImg={changedImg}
       />
       <EditInfo
         isChanged={isChanged}
         onChangeProfileName={onChangeProfileName}
-        profileImg={profileImg}
-        profileName={profileName}
+        profileImg={changedImg}
+        profileName={changedName}
         onEditProfile={onSetEditProfile}
       />
     </BlockWrapper>

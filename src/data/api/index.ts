@@ -3,9 +3,9 @@ import axios from 'axios';
 import * as apiTypes from './apiTypes';
 
 const instanceAxios = axios.create({
-  // baseURL: 'http://10.156.145.162:1212',
+  baseURL: 'http://10.156.145.162:1212',
   // baseURL: 'http://192.168.43.226:1212',
-  baseURL: 'http://192.168.42.129:1212',
+  // baseURL: 'http://192.168.42.129:1212',
 });
 
 export const logIn = async (
@@ -102,7 +102,7 @@ export const uploadPost = async (payload: {
   };
 }) => {
   const postData: FormData = new FormData();
-  payload.post.imgList.forEach((img) => postData.append('pictures', img));
+  payload.post.imgList.forEach(img => postData.append('pictures', img));
   postData.append('content', payload.post.description);
   postData.append('status', payload.post.weather.status.toString());
   postData.append('temp', payload.post.weather.temp.toString());

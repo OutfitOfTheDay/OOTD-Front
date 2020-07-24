@@ -11,7 +11,7 @@ interface IProps {
   handleClosing: () => void;
 }
 
-const SelectBlock: React.FC<IProps> = ({ isClicked }) => {
+const SelectBlock: React.FC<IProps> = ({ isClicked, handleClosing }) => {
   const { isLogin, onSetIsLogin } = useGlobal();
   const { onChangeModal } = useModal();
   const onLogOut = () => {
@@ -22,15 +22,20 @@ const SelectBlock: React.FC<IProps> = ({ isClicked }) => {
     <S.BlockContainer isClicked={isClicked} isLogin={isLogin}>
       {isLogin ? (
         <>
-          <Link to="/mypage">
+          <Link to="/mypage" onClick={handleClosing}>
             <S.ListItem>MY PAGE</S.ListItem>
           </Link>
-          <Link to="/">
+          <Link to="/" onClick={handleClosing}>
             <S.ListItem onClick={onLogOut}>LOG OUT</S.ListItem>
           </Link>
         </>
       ) : (
-        <S.ListItem onClick={() => onChangeModal(ModalTypes.LogIn)}>
+        <S.ListItem
+          onClick={() => {
+            onChangeModal(ModalTypes.LogIn);
+            handleClosing();
+          }}
+        >
           Login
         </S.ListItem>
       )}

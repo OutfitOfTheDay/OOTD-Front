@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import * as S from './style';
 import readFile from '../../../../utils/readFile';
-import { header, profile } from 'assets/index';
+import { profile } from 'assets/index';
 
 interface Props {
   onChangeProfileImg: (img: File) => void;
@@ -29,7 +29,9 @@ const ProfileImg: React.FC<Props> = ({ onChangeProfileImg, profileImg }) => {
       img={
         profileImg instanceof File
           ? URL.createObjectURL(profileImg)
-          : header.default_profile
+          : profileImg !== ''
+          ? profileImg
+          : profile.default_img
       }
       isHovered={isHovered}
       onMouseOver={handleMouseOver}

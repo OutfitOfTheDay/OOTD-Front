@@ -16,7 +16,8 @@ module.exports = {
     port: 9000,
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
@@ -28,12 +29,14 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: [{
-          loader: 'html-loader',
-          options: {
-            minimize: true,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: true,
+            },
           },
-        }, ],
+        ],
       },
       {
         test: /\.css$/,
@@ -46,14 +49,16 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: '[name].[ext]?[hash]',
-            publicPath: '/dist',
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: '[name].[ext]?[hash]',
+              publicPath: '/dist',
+            },
           },
-        }, ],
+        ],
       },
     ],
   },

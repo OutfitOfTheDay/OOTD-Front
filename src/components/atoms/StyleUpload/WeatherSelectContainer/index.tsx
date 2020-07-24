@@ -8,10 +8,10 @@ const WeatherSelectContainer: React.FC<{
     status: number;
     temp: number;
   };
-  onChangeWeatherStatus: (weather: number) => any;
+  onChangeWeatherStatus: (weather: number, temp: number) => any;
 }> = ({ weather, onChangeWeatherStatus }) => {
   const handleChangeWeather = (e: React.MouseEvent) => {
-    onChangeWeatherStatus(Number(e.currentTarget.id));
+    onChangeWeatherStatus(Number(e.currentTarget.id), weather.temp);
   };
 
   return (
@@ -111,10 +111,13 @@ const WeatherSelectContainer: React.FC<{
             onClick={handleChangeWeather}
             className={weather.status === 5 && 'selected'}
           >
-            비
+            눈
           </S.TD>
           <S.TD className="temp">
-            {weather.temp}
+            {(() => {
+              console.log(weather.temp);
+              return weather.temp;
+            })()}
             <span>°C</span>
           </S.TD>
         </tr>

@@ -15,8 +15,6 @@ export default function useGlobal() {
     (state: rootState) => state.globalReducer.isLogin,
   );
 
-  const userInfo = useSelector((state: rootState) => state.globalReducer.user);
-
   const dispatch = useDispatch();
   const onGetFacebookLogin = useCallback(() => dispatch(getFaceBookLogin()), [
     dispatch,
@@ -36,7 +34,6 @@ export default function useGlobal() {
   );
   return {
     isLogin,
-    userInfo,
     onSetIsLogin,
     onGetFacebookLogin,
     onGetGoogleLogin,

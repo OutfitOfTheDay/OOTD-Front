@@ -13,6 +13,7 @@ import auth_google from './modal_icon/auth_google.png';
 import add_img from './upload/add_img.png';
 import delete_img from './upload/delete_img.png';
 import camera from './profile/camera.png';
+import default_img from './profile/default_img.png';
 
 export const weather = {
   disabled,
@@ -45,4 +46,5 @@ export const upload = {
 
 export const profile = {
   camera,
+  default_img,
 };
