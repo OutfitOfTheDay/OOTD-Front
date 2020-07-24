@@ -19,6 +19,7 @@ export const WriterName = styled.p`
   color: ${MainColor};
   font-size: 0.875rem;
   font-weight: bold;
+  margin-left: 0.5rem;
 `;
 
 export const WritingDataeWeatherWrapper = styled.div`
