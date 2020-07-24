@@ -114,10 +114,7 @@ const WeatherSelectContainer: React.FC<{
             눈
           </S.TD>
           <S.TD className="temp">
-            {(() => {
-              console.log(weather.temp);
-              return weather.temp;
-            })()}
+            {weather.temp}
             <span>°C</span>
           </S.TD>
         </tr>
