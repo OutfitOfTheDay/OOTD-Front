@@ -7,25 +7,25 @@ import FeedPost from '../../modules/FeedPost';
 import useFeed from '../../../hooks/useFeed';
 import useFeedSort from '../../../hooks/useFeedSort';
 import useWeatherStatus from 'src/hooks/useWeatherStatus';
-import Header from 'modules/Header';
 import FeedSortStatusBlock from 'modules/FeedSortStatusBlock';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
 import UserProfileImg from 'atoms/UserProfileImg';
-import geoLocation from '../../../utils/geoLocation';
 import useLikePost from 'src/hooks/useLikePost';
 import useGlobal from 'src/hooks/useGlobal';
 import useModal from 'src/hooks/useModal';
+import { useMypage } from 'src/hooks';
 import { ModalTypes } from 'src/data/modal/modal';
 import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
 
 const Feed: React.FC = () => {
   const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
-  const { weather, onSetWeatherStatus, weatherStatus } = useWeatherStatus();
+  const { weather, weatherStatus } = useWeatherStatus();
   const { reRenderCount } = useLikePost();
   const { onChangeModal } = useModal();
   const { isLogin, onSetIsLogin } = useGlobal();
   const userData = JSON.parse(localStorage.getItem('user'));
+  const { profileImg, profileName } = useMypage();
 
   const getSortN = (
     selectedFeedItem: 'OOTD' | 'STYLE',
@@ -57,7 +57,6 @@ const Feed: React.FC = () => {
   };
 
   useEffect(() => {
-    geoLocation(onSetWeatherStatus);
     onSetIsMypage(false);
     checkIsLogin();
   }, []);
@@ -70,7 +69,6 @@ const Feed: React.FC = () => {
   return (
     <>
       <S.FeedContainer>
-        <Header />
         <S.FeedStatusBlockWrapper>
           {isLogin ? (
             <Link to="/mypage">

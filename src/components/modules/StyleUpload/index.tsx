@@ -13,8 +13,9 @@ import { weather as weatherIcon } from 'assets/index';
 
 import usePostUpload from '../../../hooks/usePostUpload';
 import useWeatherStatus from '../../../hooks/useWeatherStatus';
+import useFeed from '../../../hooks/useFeed';
 import gps from '../../../utils/geoLocation';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   isEditMode: boolean;
@@ -37,16 +38,24 @@ const StyleUpload: React.FC<Props> = ({ isEditMode, postId }) => {
     onSetWeatherStatus,
     weather,
   } = useWeatherStatus();
+  const { feedList } = useFeed();
   const history = useHistory();
   const token = localStorage.getItem('token');
 
   React.useEffect(() => {
     if (isEditMode) {
-      gps(onSetWeatherStatus);
+      const currentPostData = feedList.filter(i => i.post._id === postId)[0];
+      onChangeWeatherStatus(
+        currentPostData.post.weather.status,
+        currentPostData.post.weather.temp,
+      );
+      onChangeDescription(currentPostData.post.content);
+      for (let i of currentPostData.post.pictures) {
+        onAddImg(i);
+      }
     } else {
-      //post id로 post List 찾기
-      
-    } 
+      gps(onSetWeatherStatus);
+    }
   }, []);
 
   React.useEffect(() => {
@@ -67,7 +76,7 @@ const StyleUpload: React.FC<Props> = ({ isEditMode, postId }) => {
       <SubTitle>DESCRIPTION</SubTitle>
       <DescriptionInput
         placeholder="내용을 입력해주세요."
-        onChange={(e) => onChangeDescription(e.target.value)}
+        onChange={e => onChangeDescription(e.target.value)}
         value={description}
       />
       <WeatherHeaderWrapper>

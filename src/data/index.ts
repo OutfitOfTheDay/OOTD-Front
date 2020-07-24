@@ -10,12 +10,11 @@ import likePostReducer, { LikePostState } from './likePost/likePost';
 import modal, { ModalState } from './modal/modal';
 import feedSortReducer from './modules/FeedSort';
 import postUploadReducer from './modules/PostUpload';
-import mypageReducer from './modules/Mypage';
+import mypageReducer, { MypageState } from './modules/Mypage';
 import weatherStatusReducer, {
   InitialState as WeatherState,
 } from './modules/WeatherStatus';
 import globalReducer, { GlobalState } from './modules/global';
-
 import mypage from './modules/Mypage/MypageSaga';
 import postUpload from './modules/PostUpload/PostUploadSaga';
 import weatherStatus from './modules/WeatherStatus/WeatherStatusSaga';
@@ -32,6 +31,7 @@ export interface StoreState {
   modal: ModalState;
   global: GlobalState;
   weather: WeatherState;
+  mypage: MypageState;
 }
 
 const rootReducer = combineReducers({

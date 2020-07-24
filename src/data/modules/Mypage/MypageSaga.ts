@@ -40,8 +40,8 @@ function* putProfileInfo(action: EditProfile) {
   try {
     yield call(editProfile, {
       token: action.payload.token,
-      userName: action.payload.name,
-      profile: action.payload.img,
+      userName: action.payload.newName,
+      profile: action.payload.newImg,
     });
 
     yield put({

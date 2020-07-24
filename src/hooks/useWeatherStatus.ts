@@ -18,7 +18,8 @@ export default function useWeatherStatus() {
   const dispatch = useDispatch();
 
   const onChangeWeatherStatus = useCallback(
-    (status: number) => dispatch(changeWeatherStatus(status)),
+    (status: number, temp: number) =>
+      dispatch(changeWeatherStatus(status, temp)),
     [dispatch],
   );
 

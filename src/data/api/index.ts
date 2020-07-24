@@ -101,7 +101,7 @@ export const uploadPost = async (payload: {
   };
 }) => {
   const postData: FormData = new FormData();
-  payload.post.imgList.forEach((img) => postData.append('pictures', img));
+  payload.post.imgList.forEach(img => postData.append('pictures', img));
   postData.append('content', payload.post.description);
   postData.append('status', payload.post.weather.status.toString());
   postData.append('temp', payload.post.weather.temp.toString());

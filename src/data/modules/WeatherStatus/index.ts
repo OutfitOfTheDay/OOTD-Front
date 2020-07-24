@@ -7,7 +7,7 @@ export const GET_WEATHER_STATUS_FAILURE = 'GET_WEATHER_STATUS_FAILURE';
 
 interface ChangeWeatherStatus {
   type: typeof CHANGE_WEATHER_STATUS;
-  payload: { status: number };
+  payload: { status: number; temp: number };
 }
 
 export interface GetWeatherStatus {
@@ -27,10 +27,14 @@ export interface GetWeatherStatus {
     weatherStatus?: 0 | 200 | 400 | 401;
   };
 }
-export const changeWeatherStatus = (status: number): ChangeWeatherStatus => ({
+export const changeWeatherStatus = (
+  status: number,
+  temp: number,
+): ChangeWeatherStatus => ({
   type: CHANGE_WEATHER_STATUS,
   payload: {
     status,
+    temp,
   },
 });
 
@@ -67,6 +71,7 @@ const weatherStatusReducer = (
       const changedWeather = {
         ...state.weather,
         status: action.payload.status,
+        temp: action.payload.temp,
       };
 
       return {

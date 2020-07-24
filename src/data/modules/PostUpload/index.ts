@@ -147,6 +147,8 @@ const postUploadReducer = (
       return {
         ...state,
         uploadStatus: 200,
+        imgList: [],
+        description: '',
       };
     case UPLOAD_POST_FAILURE:
       return {

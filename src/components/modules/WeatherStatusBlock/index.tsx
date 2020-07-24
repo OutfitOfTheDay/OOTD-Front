@@ -9,10 +9,14 @@ import {
 } from 'atoms/StatusBlock';
 
 import useWeatherStatus from '../../../hooks/useWeatherStatus';
-import geoLocation from '../../../utils/geoLocation';
+import gps from '../../../utils/geoLocation';
 
 const WeatherStatusBlock: React.FC = () => {
-  const { weather } = useWeatherStatus();
+  const { weather, onSetWeatherStatus } = useWeatherStatus();
+
+  React.useEffect(() => {
+    gps(onSetWeatherStatus);
+  }, []);
 
   return (
     <BlockWrapper className="weather">

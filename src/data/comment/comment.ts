@@ -55,7 +55,7 @@ export type CommentAction =
   | AddCommentAsyncActionType;
 
 export interface CommentState {
-  commentList: apiTypes.CommentDataType[];
+  commentList: apiTypes.CommentDataType[] | null;
   writingComment: string;
   stateCode: number;
   reRenderCount: number;

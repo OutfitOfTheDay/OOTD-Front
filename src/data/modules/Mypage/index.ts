@@ -1,5 +1,5 @@
-const CHANGE_PROFILE_IMG = 'CHANGE_PROFILE_IMG';
-const CHANGE_PROFILE_NAME = 'CHANGE_PROFILE_NAME';
+const CHANGE_NEW_IMG = 'CHANGE_PROFILE_IMG';
+const CHANGE_NEW_NAME = 'CHANGE_PROFILE_NAME';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
 export const GET_PROFILE_FAILURE = 'GET_PROFILE_FAILURE';
@@ -7,17 +7,17 @@ export const EDIT_PROFILE = 'EDIT_PROFILE';
 export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS';
 export const EDIT_PROFILE_FAILURE = 'EDIT_PROFILE_FAILURE';
 
-interface ChangeProfileImg {
-  type: typeof CHANGE_PROFILE_IMG;
+interface ChangeNewImg {
+  type: typeof CHANGE_NEW_IMG;
   payload: {
-    img: File | string;
+    newImg: File | string;
   };
 }
 
-interface ChangeProfileName {
-  type: typeof CHANGE_PROFILE_NAME;
+interface ChangeNewName {
+  type: typeof CHANGE_NEW_NAME;
   payload: {
-    name: string;
+    newName: string;
   };
 }
 
@@ -27,8 +27,8 @@ export interface GetProfile {
     | typeof GET_PROFILE_SUCCESS
     | typeof GET_PROFILE_FAILURE;
   payload: {
-    userName?: string;
-    profile?: File | string;
+    name?: string;
+    img?: File | string;
     getStatus?: number;
     token?: string;
   };
@@ -40,28 +40,24 @@ export interface EditProfile {
     | typeof EDIT_PROFILE_SUCCESS
     | typeof EDIT_PROFILE_FAILURE;
   payload: {
-    img?: File | string;
-    name?: string;
+    newImg?: File | string;
+    newName?: string;
     editStatus?: 0 | 200 | 400 | 404;
     token?: string;
   };
 }
 
-type MypageActions =
-  | ChangeProfileImg
-  | ChangeProfileName
-  | GetProfile
-  | EditProfile;
+type MypageActions = ChangeNewImg | ChangeNewName | GetProfile | EditProfile;
 
-export const changeProfileImg = (img: File | string): ChangeProfileImg => ({
-  type: CHANGE_PROFILE_IMG,
-  payload: { img },
+export const changeNewImg = (newImg: File | string): ChangeNewImg => ({
+  type: CHANGE_NEW_IMG,
+  payload: { newImg },
 });
 
-export const changeProfileName = (name: string): ChangeProfileName => ({
-  type: CHANGE_PROFILE_NAME,
+export const changeNewName = (newName: string): ChangeNewName => ({
+  type: CHANGE_NEW_NAME,
   payload: {
-    name,
+    newName,
   },
 });
 
@@ -71,55 +67,62 @@ export const getProfile = (token: string): GetProfile => ({
 });
 
 export const editProfile = (payload: {
-  img?: File | string;
-  name?: string;
+  newImg?: File | string;
+  newName?: string;
   token: string;
 }): EditProfile => ({
   payload,
   type: EDIT_PROFILE,
 });
 
-interface InitialState {
+export interface MypageState {
   editStatus: 0 | 200 | 400 | 404;
   getStatus: 0 | 200 | 400 | 404;
   img: File | string;
   isChanged: boolean;
   name: string;
+  newImg: File | string;
+  newName: string;
 }
 
-const initialState: InitialState = {
+const initialState: MypageState = {
   editStatus: 0,
   getStatus: 0,
   img: null,
   isChanged: false,
   name: '',
+  newImg: null,
+  newName: '',
 };
 
 const mypageReducer = (state = initialState, action: MypageActions) => {
   switch (action.type) {
-    case CHANGE_PROFILE_IMG:
+    case CHANGE_NEW_IMG:
       return {
         ...state,
-        img: action.payload.img,
+        newImg: action.payload.newImg,
         isChanged: true,
       };
-    case CHANGE_PROFILE_NAME:
+    case CHANGE_NEW_NAME:
       return {
         ...state,
         isChanged: true,
-        name: action.payload.name,
+        newName: action.payload.newName,
       };
     case GET_PROFILE:
       return {
         ...state,
       };
-    case GET_PROFILE_SUCCESS:
+    case GET_PROFILE_SUCCESS: {
       return {
         ...state,
-        name: action.payload.userName,
-        img: action.payload.profile,
+        name: action.payload.name,
+        img: action.payload.img,
         getStatus: 200,
+        newImg: action.payload.img,
+        newName: action.payload.name,
       };
+    }
     case GET_PROFILE_FAILURE:
       return {
         ...state,
@@ -133,6 +136,7 @@ const mypageReducer = (state = initialState, action: MypageActions) => {
       return {
         ...state,
         editStatus: action.payload.editStatus,
+        isChanged: false,
       };
     case EDIT_PROFILE_FAILURE:
       return {

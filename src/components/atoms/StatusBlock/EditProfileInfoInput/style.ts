@@ -30,7 +30,6 @@ export const AccountSetting = styled.p`
   font-weight: bold;
   color: ${InputBorderColor};
   display: inline-block;
-  margin-right: 0.75rem;
   cursor: pointer;
 `;
 
@@ -39,5 +38,5 @@ export const ProfileEditBtn = styled.button<{ isChanged: boolean }>`
   font-weight: bold;
   color: ${({ isChanged }) =>
     isChanged ? MainColor : 'rgba(85, 16, 155, 0.2)'};
-  padding-left: 9rem;
+  margin-right: 0.25rem;
 `;
