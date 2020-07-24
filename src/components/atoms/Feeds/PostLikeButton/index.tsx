@@ -46,7 +46,7 @@ const PostLikeButton: React.FC<Props> = ({
   };
 
   const setTagImg = () => {
-    if (isSelected === true) {
+    if (isSelected) {
       return feed.tag_selected;
     } else {
       return feed.tag_unSelected;

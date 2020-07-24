@@ -14,7 +14,6 @@ const Login: React.FC = () => {
   const { onChangeModal } = useModal();
   const token = localStorage.getItem('token');
   const responseGoogle = (res: apiTypes.loginOauthResposeType) => {
-    console.log(res);
     const loginReqParams: apiTypes.LoginReqParamsType = {
       userId: res.profileObj.googleId,
       userName: res.profileObj.name,
