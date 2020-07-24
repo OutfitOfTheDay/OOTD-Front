@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 
 import * as S from './style';
 import { modal } from '../../../../assets/index';
 import { ModalOverlay, ModalContentWrapper, ModalHeader } from 'atoms/modals';
 import useGlobal from '../../../../hooks/useGlobal';
+import useModal from '../../../../hooks/useModal';
 import * as apiTypes from '../../../../data/api/apiTypes';
+import { ModalTypes } from 'src/data/modal/modal';
 
 const Login: React.FC = () => {
   const { onGetFacebookLogin, onGetGoogleLogin } = useGlobal();
-
+  const { onChangeModal } = useModal();
+  const token = localStorage.getItem('token');
   const responseGoogle = (res: apiTypes.loginOauthResposeType) => {
     console.log(res);
     const loginReqParams: apiTypes.LoginReqParamsType = {
@@ -22,6 +25,12 @@ const Login: React.FC = () => {
   const responseFailure = (err: any) => {
     console.error(err);
   };
+
+  useEffect(() => {
+    if (token !== null) {
+      onChangeModal(ModalTypes.none);
+    }
+  }, [token]);
 
   const modalContent = (
     <>
