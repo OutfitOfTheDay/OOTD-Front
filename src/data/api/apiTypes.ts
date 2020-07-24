@@ -129,4 +129,7 @@ export interface loginOauthResposeType {
     familyName: string;
   };
 }
+
+// export interface likedIdType {
+//   likedId: string[];
 // }

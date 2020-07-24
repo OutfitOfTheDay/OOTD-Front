@@ -101,7 +101,7 @@ export const uploadPost = async (payload: {
   };
 }) => {
   const postData: FormData = new FormData();
-  payload.post.imgList.forEach(img => postData.append('pictures', img));
+  payload.post.imgList.forEach((img) => postData.append('pictures', img));
   postData.append('content', payload.post.description);
   postData.append('status', payload.post.weather.status.toString());
   postData.append('temp', payload.post.weather.temp.toString());
@@ -167,6 +167,16 @@ export const likePost = async (payload: {
     headers: { 'x-access-token': payload.token },
   });
   return response.status;
+};
+
+export const getLikedId = async (payload: {
+  token: string;
+}): Promise<string[]> => {
+  const response = await instanceAxios.get(`/likedId`, {
+    headers: { 'x-access-token': payload.token },
+  });
+  console.log(response.data.likedId);
+  return response.data.likedId;
 };
 
 export const deletePost = async (payload: {
