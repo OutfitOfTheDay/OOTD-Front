@@ -16,6 +16,7 @@ export default function useFeed() {
   const reRenderCount = useSelector(
     (state: StoreState) => state.feed.reRenderCount,
   );
+  const deleteStatus = useSelector((state: StoreState) => state.feed.status);
   const dispatch = useDispatch();
   const onGetFeed = useCallback(
     (feedRequestParams: apiTypes.FeedRequestParams) =>
@@ -44,6 +45,7 @@ export default function useFeed() {
   return {
     isMypage,
     feedList,
+    deleteStatus,
     onGetFeed,
     onGetMypageFeed,
     onGetMypageTagFeed,

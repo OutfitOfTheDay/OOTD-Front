@@ -79,6 +79,7 @@ export interface DeletePost {
   payload: {
     token: string;
     postId: string;
+    deletePostStatus?: 0 | 200 | 403 | 500;
   };
 }
 
@@ -101,6 +102,7 @@ export interface FeedState {
   isMypage: boolean;
   reRenderCount: number;
   postId: string;
+  status: 0 | 200 | 403 | 500;
 }
 
 const initialState: FeedState = {
@@ -135,6 +137,7 @@ const initialState: FeedState = {
   isMypage: true,
   reRenderCount: 0,
   postId: '',
+  status: 0,
 };
 
 export default function feed(
@@ -161,7 +164,11 @@ export default function feed(
     case DELETE_POST:
       return { ...state, postId: action.payload.postId };
     case DELETE_POST_SUCCESS:
-      return { ...state, reRenderCount: state.reRenderCount + 1 };
+      return {
+        ...state,
+        reRenderCount: state.reRenderCount + 1,
+        status: action.payload.deletePostStatus,
+      };
     default:
       return state;
   }
