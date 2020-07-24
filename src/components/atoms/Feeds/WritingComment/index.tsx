@@ -15,7 +15,11 @@ const WritingComment: React.FC<Props> = ({ postId }) => {
 
   const addComment = () => {
     if (comment.length > 0) {
-      onAddComment(comment, postId, token);
+      if (token === null) {
+        alert('로그인 후 사용하실 수 있는 기능입니다');
+      } else {
+        onAddComment(comment, postId, token);
+      }
     }
     setComment('');
   };
