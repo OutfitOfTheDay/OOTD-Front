@@ -131,6 +131,7 @@ export const editProfile = async (payload: {
 }) => {
   const postData = new FormData();
   postData.append('userName', payload.userName);
+  postData.append('profile', payload.profile);
   const response = await instanceAxios.patch('/mypage', postData, {
     headers: {
       'x-access-token': payload.token,
@@ -176,6 +177,5 @@ export const deletePost = async (payload: {
   const response = await instanceAxios.delete(`/post/${payload.postId}`, {
     headers: { 'x-access-token': payload.token },
   });
-  console.log(`asdfasdf : ${response.status}`);
   return response.status;
 };

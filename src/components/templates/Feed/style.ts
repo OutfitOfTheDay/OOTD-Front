@@ -21,7 +21,7 @@ export const goLogInText = styled.p`
 export const goLogInButton = styled.button`
   color: ${MainColor};
   font-size: 0.875rem;
-  font-weight: 800;
+  font-weight: bold;
 `;
 
 export const UserProfileBlock = styled.div`
