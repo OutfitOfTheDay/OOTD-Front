@@ -16,11 +16,12 @@ import useModal from 'src/hooks/useModal';
 import { useMypage } from 'src/hooks';
 import { ModalTypes } from 'src/data/modal/modal';
 import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
+import gps from 'src/utils/geoLocation';
 
 const Feed: React.FC = () => {
   const { feedList, onGetFeed, onSetIsMypage } = useFeed();
   const { selectedFeedItem, selectedSortItem } = useFeedSort();
-  const { weather, weatherStatus } = useWeatherStatus();
+  const { weather, weatherStatus, onSetWeatherStatus } = useWeatherStatus();
   const { reRenderCount } = useLikePost();
   const { onChangeModal } = useModal();
   const { isLogin, onSetIsLogin } = useGlobal();
@@ -59,6 +60,7 @@ const Feed: React.FC = () => {
   useEffect(() => {
     onSetIsMypage(false);
     checkIsLogin();
+    onGetFeed(getFeedParams);
   }, []);
   useEffect(() => {
     if (weatherStatus === 200) {
@@ -78,7 +80,13 @@ const Feed: React.FC = () => {
               </S.UserProfileBlock>
             </Link>
           ) : (
-            <>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginBottom: '20px',
+              }}
+            >
               <S.goLogInText>로그인이 필요한 서비스입니다</S.goLogInText>
               <S.goLogInButton
                 onClick={() => {
@@ -87,7 +95,7 @@ const Feed: React.FC = () => {
               >
                 로그인하기
               </S.goLogInButton>
-            </>
+            </div>
           )}
           <WeatherStatusBlock />
           <FeedSortStatusBlock />

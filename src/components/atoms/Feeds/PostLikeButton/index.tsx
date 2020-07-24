@@ -23,12 +23,10 @@ const PostLikeButton: React.FC<Props> = ({
 
   useEffect(() => {
     setIsLikedPost();
-  }, [postId]);
+  }, [likedId]);
 
   const setIsLikedPost = () => {
-    let isLikedPost = likedId.some((id) => {
-      return id === postId;
-    });
+    let isLikedPost = likedId.some(id => id === postId);
     setIsSelected(isLikedPost);
   };
 
@@ -38,7 +36,7 @@ const PostLikeButton: React.FC<Props> = ({
   };
 
   const setTagImg = () => {
-    if (isSelected === true) {
+    if (isSelected) {
       return feed.tag_selected;
     } else {
       return feed.tag_unSelected;
