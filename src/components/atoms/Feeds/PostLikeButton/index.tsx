@@ -31,6 +31,7 @@ const PostLikeButton: React.FC<Props> = ({
   }, [postId]);
 
   const setIsLikedPost = () => {
+    getLikedIdList(token);
     console.log(likedIdList.length);
     if (likedIdList.length !== 0) {
       let isLikedPost = likedIdList.some((id) => {
