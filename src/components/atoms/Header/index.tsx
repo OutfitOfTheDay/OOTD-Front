@@ -6,6 +6,7 @@ import { header } from 'assets/index';
 import Img from 'atoms/public/ProfileImg';
 import SelectBlock from './SelectBlock';
 import { useMypage } from '../../../hooks';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [isClicked, setIsClicked] = React.useState(false);
@@ -18,7 +19,9 @@ const Header: React.FC = () => {
 
   return (
     <S.HeaderWrapper>
-      <S.Logo>#OOTD</S.Logo>
+      <Link to="/">
+        <S.Logo>#OOTD</S.Logo>
+      </Link>
       <Img
         imgSrc={
           profileImg instanceof File
