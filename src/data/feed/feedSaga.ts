@@ -25,7 +25,6 @@ function* getMainFeed(action: feed.FeedAction) {
 
 function* getMypageFeeds(action: feed.GetMypageFeed) {
   const token: string = action.payload.token;
-  console.log(token);
   try {
     const feedData = yield call(getMypageFeed, { token });
     yield put({

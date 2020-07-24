@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as apiTypes from './apiTypes';
 
 const instanceAxios = axios.create({
-  baseURL: 'http://192.168.43.226:1212',
+  baseURL: 'http://10.156.145.162:1212',
 });
 
 export const logIn = async (
@@ -53,6 +53,7 @@ export const getFeedData = async (
       temp: feedParams.temp,
     },
   });
+
   return response.data;
 };
 
@@ -128,11 +129,8 @@ export const editProfile = async (payload: {
   userName: string;
   profile: File | string;
 }) => {
-  console.log(payload);
   const postData = new FormData();
   postData.append('userName', payload.userName);
-  postData.append('profile', payload.profile);
-  console.log(postData);
   const response = await instanceAxios.patch('/mypage', postData, {
     headers: {
       'x-access-token': payload.token,
@@ -145,7 +143,6 @@ export const editProfile = async (payload: {
 export const getMypageFeed = async (payload: {
   token: string;
 }): Promise<apiTypes.FeedListType> => {
-  console.log(payload.token);
   const response = await instanceAxios.get(`/mypage/myfeed`, {
     headers: { 'x-access-token': payload.token },
   });
@@ -158,7 +155,6 @@ export const getMypageTagFeed = async (payload: {
   const response = await instanceAxios.get(`/mypage/tagfeed`, {
     headers: { 'x-access-token': payload.token },
   });
-  console.log(response.data);
 
   return response.data;
 };
@@ -180,5 +176,6 @@ export const deletePost = async (payload: {
   const response = await instanceAxios.delete(`/post/${payload.postId}`, {
     headers: { 'x-access-token': payload.token },
   });
+  console.log(`asdfasdf : ${response.status}`);
   return response.status;
 };
