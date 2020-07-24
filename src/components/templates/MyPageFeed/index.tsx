@@ -6,7 +6,6 @@ import useFeed from '../../../hooks/useFeed';
 import useFeedSort from '../../../hooks/useFeedSort';
 import Header from 'modules/Header';
 import WeatherStatusBlock from 'modules/WeatherStatusBlock';
-import * as apiTypes from '../../../data/api/apiTypes';
 import ProfileBlock from 'src/components/modules/ProfileBlock';
 import MypageCategoryBlock from 'src/components/modules/MypageCategoryBlock';
 import MoveToUploadBlock from 'src/components/modules/MoveToUploadBlock';
@@ -29,6 +28,7 @@ const Feed: React.FC = () => {
   const getFeedBySelectedItem = () => {
     if (selectedMypageFeedItem === 'MY STYLE') {
       onGetMypageFeed(token);
+      onSetIsMypage(true);
     } else if (selectedMypageFeedItem === 'TAG') {
       onGetMypageTagFeed(token);
     }
